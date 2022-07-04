@@ -1,0 +1,1 @@
+boilerbot_infantry_2022_leo\startup_stm32f427xx.o: startup_stm32f427xx.s
