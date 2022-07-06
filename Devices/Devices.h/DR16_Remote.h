@@ -102,4 +102,14 @@ typedef struct
 	}Keyboard;
 }DR16_Data_t;
 
-extern void DR16_Handler(UART_HandleTypeDef *huartx);
+typedef struct
+{
+    void (*DR16_Handler)(UART_HandleTypeDef *huartx);
+    void (*DR16_USART_Receive_DMA)(UART_HandleTypeDef *huartx);
+    void (*DR16_Data_Process)(uint8_t *pData);
+    void (*Keyboard_Data_Process)(void);
+    uint8_t (*Key_State_Detect)(Key_State *Key);
+}DR16_Func_t;
+
+extern DR16_Data_t DR16_Data;
+extern DR16_Func_t DR16_Func;

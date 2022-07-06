@@ -19,6 +19,7 @@
  uint8_t Key_State_Detect(Key_State Key);
  
  DR16_Data_t DR16_Data;
+ DR16_Func_t DR16_Func;
  
  void DR16_Data_Process(uint8_t *pData)
  {

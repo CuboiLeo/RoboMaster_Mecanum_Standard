@@ -28,6 +28,7 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
