@@ -46,14 +46,14 @@ boilerbot_infantry_2022_leo\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Sour
 boilerbot_infantry_2022_leo\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 boilerbot_infantry_2022_leo\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 boilerbot_infantry_2022_leo\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-boilerbot_infantry_2022_leo\freertos.o: ..\Devices\Devices.h\Board_A_IMU.h
+boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\freertos.o: ../Core/Inc/spi.h
-boilerbot_infantry_2022_leo\freertos.o: ..\HigherLevelApps\HigherLevelApps.h\IMU_Temp_Control.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
 boilerbot_infantry_2022_leo\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 boilerbot_infantry_2022_leo\freertos.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-boilerbot_infantry_2022_leo\freertos.o: ..\Devices\Devices.h\DR16_Remote.h
+boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/DR16_Remote.h
 boilerbot_infantry_2022_leo\freertos.o: ../Core/Inc/dma.h
 boilerbot_infantry_2022_leo\freertos.o: ../Core/Inc/usart.h
 boilerbot_infantry_2022_leo\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h

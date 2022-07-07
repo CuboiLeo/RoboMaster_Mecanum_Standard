@@ -22,6 +22,17 @@
 #define Kp 2.0f
 #define Ki 0.01f
 
+#define Board_A_IMU_Func_GroundInit       \
+    {                                 		\
+        &Board_A_IMU_Init,                \
+            &Board_A_IMU_Get_Data,        \
+            &Board_A_IMU_AHRS_Update,     \
+            &Board_A_IMU_Attitude_Update, \
+            &Board_A_IMU_Reset,           \
+            &Board_A_IMU_Check,           \
+						&Board_A_IMU_Temp_Control			\
+    }
+
 typedef struct
 {
     int16_t ax;
@@ -144,6 +155,7 @@ typedef struct
 	void (*Board_A_IMU_Temp_Control)(void);
 }Board_A_IMU_Func_t;
 
+extern IMU_Original_Data_t IMU_Original_Data;
 extern IMU_Calculated_Data_t IMU_Calculated_Data;
 extern IMU_Export_t IMU_Export;
 extern Board_A_IMU_Func_t Board_A_IMU_Func;

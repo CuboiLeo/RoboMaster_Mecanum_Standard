@@ -1,5 +1,5 @@
 boilerbot_infantry_2022_leo\board_a_imu.o: ..\Devices\Devices.c\Board_A_IMU.c
-boilerbot_infantry_2022_leo\board_a_imu.o: ..\Devices\Devices.h\Board_A_IMU.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Core/Inc/main.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
@@ -34,12 +34,12 @@ boilerbot_infantry_2022_leo\board_a_imu.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/s
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ..\HigherLevelApps\HigherLevelApps.h\IMU_Temp_Control.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
 boilerbot_infantry_2022_leo\board_a_imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\board_a_imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\board_a_imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ..\Devices\Devices.h\MPU6500_Reg.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ..\Devices\Devices.h\IST8310_Reg.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ..\Algorithms\Algorithms.h\Filters.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ..\Algorithms\Algorithms.h\User_Defined_Math.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/MPU6500_Reg.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/IST8310_Reg.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Algorithms/Algorithms.h/Filters.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Algorithms/Algorithms.h/User_Defined_Math.h

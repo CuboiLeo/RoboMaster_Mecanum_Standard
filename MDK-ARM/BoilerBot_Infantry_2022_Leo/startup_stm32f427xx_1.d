@@ -1,0 +1,1 @@
+boilerbot_infantry_2022_leo\startup_stm32f427xx_1.o: RTE\Device\STM32F427IIHx\startup_stm32f427xx.s

@@ -1,5 +1,5 @@
 boilerbot_infantry_2022_leo\imu_temp_control.o: ..\HigherLevelApps\HigherLevelApps.c\IMU_Temp_Control.c
-boilerbot_infantry_2022_leo\imu_temp_control.o: ..\HigherLevelApps\HigherLevelApps.h\IMU_Temp_Control.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
@@ -36,7 +36,7 @@ boilerbot_infantry_2022_leo\imu_temp_control.o: ../Drivers/STM32F4xx_HAL_Driver/
 boilerbot_infantry_2022_leo\imu_temp_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-boilerbot_infantry_2022_leo\imu_temp_control.o: ..\Devices\Devices.h\Board_A_IMU.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: ../Core/Inc/spi.h
-boilerbot_infantry_2022_leo\imu_temp_control.o: ..\HigherLevelApps\HigherLevelApps.h\IMU_Temp_Control.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

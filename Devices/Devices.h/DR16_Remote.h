@@ -49,12 +49,21 @@
 #define KEY_V ((uint16_t)0x01<<14)
 #define KEY_B ((uint16_t)0x01<<15)  
 
+#define DR16_Func_GroundInit         \
+    {                                \
+        &DR16_Handler,               \
+            &DR16_USART_Receive_DMA, \
+            &DR16_Data_Process,   	 \
+            &Keyboard_Data_Process,  \
+						&Key_State_Detect,       \
+						&Key_State_Clear,				 \
+    }
+		
 typedef struct
 {
 	uint8_t Single_Click_Flag;
 	uint8_t Hold_Flag;
 	uint8_t State_Count;
-	uint8_t State;
 }Key_State;
 	
 typedef struct
@@ -63,8 +72,8 @@ typedef struct
 	
 	struct
 	{
-		float x;
-		float y;
+		int16_t x;
+		int16_t y;
 		bool Left_Click;
 		bool Right_Click;
 	}Mouse;
@@ -104,11 +113,12 @@ typedef struct
 
 typedef struct
 {
-    void (*DR16_Handler)(UART_HandleTypeDef *huartx);
+    void (*DR16_Handler)(UART_HandleTypeDef *huart);
     void (*DR16_USART_Receive_DMA)(UART_HandleTypeDef *huartx);
     void (*DR16_Data_Process)(uint8_t *pData);
     void (*Keyboard_Data_Process)(void);
-    uint8_t (*Key_State_Detect)(Key_State *Key);
+    void (*Key_State_Detect)(Key_State *Key);
+		void (*Key_State_Clear)(Key_State *Key);
 }DR16_Func_t;
 
 extern DR16_Data_t DR16_Data;

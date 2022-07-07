@@ -8,6 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
+
 #include "Board_A_IMU.h"
 #include "MPU6500_Reg.h"
 #include "IST8310_Reg.h"
@@ -17,6 +18,17 @@
 #define BOARD_A_IMU_SPI hspi5
 #define SPI_NSS_LOW HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET)
 #define SPI_NSS_HIGH HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_SET)
+
+void Board_A_IMU_Init(void);
+void Board_A_IMU_Get_Data(void);
+void Board_A_IMU_AHRS_Update(void);
+void Board_A_IMU_Attitude_Update(void);
+void Board_A_IMU_Export_Data(IMU_Calculated_Data_t *IMU_Calculated_Data, IMU_Export_t *IMU_Export);
+void Board_A_IMU_Reset(IMU_Export_t *IMU_Export);
+void Board_A_IMU_Check(void);
+
+Board_A_IMU_Func_t Board_A_IMU_Func = Board_A_IMU_Func_GroundInit;
+#undef Board_A_IMU_Func_GroundInit
 
 volatile float q0 = 1.0f;
 volatile float q1 = 0.0f;
@@ -30,14 +42,11 @@ static uint8_t tx_buff[14] = {0xff};
 static uint8_t mpu_buff[15]; /* buffer to save IMU_Calculated_Data raw data */
 static uint8_t ist_buff[6];  /* buffer to save IST8310 raw data */
 uint32_t IMU_Offset[IMU_OFFSET_NUMBER];
-uint32_t IMUwriteFlashData[IMU_OFFSET_NUMBER] = {0};
 
 IMU_Original_Data_t IMU_Original_Data;
 IMU_Calculated_Data_t IMU_Calculated_Data;
 IMU_Export_t IMU_Export;
-Board_A_IMU_Func_t Board_A_IMU_Func;
 
-void Board_A_IMU_Init(void);
 static uint8_t Board_A_IMU_Device_Init(void);
 static HAL_StatusTypeDef Board_A_IMU_Read_Bytes(uint8_t const regAddr, uint8_t *pData, uint8_t len);
 static uint8_t Board_A_IMU_Read_Byte(uint8_t const reg);
@@ -50,11 +59,7 @@ static void Board_A_IMU_I2C_Config(uint8_t device_address, uint8_t reg_base_addr
 static uint8_t IST8310_Read_Byte(uint8_t addr);
 static void IST8310_Get_Data(uint8_t *buff);
 void Quaternion_Init(void);
-void Board_A_IMU_Get_Data(void);
-void Board_A_IMU_Attitude_Update(void);
-void Board_A_IMU_Export_Data(IMU_Calculated_Data_t *IMU_Calculated_Data, IMU_Export_t *IMU_Export);
-void Board_A_IMU_Reset(IMU_Export_t *IMU_Export);
-void Board_A_IMU_Check(void);
+
 
 void Board_A_IMU_Init(void)
 {

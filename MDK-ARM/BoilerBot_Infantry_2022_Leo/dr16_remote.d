@@ -1,5 +1,5 @@
 boilerbot_infantry_2022_leo\dr16_remote.o: ..\Devices\Devices.c\DR16_Remote.c
-boilerbot_infantry_2022_leo\dr16_remote.o: ..\Devices\Devices.h\DR16_Remote.h
+boilerbot_infantry_2022_leo\dr16_remote.o: ../Devices/Devices.h/DR16_Remote.h
 boilerbot_infantry_2022_leo\dr16_remote.o: ../Core/Inc/dma.h
 boilerbot_infantry_2022_leo\dr16_remote.o: ../Core/Inc/main.h
 boilerbot_infantry_2022_leo\dr16_remote.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h

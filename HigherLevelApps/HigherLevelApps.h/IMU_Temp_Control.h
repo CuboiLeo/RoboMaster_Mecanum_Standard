@@ -15,6 +15,6 @@
 #include "tim.h"
 
 #define MPU6500_TEMP_MAX_PWM 5000
-#define MPU6500_MAX_TEMP 40.0f
+#define MPU6500_MAX_TEMP 50.0f
 
 extern void Board_A_IMU_Temp_Control(void);

@@ -49,15 +49,16 @@
 
 /* USER CODE END Variables */
 osThreadId Task_IMUHandle;
-osThreadId Task_InitializaHandle;
+osThreadId Task_InitHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
+void StartIMUTask(void const * argument);
+void General_Initialization(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartIMUTask(void const * argument);
-void General_Initialization(void const * argument);
+void General_Init(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -105,12 +106,12 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of Task_IMU */
-  osThreadDef(Task_IMU, StartIMUTask, osPriorityHigh, 0, 384);
+  osThreadDef(Task_IMU, StartIMUTask, osPriorityNormal, 0, 384);
   Task_IMUHandle = osThreadCreate(osThread(Task_IMU), NULL);
 
-  /* definition and creation of Task_Initializa */
-  osThreadDef(Task_Initializa, General_Initialization, osPriorityNormal, 0, 128);
-  Task_InitializaHandle = osThreadCreate(osThread(Task_Initializa), NULL);
+  /* definition and creation of Task_Init */
+  osThreadDef(Task_Init, General_Init, osPriorityHigh, 0, 128);
+  Task_InitHandle = osThreadCreate(osThread(Task_Init), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -128,6 +129,10 @@ void MX_FREERTOS_Init(void) {
 void StartIMUTask(void const * argument)
 {
   /* USER CODE BEGIN StartIMUTask */
+	portTickType xLastWakeTime;
+  xLastWakeTime = xTaskGetTickCount();
+
+  const TickType_t TimeIncrement = pdMS_TO_TICKS(1);
   /* Infinite loop */
   for(;;)
   {
@@ -135,26 +140,27 @@ void StartIMUTask(void const * argument)
     Board_A_IMU_Func.Board_A_IMU_AHRS_Update();
 		Board_A_IMU_Func.Board_A_IMU_Attitude_Update();
 		Board_A_IMU_Func.Board_A_IMU_Temp_Control();
-    osDelay(1);
+    vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
   }
   /* USER CODE END StartIMUTask */
 }
 
-/* USER CODE BEGIN Header_General_Initialization */
+/* USER CODE BEGIN Header_General_Init */
 /**
-* @brief Function implementing the Task_Initializa thread.
+* @brief Function implementing the Task_Init thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_General_Initialization */
-void General_Initialization(void const * argument)
+/* USER CODE END Header_General_Init */
+void General_Init(void const * argument)
 {
-  /* USER CODE BEGIN General_Initialization */
+  /* USER CODE BEGIN General_Init */
   /* Infinite loop */
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	Board_A_IMU_Func.Board_A_IMU_Init();
 	DR16_Func.DR16_USART_Receive_DMA(&huart1);
-  /* USER CODE END General_Initialization */
+	vTaskDelete(NULL);   
+  /* USER CODE END General_Init */
 }
 
 /* Private application code --------------------------------------------------*/

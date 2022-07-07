@@ -22,5 +22,8 @@ void Board_A_IMU_Temp_Control(void)
 		IMU_Export.Temp_ReachFlag = 0;
 	}
 	else
+	{
 		IMU_Export.Temp_ReachFlag = 1;
+		__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_2, 0);
+	}
 }
