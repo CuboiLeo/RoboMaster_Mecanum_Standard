@@ -8,11 +8,12 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#ifndef __CAN_SETUP_H
+#define __CAN_SETUP_H
 
 #include "can.h"
 #include "cmsis_os.h"
 #include "queue.h"
-#include "cmsis_os.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -89,3 +90,5 @@ extern CAN_Func_t CAN_Func;
 extern osMessageQId CAN1_ReceiveHandle;
 extern osMessageQId CAN2_ReceiveHandle;
 extern osMessageQId CAN_SendHandle;
+
+#endif

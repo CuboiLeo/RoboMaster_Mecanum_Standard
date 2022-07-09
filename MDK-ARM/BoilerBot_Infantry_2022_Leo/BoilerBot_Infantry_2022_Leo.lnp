@@ -48,6 +48,7 @@
 "boilerbot_infantry_2022_leo\m3508_motor.o"
 "boilerbot_infantry_2022_leo\gm6020_motor.o"
 "boilerbot_infantry_2022_leo\m2006_motor.o"
+"boilerbot_infantry_2022_leo\super_capacitor.o"
 "boilerbot_infantry_2022_leo\can_setup.o"
 --strict --scatter "BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

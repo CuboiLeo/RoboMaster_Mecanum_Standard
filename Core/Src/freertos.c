@@ -27,7 +27,6 @@
 /* USER CODE BEGIN Includes */
 #include "Board_A_IMU.h"
 #include "DR16_Remote.h"
-#include "CAN_Setup.h"
 #include "M3508_Motor.h"
 #include "GM6020_Motor.h"
 #include "M2006_Motor.h"

@@ -28,92 +28,16 @@ Project File Date:  07/08/2022
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'BoilerBot_Infantry_2022_Leo'
 compiling Super_Capacitor.c...
-compiling stm32f4xx_it.c...
-../Core/Src/stm32f4xx_it.c(177): error:  #20: identifier "CAN_Func" is undefined
-          CAN_Func.CAN_RxMessage_Export_Data(&hcan1, CAN1_ReceiveHandle, CAN1_Type);
-../Core/Src/stm32f4xx_it.c(177): error:  #20: identifier "CAN1_ReceiveHandle" is undefined
-          CAN_Func.CAN_RxMessage_Export_Data(&hcan1, CAN1_ReceiveHandle, CAN1_Type);
-../Core/Src/stm32f4xx_it.c(239): error:  #20: identifier "CAN_Func" is undefined
-  		CAN_Func.CAN_RxMessage_Export_Data(&hcan2, CAN2_ReceiveHandle, CAN2_Type);
-../Core/Src/stm32f4xx_it.c(239): error:  #20: identifier "CAN2_ReceiveHandle" is undefined
-  		CAN_Func.CAN_RxMessage_Export_Data(&hcan2, CAN2_ReceiveHandle, CAN2_Type);
-../Core/Src/stm32f4xx_it.c: 0 warnings, 4 errors
-compiling freertos.c...
-../BSP/BSP.h/CAN_Setup.h(52): error:  #256: invalid redeclaration of type name "CAN_Data_t"  (declared at line 52)
-  } CAN_Data_t;
-../BSP/BSP.h/CAN_Setup.h(63): error:  #256: invalid redeclaration of type name "CAN_Func_t"  (declared at line 63)
-  } CAN_Func_t;
-../BSP/BSP.h/CAN_Setup.h(70): error:  #256: invalid redeclaration of type name "CAN_Devices_t"  (declared at line 70)
-  } CAN_Devices_t;
-../BSP/BSP.h/CAN_Setup.h(77): error:  #256: invalid redeclaration of type name "CAN_Export_Data_t"  (declared at line 77)
-  } CAN_Export_Data_t;
-../BSP/BSP.h/CAN_Setup.h(85): error:  #256: invalid redeclaration of type name "CAN_Send_Data_t"  (declared at line 85)
-  } CAN_Send_Data_t;
-../BSP/BSP.h/CAN_Setup.h(52): error:  #256: invalid redeclaration of type name "CAN_Data_t"  (declared at line 52)
-  } CAN_Data_t;
-../BSP/BSP.h/CAN_Setup.h(63): error:  #256: invalid redeclaration of type name "CAN_Func_t"  (declared at line 63)
-  } CAN_Func_t;
-../BSP/BSP.h/CAN_Setup.h(70): error:  #256: invalid redeclaration of type name "CAN_Devices_t"  (declared at line 70)
-  } CAN_Devices_t;
-../BSP/BSP.h/CAN_Setup.h(77): error:  #256: invalid redeclaration of type name "CAN_Export_Data_t"  (declared at line 77)
-  } CAN_Export_Data_t;
-../BSP/BSP.h/CAN_Setup.h(85): error:  #256: invalid redeclaration of type name "CAN_Send_Data_t"  (declared at line 85)
-  } CAN_Send_Data_t;
-../BSP/BSP.h/CAN_Setup.h(52): error:  #256: invalid redeclaration of type name "CAN_Data_t"  (declared at line 52)
-  } CAN_Data_t;
-../BSP/BSP.h/CAN_Setup.h(63): error:  #256: invalid redeclaration of type name "CAN_Func_t"  (declared at line 63)
-  } CAN_Func_t;
-../BSP/BSP.h/CAN_Setup.h(70): error:  #256: invalid redeclaration of type name "CAN_Devices_t"  (declared at line 70)
-  } CAN_Devices_t;
-../BSP/BSP.h/CAN_Setup.h(77): error:  #256: invalid redeclaration of type name "CAN_Export_Data_t"  (declared at line 77)
-  } CAN_Export_Data_t;
-../BSP/BSP.h/CAN_Setup.h(85): error:  #256: invalid redeclaration of type name "CAN_Send_Data_t"  (declared at line 85)
-  } CAN_Send_Data_t;
-../BSP/BSP.h/CAN_Setup.h(52): error:  #256: invalid redeclaration of type name "CAN_Data_t"  (declared at line 52)
-  } CAN_Data_t;
-../BSP/BSP.h/CAN_Setup.h(63): error:  #256: invalid redeclaration of type name "CAN_Func_t"  (declared at line 63)
-  } CAN_Func_t;
-../BSP/BSP.h/CAN_Setup.h(70): error:  #256: invalid redeclaration of type name "CAN_Devices_t"  (declared at line 70)
-  } CAN_Devices_t;
-../BSP/BSP.h/CAN_Setup.h(77): error:  #256: invalid redeclaration of type name "CAN_Export_Data_t"  (declared at line 77)
-  } CAN_Export_Data_t;
-../BSP/BSP.h/CAN_Setup.h(85): error:  #256: invalid redeclaration of type name "CAN_Send_Data_t"  (declared at line 85)
-  } CAN_Send_Data_t;
-../Core/Src/freertos.c(201): error:  #20: identifier "CAN_Func" is undefined
-  	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
-../Core/Src/freertos.c(245): error:  #167: argument of type "CAN_Export_Data_t" is incompatible with parameter of type "CAN_Export_Data_t"
-  			M2006_Func.M2006_Trigger_Get_Data(CAN_Export_Data);
-../Core/Src/freertos.c(249): error:  #167: argument of type "CAN_Export_Data_t" is incompatible with parameter of type "CAN_Export_Data_t"
-  			M3508_Func.M3508_Chassis_Get_Data(CAN_Export_Data);
-../Core/Src/freertos.c(251): error:  #20: identifier "Monitor_CAN1" is undefined
-  		Monitor_CAN1.Info_Update_Frame++;
-../Core/Src/freertos.c(274): error:  #167: argument of type "CAN_Export_Data_t" is incompatible with parameter of type "CAN_Export_Data_t"
-  			M3508_Func.M3508_Fric_Wheel_Get_Data(CAN_Export_Data);
-../Core/Src/freertos.c(276): error:  #167: argument of type "CAN_Export_Data_t" is incompatible with parameter of type "CAN_Export_Data_t"
-  			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
-../Core/Src/freertos.c(278): error:  #167: argument of type "CAN_Export_Data_t" is incompatible with parameter of type "CAN_Export_Data_t"
-  			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
-../Core/Src/freertos.c(280): error:  #20: identifier "Monitor_CAN2" is undefined
-  		Monitor_CAN2.Info_Update_Frame++;
-../Core/Src/freertos.c: 0 warnings, 28 errors
-compiling CAN_Setup.c...
-..\BSP\BSP.c\CAN_Setup.c(28): error:  #20: identifier "Monitor_CAN1" is undefined
-  CAN_Devices_t *Monitor_CAN[] = {&Monitor_CAN1, &Monitor_CAN2};
-..\BSP\BSP.c\CAN_Setup.c(28): error:  #20: identifier "Monitor_CAN2" is undefined
-  CAN_Devices_t *Monitor_CAN[] = {&Monitor_CAN1, &Monitor_CAN2};
-..\BSP\BSP.c\CAN_Setup.c(134): error:  #20: identifier "CAN_SendHandle" is undefined
-  	CAN_SendData(CAN_SendHandle, hcanx, CAN_ID_STD, 0x1FF, data);
-..\BSP\BSP.c\CAN_Setup.c(150): error:  #20: identifier "CAN_SendHandle" is undefined
-  	CAN_SendData(CAN_SendHandle, hcanx, CAN_ID_STD, 0x200, data);
-..\BSP\BSP.c\CAN_Setup.c(165): error:  #20: identifier "CAN_SendHandle" is undefined
-  	CAN_SendData(CAN_SendHandle, hcanx, CAN_ID_STD, 0x2FF, data);
-..\BSP\BSP.c\CAN_Setup.c(175): error:  #20: identifier "CAN_SendHandle" is undefined
-  	CAN_SendData(CAN_SendHandle, hcanx, CAN_ID_STD, 0x210, data);
-..\BSP\BSP.c\CAN_Setup.c: 0 warnings, 6 errors
 compiling M3508_Motor.c...
+compiling freertos.c...
 compiling M2006_Motor.c...
+compiling CAN_Setup.c...
 compiling GM6020_Motor.c...
-"BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.axf" - 38 Error(s), 0 Warning(s).
+compiling stm32f4xx_it.c...
+linking...
+Program Size: Code=27892 RO-data=1012 RW-data=404 ZI-data=19076  
+FromELF: creating hex file...
+"BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -137,8 +61,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.5.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Target not created.
-Build Time Elapsed:  00:00:10
+Build Time Elapsed:  00:00:11
 </pre>
 </body>
 </html>

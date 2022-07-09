@@ -57,4 +57,3 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h

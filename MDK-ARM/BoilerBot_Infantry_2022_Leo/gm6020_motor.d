@@ -50,7 +50,6 @@ boilerbot_infantry_2022_leo\gm6020_motor.o: ../Middlewares/Third_Party/FreeRTOS/
 boilerbot_infantry_2022_leo\gm6020_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 boilerbot_infantry_2022_leo\gm6020_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 boilerbot_infantry_2022_leo\gm6020_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-boilerbot_infantry_2022_leo\gm6020_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 boilerbot_infantry_2022_leo\gm6020_motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\gm6020_motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 boilerbot_infantry_2022_leo\gm6020_motor.o: ../Devices/Devices.h/Motor_Init.h

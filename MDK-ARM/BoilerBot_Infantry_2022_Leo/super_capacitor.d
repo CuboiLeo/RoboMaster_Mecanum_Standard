@@ -50,6 +50,5 @@ boilerbot_infantry_2022_leo\super_capacitor.o: ../Middlewares/Third_Party/FreeRT
 boilerbot_infantry_2022_leo\super_capacitor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 boilerbot_infantry_2022_leo\super_capacitor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 boilerbot_infantry_2022_leo\super_capacitor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-boilerbot_infantry_2022_leo\super_capacitor.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 boilerbot_infantry_2022_leo\super_capacitor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\super_capacitor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
