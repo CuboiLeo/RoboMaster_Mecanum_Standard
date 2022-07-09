@@ -27,6 +27,11 @@
 /* USER CODE BEGIN Includes */
 #include "Board_A_IMU.h"
 #include "DR16_Remote.h"
+#include "CAN_Setup.h"
+#include "M3508_Motor.h"
+#include "GM6020_Motor.h"
+#include "M2006_Motor.h"
+#include "Super_Capacitor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,6 +55,12 @@
 /* USER CODE END Variables */
 osThreadId Task_IMUHandle;
 osThreadId Task_InitHandle;
+osThreadId Task_CAN_SendHandle;
+osThreadId Task_CAN1_RecHandle;
+osThreadId Task_CAN2_RecHandle;
+osMessageQId CAN1_ReceiveHandle;
+osMessageQId CAN2_ReceiveHandle;
+osMessageQId CAN_SendHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -59,6 +70,9 @@ void General_Initialization(void const * argument);
 
 void StartIMUTask(void const * argument);
 void General_Init(void const * argument);
+void CAN_Send_ALL(void const * argument);
+void CAN1_Rec(void const * argument);
+void CAN2_Rec(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -100,6 +114,19 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* definition and creation of CAN1_Receive */
+  osMessageQDef(CAN1_Receive, 32, CAN_Export_Data_t);
+  CAN1_ReceiveHandle = osMessageCreate(osMessageQ(CAN1_Receive), NULL);
+
+  /* definition and creation of CAN2_Receive */
+  osMessageQDef(CAN2_Receive, 32, CAN_Export_Data_t);
+  CAN2_ReceiveHandle = osMessageCreate(osMessageQ(CAN2_Receive), NULL);
+
+  /* definition and creation of CAN_Send */
+  osMessageQDef(CAN_Send, 32, CAN_Send_Data_t);
+  CAN_SendHandle = osMessageCreate(osMessageQ(CAN_Send), NULL);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -112,6 +139,18 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of Task_Init */
   osThreadDef(Task_Init, General_Init, osPriorityHigh, 0, 128);
   Task_InitHandle = osThreadCreate(osThread(Task_Init), NULL);
+
+  /* definition and creation of Task_CAN_Send */
+  osThreadDef(Task_CAN_Send, CAN_Send_ALL, osPriorityHigh, 0, 256);
+  Task_CAN_SendHandle = osThreadCreate(osThread(Task_CAN_Send), NULL);
+
+  /* definition and creation of Task_CAN1_Rec */
+  osThreadDef(Task_CAN1_Rec, CAN1_Rec, osPriorityHigh, 0, 256);
+  Task_CAN1_RecHandle = osThreadCreate(osThread(Task_CAN1_Rec), NULL);
+
+  /* definition and creation of Task_CAN2_Rec */
+  osThreadDef(Task_CAN2_Rec, CAN2_Rec, osPriorityHigh, 0, 256);
+  Task_CAN2_RecHandle = osThreadCreate(osThread(Task_CAN2_Rec), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -159,8 +198,88 @@ void General_Init(void const * argument)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	Board_A_IMU_Func.Board_A_IMU_Init();
 	DR16_Func.DR16_USART_Receive_DMA(&huart1);
+	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
+  CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
 	vTaskDelete(NULL);   
   /* USER CODE END General_Init */
+}
+
+/* USER CODE BEGIN Header_CAN_Send_ALL */
+/**
+* @brief Function implementing the Task_CAN_Send thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_CAN_Send_ALL */
+void CAN_Send_ALL(void const * argument)
+{
+  /* USER CODE BEGIN CAN_Send_ALL */
+	CAN_Send_Data_t CAN_Send_Data;
+  /* Infinite loop */
+  for(;;)
+  {
+    xQueueReceive(CAN_SendHandle, &CAN_Send_Data, portMAX_DELAY);
+    HAL_CAN_AddTxMessage(CAN_Send_Data.Canx, &CAN_Send_Data.CAN_TxHeader, CAN_Send_Data.CANx_Send_RxMessage, (uint32_t *)CAN_TX_MAILBOX0);
+  }
+  /* USER CODE END CAN_Send_ALL */
+}
+
+/* USER CODE BEGIN Header_CAN1_Rec */
+/**
+* @brief Function implementing the Task_CAN1_Rec thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_CAN1_Rec */
+void CAN1_Rec(void const * argument)
+{
+  /* USER CODE BEGIN CAN1_Rec */
+	CAN_Export_Data_t CAN_Export_Data;
+	uint32_t ID;
+  /* Infinite loop */
+  for(;;)
+  {
+    xQueueReceive(CAN1_ReceiveHandle, &CAN_Export_Data, portMAX_DELAY);
+		ID = CAN_Export_Data.CAN_RxHeader.StdId;
+		if(ID == M2006_TRIGGER_ID)
+			M2006_Func.M2006_Trigger_Get_Data(CAN_Export_Data);
+		else if(ID == SUPERCAP_ID)
+			Super_Capacitor_Func.Super_Capacitor_Get_Data(CAN_Export_Data);
+		else if(ID >= M3508_CHASSIS_START_ID && ID <= M3508_CHASSIS_END_ID)
+			M3508_Func.M3508_Chassis_Get_Data(CAN_Export_Data);
+		
+		Monitor_CAN1.Info_Update_Frame++;
+  }
+  /* USER CODE END CAN1_Rec */
+}
+
+/* USER CODE BEGIN Header_CAN2_Rec */
+/**
+* @brief Function implementing the Task_CAN2_Rec thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_CAN2_Rec */
+void CAN2_Rec(void const * argument)
+{
+  /* USER CODE BEGIN CAN2_Rec */
+	CAN_Export_Data_t CAN_Export_Data;
+	uint32_t ID;
+  /* Infinite loop */
+  for(;;)
+  {
+		xQueueReceive(CAN2_ReceiveHandle, &CAN_Export_Data, portMAX_DELAY);
+		ID = CAN_Export_Data.CAN_RxHeader.StdId;
+    if(ID == M3508_FRIC_WHEEL_LEFT_ID || ID == M3508_FRIC_WHEEL_RIGHT_ID)
+			M3508_Func.M3508_Fric_Wheel_Get_Data(CAN_Export_Data);
+		else if(ID == GM6020_YAW_ID)
+			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
+		else if(ID == GM6020_PITCH_ID)
+			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
+		
+		Monitor_CAN2.Info_Update_Frame++;
+  }
+  /* USER CODE END CAN2_Rec */
 }
 
 /* Private application code --------------------------------------------------*/

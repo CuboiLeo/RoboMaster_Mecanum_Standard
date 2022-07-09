@@ -99,14 +99,14 @@ static uint8_t Board_A_IMU_Device_Init(void)
 
 static HAL_StatusTypeDef Board_A_IMU_Read_Bytes(uint8_t const regAddr, uint8_t *pData, uint8_t len)
 {
-    HAL_StatusTypeDef InfoUpdateFlag = HAL_ERROR;
+    HAL_StatusTypeDef Info_Update_Flag = HAL_ERROR;
     SPI_NSS_LOW;
     tx = regAddr | 0x80;
     tx_buff[0] = tx;
     HAL_SPI_TransmitReceive(&BOARD_A_IMU_SPI, &tx, &rx, 1, 55);
-    InfoUpdateFlag = HAL_SPI_TransmitReceive(&BOARD_A_IMU_SPI, tx_buff, pData, len, 55);
+    Info_Update_Flag = HAL_SPI_TransmitReceive(&BOARD_A_IMU_SPI, tx_buff, pData, len, 55);
     SPI_NSS_HIGH;
-    return InfoUpdateFlag;
+    return Info_Update_Flag;
 }
 
 static uint8_t Board_A_IMU_Read_Byte(uint8_t const reg)
@@ -419,7 +419,7 @@ void Quaternion_Init(void)
 
 void Board_A_IMU_Get_Data(void)
 {
-    IMU_Export.InfoUpdateFlag = Board_A_IMU_Read_Bytes(MPU6500_ACCEL_XOUT_H, mpu_buff, 14);
+    IMU_Export.Info_Update_Flag = Board_A_IMU_Read_Bytes(MPU6500_ACCEL_XOUT_H, mpu_buff, 14);
 
     IMU_Original_Data.ax = mpu_buff[0] << 8 | mpu_buff[1];
     IMU_Original_Data.ay = mpu_buff[2] << 8 | mpu_buff[3];
@@ -589,12 +589,8 @@ void Board_A_IMU_Reset(IMU_Export_t *IMU_Export)
 
 void Board_A_IMU_Check(void)
 {
-    if (IMU_Export.InfoUpdateFlag != HAL_OK)
-    {
-        IMU_Export.OffLineFlag = 1;
-    }
+    if (IMU_Export.Info_Update_Flag != HAL_OK)
+        IMU_Export.Offline_Flag = 1;
     else
-    {
-        IMU_Export.OffLineFlag = 0;
-    }
+        IMU_Export.Offline_Flag = 0;
 }

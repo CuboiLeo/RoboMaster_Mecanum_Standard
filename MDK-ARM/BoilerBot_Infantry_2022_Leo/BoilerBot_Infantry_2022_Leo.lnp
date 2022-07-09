@@ -3,6 +3,7 @@
 "boilerbot_infantry_2022_leo\main.o"
 "boilerbot_infantry_2022_leo\gpio.o"
 "boilerbot_infantry_2022_leo\freertos.o"
+"boilerbot_infantry_2022_leo\can.o"
 "boilerbot_infantry_2022_leo\dma.o"
 "boilerbot_infantry_2022_leo\spi.o"
 "boilerbot_infantry_2022_leo\tim.o"
@@ -10,6 +11,7 @@
 "boilerbot_infantry_2022_leo\stm32f4xx_it.o"
 "boilerbot_infantry_2022_leo\stm32f4xx_hal_msp.o"
 "boilerbot_infantry_2022_leo\stm32f4xx_hal_timebase_tim.o"
+"boilerbot_infantry_2022_leo\stm32f4xx_hal_can.o"
 "boilerbot_infantry_2022_leo\stm32f4xx_hal_rcc.o"
 "boilerbot_infantry_2022_leo\stm32f4xx_hal_rcc_ex.o"
 "boilerbot_infantry_2022_leo\stm32f4xx_hal_flash.o"
@@ -43,6 +45,10 @@
 "boilerbot_infantry_2022_leo\user_defined_math.o"
 "boilerbot_infantry_2022_leo\dr16_remote.o"
 "boilerbot_infantry_2022_leo\board_a_imu.o"
+"boilerbot_infantry_2022_leo\m3508_motor.o"
+"boilerbot_infantry_2022_leo\gm6020_motor.o"
+"boilerbot_infantry_2022_leo\m2006_motor.o"
+"boilerbot_infantry_2022_leo\can_setup.o"
 --strict --scatter "BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

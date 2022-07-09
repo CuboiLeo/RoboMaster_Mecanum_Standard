@@ -57,6 +57,7 @@
             &Keyboard_Data_Process,  \
 						&Key_State_Detect,       \
 						&Key_State_Clear,				 \
+						&Check_DR16,						 \
     }
 		
 typedef struct
@@ -109,7 +110,10 @@ typedef struct
 		Key_State Press_V;
 		Key_State Press_B;
 	}Keyboard;
-}DR16_Data_t;
+	
+	uint16_t Info_Update_Frame;
+	uint8_t Offline_Flag;
+}DR16_Export_Data_t;
 
 typedef struct
 {
@@ -119,7 +123,8 @@ typedef struct
     void (*Keyboard_Data_Process)(void);
     void (*Key_State_Detect)(Key_State *Key);
 		void (*Key_State_Clear)(Key_State *Key);
+		void (*Check_DR16)(void);
 }DR16_Func_t;
 
-extern DR16_Data_t DR16_Data;
+extern DR16_Export_Data_t DR16_Export_Data;
 extern DR16_Func_t DR16_Func;

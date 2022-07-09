@@ -18,7 +18,8 @@
  void Keyboard_Data_Process(void);
  void Key_State_Detect(Key_State *Key);
  void Key_State_Clear(Key_State *Key);
- DR16_Data_t DR16_Data = {0};
+ void Check_DR16(void);
+ DR16_Export_Data_t DR16_Export_Data = {0};
  DR16_Func_t DR16_Func = DR16_Func_GroundInit;
  #undef DR16_Func_GroundInit
  
@@ -27,114 +28,115 @@
 	 if(pData == NULL)
 		 return;
 	 
-	 DR16_Data.Remote_Control.Joystick_Left_Vx = (((pData[2] >> 6) | (pData[3] << 2) | (pData[4] << 10)) & 0x07FF) - 1024;
-	 DR16_Data.Remote_Control.Joystick_Left_Vy = (((pData[4] >> 1) | (pData[5] << 7)) & 0x07FF) - 1024;
-	 DR16_Data.Remote_Control.Joystick_Right_Vx = ((pData[0] | (pData[1] << 8)) & 0x07FF) - 1024;
-	 DR16_Data.Remote_Control.Joystick_Right_Vy = (((pData[1] >> 3) | (pData[2] << 5)) & 0x07FF) - 1024;
-	 DR16_Data.Remote_Control.Dial_Wheel = ((pData[16] | (pData[17] << 8)) & 0x07FF) - 1024;
-	 DR16_Data.Remote_Control.Left_Switch = ((pData[5] >> 4) & 0x000C) >> 2;
-	 DR16_Data.Remote_Control.Right_Switch = ((pData[5] >> 4) & 0x0003);
-	 DR16_Data.Mouse.x = (pData[6]) | (pData[7] << 8);
-	 DR16_Data.Mouse.y = (pData[8]) | (pData[9] << 8);
-	 DR16_Data.Mouse.Left_Click = pData[12];
-	 DR16_Data.Mouse.Right_Click = pData[13];
-	 DR16_Data.Keyboard.Buffer = pData[14] | (pData[15] << 8);
+	 DR16_Export_Data.Remote_Control.Joystick_Left_Vx = (((pData[2] >> 6) | (pData[3] << 2) | (pData[4] << 10)) & 0x07FF) - 1024;
+	 DR16_Export_Data.Remote_Control.Joystick_Left_Vy = (((pData[4] >> 1) | (pData[5] << 7)) & 0x07FF) - 1024;
+	 DR16_Export_Data.Remote_Control.Joystick_Right_Vx = ((pData[0] | (pData[1] << 8)) & 0x07FF) - 1024;
+	 DR16_Export_Data.Remote_Control.Joystick_Right_Vy = (((pData[1] >> 3) | (pData[2] << 5)) & 0x07FF) - 1024;
+	 DR16_Export_Data.Remote_Control.Dial_Wheel = ((pData[16] | (pData[17] << 8)) & 0x07FF) - 1024;
+	 DR16_Export_Data.Remote_Control.Left_Switch = ((pData[5] >> 4) & 0x000C) >> 2;
+	 DR16_Export_Data.Remote_Control.Right_Switch = ((pData[5] >> 4) & 0x0003);
+	 DR16_Export_Data.Mouse.x = (pData[6]) | (pData[7] << 8);
+	 DR16_Export_Data.Mouse.y = (pData[8]) | (pData[9] << 8);
+	 DR16_Export_Data.Mouse.Left_Click = pData[12];
+	 DR16_Export_Data.Mouse.Right_Click = pData[13];
+	 DR16_Export_Data.Keyboard.Buffer = pData[14] | (pData[15] << 8);
 	 
-	 if(DR16_Data.Remote_Control.Joystick_Left_Vx <= 20 && DR16_Data.Remote_Control.Joystick_Left_Vx >= -20)
-		 DR16_Data.Remote_Control.Joystick_Left_Vx = 0;
-	 if(DR16_Data.Remote_Control.Joystick_Left_Vy <= 20 && DR16_Data.Remote_Control.Joystick_Left_Vy >= -20)
-		 DR16_Data.Remote_Control.Joystick_Left_Vy = 0;
-	 if(DR16_Data.Remote_Control.Joystick_Right_Vx <= 20 && DR16_Data.Remote_Control.Joystick_Right_Vx >= -20)
-		 DR16_Data.Remote_Control.Joystick_Right_Vx = 0;
-	 if(DR16_Data.Remote_Control.Joystick_Right_Vy <= 20 && DR16_Data.Remote_Control.Joystick_Right_Vy >= -20)
-		 DR16_Data.Remote_Control.Joystick_Right_Vy = 0;
-	 if(DR16_Data.Remote_Control.Dial_Wheel <= 20 && DR16_Data.Remote_Control.Dial_Wheel >= -20)
-		 DR16_Data.Remote_Control.Dial_Wheel = 0;
+	 if(DR16_Export_Data.Remote_Control.Joystick_Left_Vx <= 20 && DR16_Export_Data.Remote_Control.Joystick_Left_Vx >= -20)
+		 DR16_Export_Data.Remote_Control.Joystick_Left_Vx = 0;
+	 if(DR16_Export_Data.Remote_Control.Joystick_Left_Vy <= 20 && DR16_Export_Data.Remote_Control.Joystick_Left_Vy >= -20)
+		 DR16_Export_Data.Remote_Control.Joystick_Left_Vy = 0;
+	 if(DR16_Export_Data.Remote_Control.Joystick_Right_Vx <= 20 && DR16_Export_Data.Remote_Control.Joystick_Right_Vx >= -20)
+		 DR16_Export_Data.Remote_Control.Joystick_Right_Vx = 0;
+	 if(DR16_Export_Data.Remote_Control.Joystick_Right_Vy <= 20 && DR16_Export_Data.Remote_Control.Joystick_Right_Vy >= -20)
+		 DR16_Export_Data.Remote_Control.Joystick_Right_Vy = 0;
+	 if(DR16_Export_Data.Remote_Control.Dial_Wheel <= 20 && DR16_Export_Data.Remote_Control.Dial_Wheel >= -20)
+		 DR16_Export_Data.Remote_Control.Dial_Wheel = 0;
 	 
 	 Keyboard_Data_Process();
+	 DR16_Export_Data.Info_Update_Frame++;
  }
  
  void Keyboard_Data_Process(void)
  {
-	 if(DR16_Data.Keyboard.Buffer & KEY_W)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_W);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_W)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_W);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_W);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_W);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_S)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_S);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_S)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_S);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_S);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_S);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_A)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_A);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_A)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_A);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_A);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_A);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_D)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_D);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_D)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_D);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_D);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_D);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_SHIFT)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_Shift);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_SHIFT)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_Shift);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_Shift);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_Shift);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_CTRL)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_Ctrl);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_CTRL)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_Ctrl);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_Ctrl);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_Ctrl);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_Q)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_Q);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_Q)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_Q);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_Q);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_Q);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_E)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_E);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_E)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_E);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_E);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_E);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_R)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_R);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_R)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_R);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_R);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_R);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_F)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_F);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_F)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_F);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_F);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_F);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_G)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_G);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_G)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_G);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_G);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_G);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_Z)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_Z);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_Z)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_Z);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_Z);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_Z);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_X)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_X);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_X)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_X);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_X);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_X);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_C)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_C);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_C)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_C);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_C);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_C);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_V)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_V);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_V)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_V);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_V);
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_V);
 	 
-	 if(DR16_Data.Keyboard.Buffer & KEY_B)
-		 Key_State_Detect(&DR16_Data.Keyboard.Press_B);
+	 if(DR16_Export_Data.Keyboard.Buffer & KEY_B)
+		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_B);
 	 else
-		 Key_State_Clear(&DR16_Data.Keyboard.Press_B); 
+		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_B); 
  }
  
 void Key_State_Detect(Key_State *Key)
@@ -155,6 +157,14 @@ void Key_State_Detect(Key_State *Key)
 	 Key->Single_Click_Flag = 0;
 	 Key->Hold_Flag = 0;
 	 Key->State_Count = 0;
+ }
+ 
+ void Check_DR16(void)
+ {
+	 if(DR16_Export_Data.Info_Update_Frame < 1)
+		 DR16_Export_Data.Offline_Flag = 1;
+	 else
+		 DR16_Export_Data.Offline_Flag = 0;
  }
 	 
  static int USART_Receive_DMA_NO_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint32_t Size)
@@ -178,7 +188,7 @@ void Key_State_Detect(Key_State *Key)
  {
 	 __HAL_DMA_DISABLE(huart->hdmarx);
 	 if(__HAL_DMA_GET_COUNTER(huart->hdmarx) == DR16_BUFFER_LAST_NUMBER)
-		 DR16_Data_Process(DR16_Data.DR16_Buffer);
+		 DR16_Data_Process(DR16_Export_Data.DR16_Buffer);
 	 __HAL_DMA_SET_COUNTER(huart->hdmarx,DR16_BUFFER_NUMBER);
 	 __HAL_DMA_ENABLE(huart->hdmarx);
  }
@@ -188,5 +198,5 @@ void Key_State_Detect(Key_State *Key)
 	 __HAL_UART_CLEAR_IDLEFLAG(huartx);
 	 __HAL_UART_ENABLE(huartx);
 	 __HAL_UART_ENABLE_IT(huartx,UART_IT_IDLE);
-	 USART_Receive_DMA_NO_IT(huartx,DR16_Data.DR16_Buffer,DR16_BUFFER_NUMBER);
+	 USART_Receive_DMA_NO_IT(huartx,DR16_Export_Data.DR16_Buffer,DR16_BUFFER_NUMBER);
  }

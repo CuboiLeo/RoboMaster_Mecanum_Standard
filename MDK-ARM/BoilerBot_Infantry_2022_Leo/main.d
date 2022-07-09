@@ -23,6 +23,7 @@ boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
 boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h
 boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h
 boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
+boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h
 boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
@@ -46,6 +47,7 @@ boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/i
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+boilerbot_infantry_2022_leo\main.o: ../Core/Inc/can.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/dma.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/tim.h

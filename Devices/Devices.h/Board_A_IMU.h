@@ -19,6 +19,7 @@
 #pragma anon_unions
 #define IMU_OFFSET_NUMBER 6
 #define BOARD_DOWN 1
+//#define IST8310 1
 #define Kp 2.0f
 #define Ki 0.01f
 
@@ -67,7 +68,7 @@ typedef struct
         int16_t gz_offset;
     } Offset; //¡„∆Ø÷µ
 
-    HAL_StatusTypeDef InfoUpdateFlag;
+    HAL_StatusTypeDef Info_Update_Flag;
 } IMU_Original_Data_t;
 
 typedef struct
@@ -140,8 +141,8 @@ typedef struct
     float temp;
     uint8_t Temp_ReachFlag;     
     uint8_t IMU_Init_Condition; 
-    int InfoUpdateFlag;        
-    uint8_t OffLineFlag;
+    uint8_t Info_Update_Flag; 
+    uint8_t Offline_Flag;
 } IMU_Export_t;
 
 typedef struct
