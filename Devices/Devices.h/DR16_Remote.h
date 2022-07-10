@@ -8,6 +8,8 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#ifndef __DR16_REMOTE_H
+#define __DR16_REMOTE_H
 
 #include "dma.h"
 #include "usart.h"
@@ -128,3 +130,5 @@ typedef struct
 
 extern DR16_Export_Data_t DR16_Export_Data;
 extern DR16_Func_t DR16_Func;
+
+#endif

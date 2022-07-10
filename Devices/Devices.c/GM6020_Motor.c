@@ -9,7 +9,6 @@
  * 
  */
 #include "GM6020_Motor.h"
-#include "Motor_Init.h"
 #include <stdio.h>
 
 Motor_Init_t GM6020_Yaw;
@@ -17,6 +16,7 @@ Motor_Init_t GM6020_Pitch;
 
 void GM6020_Yaw_Get_Data(CAN_Export_Data_t RxMessage);
 void GM6020_Pitch_Get_Data(CAN_Export_Data_t RxMessage);
+void GM6020_Gimbal_Send_Data(int16_t Yaw_Output,int16_t Pitch_Output);
 void Check_GM6020_Yaw(void);
 void Check_GM6020_Pitch(void);
 
@@ -51,6 +51,11 @@ void GM6020_Pitch_Get_Data(CAN_Export_Data_t RxMessage)
 		GM6020_Pitch.Turn_Count--;
 	GM6020_Pitch.Total_Angle = GM6020_Pitch.Actual_Angle + (GM6020_MECH_ANGLE_MAX * GM6020_Pitch.Turn_Count);
 	GM6020_Pitch.Info_Update_Frame++;
+}
+
+void GM6020_Gimbal_Send_Data(int16_t Yaw_Output,int16_t Pitch_Output)
+{
+	CAN_Func.CAN_0x2FF_Send_Data(&hcan2,0,Pitch_Output,Yaw_Output,0);
 }
 
 void Check_GM6020_Yaw(void)

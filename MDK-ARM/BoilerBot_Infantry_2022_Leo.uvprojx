@@ -1758,6 +1758,16 @@
               <FileType>1</FileType>
               <FilePath>..\HigherLevelApps\HigherLevelApps.c\IMU_Temp_Control.c</FilePath>
             </File>
+            <File>
+              <FileName>Chassis_Control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HigherLevelApps\HigherLevelApps.c\Chassis_Control.c</FilePath>
+            </File>
+            <File>
+              <FileName>Robot_Control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HigherLevelApps\HigherLevelApps.c\Robot_Control.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1772,6 +1782,11 @@
               <FileName>User_Defined_Math.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Algorithms\Algorithms.c\User_Defined_Math.c</FilePath>
+            </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Algorithms\Algorithms.c\PID.c</FilePath>
             </File>
           </Files>
         </Group>

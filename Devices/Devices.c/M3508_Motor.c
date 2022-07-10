@@ -9,16 +9,18 @@
  * 
  */
 #include "M3508_Motor.h"
-#include "Motor_Init.h"
 #include <stdio.h>
 
 Motor_Init_t M3508_Chassis[4];
 Motor_Init_t M3508_Fric_Wheel[2];
 
 void M3508_Chassis_Get_Data(CAN_Export_Data_t RxMessage);
+void M3508_Chassis_Send_Data(int16_t Motor_1_Current,int16_t Motor_2_Current,int16_t Motor_3_Current,int16_t Motor_4_Current);
 void M3508_Fric_Wheel_Get_Data(CAN_Export_Data_t RxMessage);
+void M3508_Fric_Wheel_Send_Data(int16_t Fric_Wheel_Left_Current,int16_t Fric_Wheel_Right_Current);
 void Check_M3508_Chassis(void);
 void Check_M3508_Fric_Wheel(void);
+
 
 M3508_Func_t M3508_Func = M3508_Func_GroundInit;
 #undef M3508_Func_GroundInit
@@ -34,6 +36,11 @@ void M3508_Chassis_Get_Data(CAN_Export_Data_t RxMessage)
   M3508_Chassis[ID].Temperature = RxMessage.CANx_Export_RxMessage[6];
 
   M3508_Chassis[ID].Info_Update_Frame++;
+}
+
+void M3508_Chassis_Send_Data(int16_t Motor_1_Current,int16_t Motor_2_Current,int16_t Motor_3_Current,int16_t Motor_4_Current)
+{
+	CAN_Func.CAN_0x200_Send_Data(&hcan1,Motor_1_Current,Motor_2_Current,Motor_3_Current,Motor_4_Current);
 }
 
 void M3508_Fric_Wheel_Get_Data(CAN_Export_Data_t RxMessage)
@@ -57,6 +64,11 @@ void M3508_Fric_Wheel_Get_Data(CAN_Export_Data_t RxMessage)
 			M3508_Fric_Wheel[1].Info_Update_Frame++;
 			break;
 	}
+}
+
+void M3508_Fric_Wheel_Send_Data(int16_t Fric_Wheel_Left_Current,int16_t Fric_Wheel_Right_Current)
+{
+	CAN_Func.CAN_0x200_Send_Data(&hcan2,Fric_Wheel_Left_Current,Fric_Wheel_Right_Current,0,0);
 }
 
 void Check_M3508_Chassis(void)

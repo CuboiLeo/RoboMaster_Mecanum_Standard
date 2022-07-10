@@ -11,6 +11,7 @@
 #include "User_Defined_Math.h"
 
 float inv_sqrt(float x);
+float VAL_LIMIT(float Value, float Limit);
 
 float inv_sqrt(float x)
 {
@@ -23,4 +24,16 @@ float inv_sqrt(float x)
     y = y * (1.5f - (halfx * y * y));
 
     return y;
+}
+
+float VAL_LIMIT(float Value, float Limit)
+{
+	float Output;
+	
+	if(Value > Limit)
+		Output = Limit;
+	else if(Value < -Limit)
+		Output = -Limit;
+	
+	return Output;
 }

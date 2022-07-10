@@ -8,7 +8,9 @@
  * @copyright Copyright (c) 2022
  * 
  */
- 
+#ifndef __BOARD_A_IMU_H
+#define __BOARD_A_IMU_H
+
 #include "spi.h"
 #include "IMU_Temp_Control.h"
 #include <math.h>
@@ -19,9 +21,6 @@
 #pragma anon_unions
 #define IMU_OFFSET_NUMBER 6
 #define BOARD_DOWN 1
-//#define IST8310 1
-#define Kp 2.0f
-#define Ki 0.01f
 
 #define Board_A_IMU_Func_GroundInit       \
     {                                 		\
@@ -160,3 +159,5 @@ extern IMU_Original_Data_t IMU_Original_Data;
 extern IMU_Calculated_Data_t IMU_Calculated_Data;
 extern IMU_Export_t IMU_Export;
 extern Board_A_IMU_Func_t Board_A_IMU_Func;
+
+#endif

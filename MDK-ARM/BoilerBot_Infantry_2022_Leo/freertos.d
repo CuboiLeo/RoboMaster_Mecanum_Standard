@@ -63,6 +63,12 @@ boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/M3508_Motor.h
 boilerbot_infantry_2022_leo\freertos.o: ../Core/Inc/can.h
 boilerbot_infantry_2022_leo\freertos.o: ../BSP/BSP.h/CAN_Setup.h
 boilerbot_infantry_2022_leo\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/Motor_Init.h
 boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/GM6020_Motor.h
 boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/M2006_Motor.h
 boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/Super_Capacitor.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Robot_Control.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h
+boilerbot_infantry_2022_leo\freertos.o: ../Algorithms/Algorithms.h/PID.h
+boilerbot_infantry_2022_leo\freertos.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
+boilerbot_infantry_2022_leo\freertos.o: ../Algorithms/Algorithms.h/User_Defined_Math.h

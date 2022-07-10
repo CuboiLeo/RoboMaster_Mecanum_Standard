@@ -453,6 +453,8 @@ void Board_A_IMU_AHRS_Update(void)
     float vx, vy, vz, wx, wy, wz;
     float ex, ey, ez, halfT;
     float tempq0, tempq1, tempq2, tempq3;
+		float Kp = 2;
+		float Ki = 0.01;
 
     float q0q0 = q0 * q0;
     float q0q1 = q0 * q1;

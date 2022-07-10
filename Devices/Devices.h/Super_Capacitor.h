@@ -8,6 +8,9 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#ifndef __SUPER_CAPACITOR_H
+#define __SUPER_CAPACITOR_H
+
 #include "can.h"
 #include "CAN_Setup.h"
 #include <stdint.h>
@@ -16,10 +19,11 @@
 
 #define SUPERCAP_ID 0x211
 
-#define Super_Capacitor_Func_GroundInit	\
-		{																		\
-					&Super_Capacitor_Get_Data,		\
-							&Check_Super_Capacitor,		\
+#define Super_Capacitor_Func_GroundInit		\
+		{																			\
+					&Super_Capacitor_Get_Data,			\
+							&Super_Capacitor_Send_Data, \
+							&Check_Super_Capacitor,			\
 		}
 
 typedef struct
@@ -28,6 +32,7 @@ typedef struct
 	float Capacitor_Voltage;
 	float Input_Current;
 	float Actual_Power;
+	float Target_Power;
 	
 	uint16_t Info_Update_Frame;
 	uint8_t Offline_Flag;
@@ -36,8 +41,11 @@ typedef struct
 typedef struct
 {
 	void (*Super_Capacitor_Get_Data)(CAN_Export_Data_t RxMessage);
+	void (*Super_Capacitor_Send_Data)(int16_t Target_Power);
 	void (*Check_Super_Capacitor)(void);
 }Super_Capacitor_Func_t;
 
 extern Super_Capacitor_t Super_Capacitor;
 extern Super_Capacitor_Func_t Super_Capacitor_Func;
+
+#endif

@@ -31,6 +31,7 @@
 #include "GM6020_Motor.h"
 #include "M2006_Motor.h"
 #include "Super_Capacitor.h"
+#include "Robot_Control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +58,7 @@ osThreadId Task_InitHandle;
 osThreadId Task_CAN_SendHandle;
 osThreadId Task_CAN1_RecHandle;
 osThreadId Task_CAN2_RecHandle;
+osThreadId Task_Robot_CtrlHandle;
 osMessageQId CAN1_ReceiveHandle;
 osMessageQId CAN2_ReceiveHandle;
 osMessageQId CAN_SendHandle;
@@ -72,6 +74,7 @@ void General_Init(void const * argument);
 void CAN_Send_ALL(void const * argument);
 void CAN1_Rec(void const * argument);
 void CAN2_Rec(void const * argument);
+void Robot_Control(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -150,6 +153,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of Task_CAN2_Rec */
   osThreadDef(Task_CAN2_Rec, CAN2_Rec, osPriorityHigh, 0, 256);
   Task_CAN2_RecHandle = osThreadCreate(osThread(Task_CAN2_Rec), NULL);
+
+  /* definition and creation of Task_Robot_Ctrl */
+  osThreadDef(Task_Robot_Ctrl, Robot_Control, osPriorityRealtime, 0, 600);
+  Task_Robot_CtrlHandle = osThreadCreate(osThread(Task_Robot_Ctrl), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -279,6 +286,26 @@ void CAN2_Rec(void const * argument)
 		Monitor_CAN2.Info_Update_Frame++;
   }
   /* USER CODE END CAN2_Rec */
+}
+
+/* USER CODE BEGIN Header_Robot_Control */
+/**
+* @brief Function implementing the Task_Robot_Ctrl thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_Robot_Control */
+void Robot_Control(void const * argument)
+{
+	 portTickType xLastWakeTime;
+   xLastWakeTime = xTaskGetTickCount();
+   const TickType_t TimeIncrement = pdMS_TO_TICKS(2);
+  for(;;)
+  {
+		Robot_Control_Func.Robot_Control_Start();
+    vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
+  }
+  /* USER CODE END Robot_Control */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 void Super_Capacitor_Get_Data(CAN_Export_Data_t RxMessage);
+void Super_Capacitor_Send_Data(int16_t Target_Power);
 void Check_Super_Capacitor(void);
 
 Super_Capacitor_Func_t Super_Capacitor_Func = Super_Capacitor_Func_GroundInit;
@@ -27,6 +28,11 @@ void Super_Capacitor_Get_Data(CAN_Export_Data_t RxMessage)
 	Super_Capacitor.Actual_Power = (int16_t)(RxMessage.CANx_Export_RxMessage[6] << 8 | RxMessage.CANx_Export_RxMessage[7]);
 	
 	Super_Capacitor.Info_Update_Frame++;
+}
+
+void Super_Capacitor_Send_Data(int16_t Target_Power)
+{
+	CAN_Func.CAN_0x210_Send_Data(&hcan1,Target_Power);
 }
 
 void Check_Super_Capacitor(void)

@@ -8,6 +8,8 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#ifndef __MOTOR_INIT_H
+#define __MOTOR_INIT_H
 #include <stdint.h>
 #include <stdio.h>
 
@@ -28,3 +30,5 @@ typedef struct
 	 uint16_t Info_Update_Frame;
 	 uint8_t Offline_Flag;
 }Motor_Init_t;
+
+#endif

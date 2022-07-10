@@ -9,12 +9,12 @@
  * 
  */
 #include "M2006_Motor.h"
-#include "Motor_Init.h"
 #include <stdio.h>
 
 Motor_Init_t M2006_Trigger;
 
 void M2006_Trigger_Get_Data(CAN_Export_Data_t RxMessage);
+void M2006_Trigger_Send_Data(int16_t Trigger_Current);
 void Check_M2006_Trigger(void);
 
 M2006_Func_t M2006_Func = M2006_Func_GroundInit;
@@ -31,6 +31,11 @@ void M2006_Trigger_Get_Data(CAN_Export_Data_t RxMessage)
 		M2006_Trigger.Turn_Count--;
 	M2006_Trigger.Total_Angle = M2006_Trigger.Actual_Angle + (M2006_MECH_ANGLE_MAX * M2006_Trigger.Turn_Count);
 	M2006_Trigger.Info_Update_Frame++;
+}
+
+void M2006_Trigger_Send_Data(int16_t Trigger_Current)
+{
+	CAN_Func.CAN_0x1FF_Send_Data(&hcan1,0,Trigger_Current,0,0);
 }
 
 void Check_M2006_Trigger(void)
