@@ -71,4 +71,7 @@ boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Rob
 boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h
 boilerbot_infantry_2022_leo\freertos.o: ../Algorithms/Algorithms.h/PID.h
 boilerbot_infantry_2022_leo\freertos.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
-boilerbot_infantry_2022_leo\freertos.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Robot_Control.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h

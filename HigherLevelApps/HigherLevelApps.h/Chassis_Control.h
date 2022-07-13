@@ -8,12 +8,19 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#ifndef __CHASSIS_CONTROL_H
+#define __CHASSIS_CONTROL_H
+
 #include "PID.h"
 #include "DR16_Remote.h"
 #include "User_Defined_Math.h"
+#include "Gimbal_Control.h"
+#include "Robot_Control.h"
 
-#define MOTOR_SPEED_MAX 6880
-#define MOTOR_GEAR_RATIO 14
+#define MOTOR_SPEED_MAX 3000 //6880
+#define MOTOR_GEAR_RATIO 19
+#define CHASSIS_WIDTH_HALF 0.15f
+#define CHASSIS_LENGTH_HALF 0.18f
 
 #define Chassis_Func_GroundInit		\
 {																	\
@@ -24,23 +31,25 @@
 
 typedef struct
 {
-	enum
-	{
-		Follow_Gimbal,
-		Not_Follow_Gimbal,
-		Spin_Top,
-		Disabled,
-	}Mode;
+	int Current_Mode;
 	
 	struct
 	{
-		int16_t Vx;
-		int16_t Vy;
-		int16_t Wz;
-	}Speed;
+		float Vx;
+		float Vy;
+		float Wz;
+	}Chassis_Coord;
 	
-	int Current_Mode;
-	float Temp_Speed[4];
+	struct
+	{
+		float Vx;
+		float Vy;
+		float Wz;
+	}Gimbal_Coord;
+	
+	float Wheel_Speed[4];
+	
+	uint8_t Chassis_Offline_Flag;
 }Chassis_t;
 
 typedef struct
@@ -52,3 +61,5 @@ typedef struct
 
 extern Chassis_t Chassis;
 extern Chassis_Func_t Chassis_Func;
+
+#endif

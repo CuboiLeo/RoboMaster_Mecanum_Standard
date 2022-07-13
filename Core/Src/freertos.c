@@ -206,6 +206,7 @@ void General_Init(void const * argument)
 	DR16_Func.DR16_USART_Receive_DMA(&huart1);
 	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
   CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
+	Gimbal_Func.Gimbal_Init();
 	vTaskDelete(NULL);   
   /* USER CODE END General_Init */
 }
@@ -253,6 +254,8 @@ void CAN1_Rec(void const * argument)
 			Super_Capacitor_Func.Super_Capacitor_Get_Data(CAN_Export_Data);
 		else if(ID >= M3508_CHASSIS_START_ID && ID <= M3508_CHASSIS_END_ID)
 			M3508_Func.M3508_Chassis_Get_Data(CAN_Export_Data);
+		else if(ID == GM6020_YAW_ID)
+			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
 		
 		Monitor_CAN1.Info_Update_Frame++;
   }
@@ -278,10 +281,8 @@ void CAN2_Rec(void const * argument)
 		ID = CAN_Export_Data.CAN_RxHeader.StdId;
     if(ID == M3508_FRIC_WHEEL_LEFT_ID || ID == M3508_FRIC_WHEEL_RIGHT_ID)
 			M3508_Func.M3508_Fric_Wheel_Get_Data(CAN_Export_Data);
-		else if(ID == GM6020_YAW_ID)
-			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
 		else if(ID == GM6020_PITCH_ID)
-			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
+			GM6020_Func.GM6020_Pitch_Get_Data(CAN_Export_Data);
 		
 		Monitor_CAN2.Info_Update_Frame++;
   }

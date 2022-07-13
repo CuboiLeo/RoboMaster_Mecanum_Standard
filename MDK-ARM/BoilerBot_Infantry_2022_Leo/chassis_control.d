@@ -2,7 +2,7 @@ boilerbot_infantry_2022_leo\chassis_control.o: ..\HigherLevelApps\HigherLevelApp
 boilerbot_infantry_2022_leo\chassis_control.o: ../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Algorithms/Algorithms.h/PID.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
-boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/M3508_Motor.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/GM6020_Motor.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Core/Inc/can.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Core/Inc/main.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
@@ -56,7 +56,8 @@ boilerbot_infantry_2022_leo\chassis_control.o: ../Middlewares/Third_Party/FreeRT
 boilerbot_infantry_2022_leo\chassis_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\chassis_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/Motor_Init.h
-boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/GM6020_Motor.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/M3508_Motor.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/M2006_Motor.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/Super_Capacitor.h
 boilerbot_infantry_2022_leo\chassis_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -65,4 +66,8 @@ boilerbot_infantry_2022_leo\chassis_control.o: ../Core/Inc/dma.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Core/Inc/usart.h
 boilerbot_infantry_2022_leo\chassis_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 boilerbot_infantry_2022_leo\chassis_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-boilerbot_infantry_2022_leo\chassis_control.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../HigherLevelApps/HigherLevelApps.h/Robot_Control.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../HigherLevelApps/HigherLevelApps.h/Robot_Control.h

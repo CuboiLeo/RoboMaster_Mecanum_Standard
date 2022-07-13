@@ -20,7 +20,7 @@
 
 #pragma anon_unions
 #define IMU_OFFSET_NUMBER 6
-#define BOARD_DOWN 1
+//#define BOARD_DOWN 1
 
 #define Board_A_IMU_Func_GroundInit       \
     {                                 		\

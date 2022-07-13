@@ -57,21 +57,39 @@ typedef struct
 	void (*Clear_PID_Data)(PID_t *PID);
 }PID_Func_t;
 
-#define Chassis_PIDInit				\
+#define Chassis_Angle_PIDInit	\
 		{													\
 				0,										\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					3.8f,								\
+					15.0f,							\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					16384.0f,						\
+					3000.0f,						\
+					0,									\
+		}
+		
+#define Chassis_Speed_PIDInit	\
+		{													\
+				0,										\
+					0,									\
+					0,									\
+					0,									\
+					0,									\
+					2.0f,								\
+					0.015f,							\
+					0,									\
+					0,									\
+					0,									\
+					0,									\
+					0,									\
+					13000.0f,						\
 					0,									\
 		}
 
@@ -82,15 +100,15 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					20,									\
-					2,									\
+					20.0f,							\
+					2.0f,								\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					M3508_OUTPUT_MAX,		\
-					5000,								\
+					16384.0f,						\
+					5000.0f,						\
 		}
 		
 #define Yaw_Angle_PIDInit			\
@@ -100,15 +118,15 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					100,								\
+					5.0f,							\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					100000,							\
-					5000,								\
+					13000.0f,				  	\
+					1000.0f,						\
 		}
 
 #define Yaw_Speed_PIDInit			\
@@ -118,15 +136,15 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					10,									\
+					5.0f,								\
 					0.01,								\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					GM6020_OUTPUT_MAX,	\
-					10000,							\
+					25000.0f,						\
+					10000.0f,						\
 		}
 		
 #define Pitch_Angle_PIDInit		\
@@ -136,15 +154,15 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					80,									\
+					5.0f,								\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					100000,							\
-					5000,								\
+					13000.0f,						\
+					1000.0f,						\
 		}
 		
 #define Pitch_Speed_PIDInit		\
@@ -154,15 +172,15 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					5,									\
+					5.0f,								\
 					0.01,								\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					GM6020_OUTPUT_MAX,	\
-					10000,							\
+					25000.0f,						\
+					10000.0f,						\
 		}
 
 #define Trigger_Angle_PIDInit	\
@@ -172,14 +190,14 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					30,									\
+					30.0f,							\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					100000,							\
+					100000.0f,					\
 					0,									\
 		}
 
@@ -192,17 +210,18 @@ typedef struct
 					0,									\
 					8,									\
 					0,									\
-					30,									\
+					30.0f,							\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
-					M2006_OUTPUT_MAX,		\
+					10000.0f,						\
 					0,									\
 		}
 
 extern PID_Func_t PID_Func;
-extern PID_t Chassis_PID;
+extern PID_t Chassis_Angle_PID;
+extern PID_t Chassis_Speed_PID;
 extern PID_t Fric_Wheel_PID;
 extern PID_t Yaw_Angle_PID;
 extern PID_t Yaw_Speed_PID;

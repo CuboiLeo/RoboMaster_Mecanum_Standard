@@ -1754,9 +1754,9 @@
           <GroupName>HigherLevelApps</GroupName>
           <Files>
             <File>
-              <FileName>IMU_Temp_Control.c</FileName>
+              <FileName>Robot_Control.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HigherLevelApps\HigherLevelApps.c\IMU_Temp_Control.c</FilePath>
+              <FilePath>..\HigherLevelApps\HigherLevelApps.c\Robot_Control.c</FilePath>
             </File>
             <File>
               <FileName>Chassis_Control.c</FileName>
@@ -1764,9 +1764,19 @@
               <FilePath>..\HigherLevelApps\HigherLevelApps.c\Chassis_Control.c</FilePath>
             </File>
             <File>
-              <FileName>Robot_Control.c</FileName>
+              <FileName>Gimbal_Control.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HigherLevelApps\HigherLevelApps.c\Robot_Control.c</FilePath>
+              <FilePath>..\HigherLevelApps\HigherLevelApps.c\Gimbal_Control.c</FilePath>
+            </File>
+            <File>
+              <FileName>IMU_Temp_Control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HigherLevelApps\HigherLevelApps.c\IMU_Temp_Control.c</FilePath>
+            </File>
+            <File>
+              <FileName>State_Machine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HigherLevelApps\HigherLevelApps.c\State_Machine.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1861,5 +1871,14 @@
       </file>
     </files>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>BoilerBot_Infantry_2022_Leo</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

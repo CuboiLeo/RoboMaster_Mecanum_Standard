@@ -15,8 +15,11 @@ float Positional_PID(PID_t *PID, float Target_Value, float Measured_Value);
 float Incremental_PID(PID_t *PID, float Target_Value, float Measured_Value);
 void Clear_PID_Data(PID_t *PID);
 
-PID_t Chassis_PID = Chassis_PIDInit;
-#undef Chassis_PIDInit
+PID_t Chassis_Angle_PID = Chassis_Angle_PIDInit;
+#undef Chassis_Angle_PIDInit
+
+PID_t Chassis_Speed_PID = Chassis_Speed_PIDInit;
+#undef Chassis_Angle_PIDInit
 
 PID_t Fric_Wheel_PID = Fric_Wheel_PIDInit;
 #undef Fric_Wheel_PIDInit
@@ -53,9 +56,9 @@ float Positional_PID(PID_t *PID, float Target_Value, float Measured_Value)
 	PID->I_Out += PID->Ki * PID->Error;
 	PID->D_Out = PID->Kd * (PID->Error - PID->Prev_Error);
 	
-	PID->I_Out = VAL_LIMIT(PID->I_Out,PID->I_Out_Max);
+	PID->I_Out = VAL_LIMIT(PID->I_Out,PID->I_Out_Max,-PID->I_Out_Max);
 	PID->Output = (PID->P_Out + PID->I_Out + PID->D_Out);
-	PID->Output = VAL_LIMIT(PID->Output,PID->Output_Max);
+	PID->Output = VAL_LIMIT(PID->Output,PID->Output_Max,-PID->Output_Max);
 	
 	return PID->Output;
 }
@@ -72,9 +75,9 @@ float Incremental_PID(PID_t *PID, float Target_Value, float Measured_Value)
 	PID->I_Out = PID->Ki * PID->Error;
 	PID->D_Out = PID->Kd * (PID->Error - 2.0f*PID->Prev_Error + PID->Prev_Prev_Error);
 	
-	PID->I_Out = VAL_LIMIT(PID->I_Out,PID->I_Out_Max);
+	PID->I_Out = VAL_LIMIT(PID->I_Out,PID->I_Out_Max,-PID->I_Out_Max);
 	PID->Output = (PID->P_Out + PID->I_Out + PID->D_Out);
-	PID->Output = VAL_LIMIT(PID->Output,PID->Output_Max);
+	PID->Output = VAL_LIMIT(PID->Output,PID->Output_Max,-PID->I_Out_Max);
 	
 	return PID->Output;
 }
