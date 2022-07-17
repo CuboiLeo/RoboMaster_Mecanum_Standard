@@ -14,6 +14,7 @@
 #include "Chassis_Control.h"
 #include "Gimbal_Control.h"
 #include "State_Machine.h"
+#include "Shooting_Control.h"
 
 #define Robot_Control_Func_GroundInit		\
 		{																		\

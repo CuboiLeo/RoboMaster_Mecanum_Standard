@@ -576,6 +576,7 @@ void Board_A_IMU_Export_Data(IMU_Calculated_Data_t *IMU_Calculated_Data, IMU_Exp
         IMU_Calculated_Data->Last_Axis.Last_Angle[i] = IMU_Calculated_Data->Axis.Real_Angle[i];
 
         Filter_IIRLPF(&IMU_Calculated_Data->Gyro.Original_gX[i], &IMU_Export->SpeedLPF[i], gz_LpfAttFactor);
+				IMU_Calculated_Data->Gyro.Original_gX[i] = IMU_Calculated_Data->Gyro.Original_gX[i] / 16.384f / 6.0f;
     }
 }
 

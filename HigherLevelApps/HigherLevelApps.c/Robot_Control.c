@@ -20,10 +20,16 @@ Robot_Control_Func_t Robot_Control_Func = Robot_Control_Func_GroundInit;
 void Robot_Control_Start(void)
 {
 	State_Machine_Func.Remote_Control_Update();
+	
 	Chassis_Func.Chassis_Speed_Get_Data(&Chassis);
 	Chassis_Func.Chassis_Processing(&Chassis);
+	
 	Gimbal_Func.Gimbal_Control_Get_Data(&Gimbal);
 	Gimbal_Func.Gimbal_Processing(&Gimbal);
+	
+	Shooting_Func.Trigger_Get_Data(&Shooting);
+	Shooting_Func.Trigger_Processing(&Shooting);
+	
 	Robot_Control_Func.Robot_Control_Send();
 }
 
@@ -42,4 +48,5 @@ void Robot_Control_Disabled(void)
 {
 	Chassis.Current_Mode = Disabled;
 	Gimbal.Current_Mode = Disabled;
+	Shooting_Func.Shooting_Disabled();
 }

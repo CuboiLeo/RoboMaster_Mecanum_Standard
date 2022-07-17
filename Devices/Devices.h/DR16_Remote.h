@@ -79,6 +79,7 @@ typedef struct
 		int16_t y;
 		bool Left_Click;
 		bool Right_Click;
+		int16_t Click_Counter;
 	}Mouse;
 
 	struct

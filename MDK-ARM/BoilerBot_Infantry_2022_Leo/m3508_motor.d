@@ -29,6 +29,8 @@ boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/s
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h
+boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h

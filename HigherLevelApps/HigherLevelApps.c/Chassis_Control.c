@@ -20,8 +20,16 @@ Chassis_Func_t Chassis_Func = Chassis_Func_GroundInit;
 
 void Chassis_Speed_Get_Data(Chassis_t *Chassis)
 {
-	Chassis->Gimbal_Coord.Vx = DR16_Export_Data.Remote_Control.Joystick_Left_Vx/300;
-	Chassis->Gimbal_Coord.Vy = DR16_Export_Data.Remote_Control.Joystick_Left_Vy/300;
+	if(State_Machine.Control_Source == Remote_Control)
+	{
+		Chassis->Gimbal_Coord.Vx = DR16_Export_Data.Remote_Control.Joystick_Left_Vx/300;
+		Chassis->Gimbal_Coord.Vy = DR16_Export_Data.Remote_Control.Joystick_Left_Vy/300;
+	}
+	else if(State_Machine.Control_Source == Computer)
+	{
+		Chassis->Gimbal_Coord.Vx = (DR16_Export_Data.Keyboard.Press_W.Hold_Flag - DR16_Export_Data.Keyboard.Press_S.Hold_Flag) * 2.2f;
+		Chassis->Gimbal_Coord.Vy = (DR16_Export_Data.Keyboard.Press_A.Hold_Flag - DR16_Export_Data.Keyboard.Press_D.Hold_Flag) * 2.2f;
+	}
 }
 
 void Inverse_Kinematic_Calc(Chassis_t *Chassis)

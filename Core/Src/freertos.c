@@ -32,6 +32,8 @@
 #include "M2006_Motor.h"
 #include "Super_Capacitor.h"
 #include "Robot_Control.h"
+#include "MPU6050_IMU.h"
+#include "Fusion.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -185,6 +187,9 @@ void StartIMUTask(void const * argument)
     Board_A_IMU_Func.Board_A_IMU_AHRS_Update();
 		Board_A_IMU_Func.Board_A_IMU_Attitude_Update();
 		Board_A_IMU_Func.Board_A_IMU_Temp_Control();
+		MPU6050_IMU_Func.MPU6050_IMU_Calibrate(&MPU6050_IMU);
+		MPU6050_IMU_Func.MPU6050_IMU_Read_Data(&MPU6050_IMU);
+		MPU6050_IMU_Func.MPU6050_IMU_Calc_Angle(&MPU6050_IMU);
     vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
   }
   /* USER CODE END StartIMUTask */
@@ -201,13 +206,16 @@ void General_Init(void const * argument)
 {
   /* USER CODE BEGIN General_Init */
   /* Infinite loop */
+
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	Board_A_IMU_Func.Board_A_IMU_Init();
 	DR16_Func.DR16_USART_Receive_DMA(&huart1);
 	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
   CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
+	MPU6050_IMU_Func.MPU6050_IMU_Init();
 	Gimbal_Func.Gimbal_Init();
-	vTaskDelete(NULL);   
+	FusionAhrsInitialise(&MPU6050_IMU_AHRS);
+	vTaskDelete(NULL);
   /* USER CODE END General_Init */
 }
 
@@ -298,13 +306,15 @@ void CAN2_Rec(void const * argument)
 /* USER CODE END Header_Robot_Control */
 void Robot_Control(void const * argument)
 {
-	 portTickType xLastWakeTime;
-   xLastWakeTime = xTaskGetTickCount();
-   const TickType_t TimeIncrement = pdMS_TO_TICKS(2);
+  /* USER CODE BEGIN Robot_Control */
+	portTickType xLastWakeTime;
+  xLastWakeTime = xTaskGetTickCount();
+  const TickType_t TimeIncrement = pdMS_TO_TICKS(2);
+  /* Infinite loop */
   for(;;)
   {
-		Robot_Control_Func.Robot_Control_Start();
-    vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
+    Robot_Control_Func.Robot_Control_Start();
+		vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
   }
   /* USER CODE END Robot_Control */
 }

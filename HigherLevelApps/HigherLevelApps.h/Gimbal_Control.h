@@ -15,6 +15,8 @@
 #include "User_Defined_Math.h"
 #include "PID.h"
 #include "Robot_Control.h"
+#include "Board_A_IMU.h"
+#include "MPU6050_IMU.h"
 
 #define YAW_DIRECTION 1
 #define YAW_MID_MECH_ANGLE 5924
@@ -33,6 +35,7 @@
 typedef struct
 {
   int Current_Mode;	
+	int Prev_Mode;
 
 	struct
 	{

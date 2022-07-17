@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "DR16_Remote.h"
 #include "CAN_Setup.h"
+#include "MPU6050_IMU.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -174,9 +175,8 @@ void CAN1_RX0_IRQHandler(void)
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
 		if (__HAL_CAN_GET_IT_SOURCE(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING))
     {
-        CAN_Func.CAN_RxMessage_Export_Data(&hcan1, CAN1_ReceiveHandle, CAN1_Type);
-
-        __HAL_CAN_CLEAR_FLAG(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+      CAN_Func.CAN_RxMessage_Export_Data(&hcan1, CAN1_ReceiveHandle, CAN1_Type);
+      __HAL_CAN_CLEAR_FLAG(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
     }
   /* USER CODE END CAN1_RX0_IRQn 0 */
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
