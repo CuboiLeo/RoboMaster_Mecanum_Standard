@@ -19,9 +19,8 @@
 #include "I2C_Setup.h"
 #include "Fusion.h"
 
-#define I2C_TIMEOUT 1000
+#define I2C_TIMEOUT 100
 #define CALIBRATION_SAMPLE 1000
-#define SAMPLE_PERIOD 0.001f
 
 #define DEV_ADDR 0xD0
 #define SMPLRT_DIV 0x19 
@@ -106,6 +105,13 @@ typedef struct
 			
 			float Temperature;
 		}Export_Data;
+		
+		struct
+		{
+			float Now_Time;
+			float Prev_Time;
+			float Period;
+		}Sample;
 		
 		uint8_t Calibrated_Flag;
 		uint8_t Offline_Flag;

@@ -13,6 +13,7 @@
 
 #include "MPU6050_IMU.h"
 
+#define SAMPLE_PERIOD 1000
 #define Q_ANGLE 0.000001f
 #define Q_GYRO 0.0001f
 #define R_ANGLE 0.5f

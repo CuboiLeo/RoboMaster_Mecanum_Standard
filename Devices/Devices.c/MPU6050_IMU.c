@@ -84,6 +84,10 @@ void MPU6050_IMU_Calibrate(MPU6050_IMU_t *MPU6050_IMU)
 
 void MPU6050_IMU_Read_Data(MPU6050_IMU_t *MPU6050_IMU)
 {
+	MPU6050_IMU->Sample.Now_Time = HAL_GetTick() / 1000.0f;
+	MPU6050_IMU->Sample.Period = MPU6050_IMU->Sample.Now_Time - MPU6050_IMU->Sample.Prev_Time;
+	MPU6050_IMU->Sample.Prev_Time = MPU6050_IMU->Sample.Now_Time;
+	
 	I2C_Read_Bytes(DEV_ADDR, ACCEL_XOUT_H, 14, Buffer);
 
 	MPU6050_IMU->Raw_Data.Ax = ((int16_t)Buffer[0] << 8) | Buffer[1];
@@ -118,23 +122,19 @@ void MPU6050_IMU_Calc_Angle(MPU6050_IMU_t *MPU6050_IMU)
 	const FusionVector MPU6050_IMU_Accel = {MPU6050_IMU->Calc_Data.Ax, MPU6050_IMU->Calc_Data.Ay, MPU6050_IMU->Calc_Data.Az};
 	const FusionVector MPU6050_IMU_Gyro = {MPU6050_IMU->Calc_Data.Gx, MPU6050_IMU->Calc_Data.Gy, MPU6050_IMU->Calc_Data.Gz}; 
 	
-	FusionAhrsUpdateNoMagnetometer(&MPU6050_IMU_AHRS, MPU6050_IMU_Gyro, MPU6050_IMU_Accel, SAMPLE_PERIOD);
+	FusionAhrsUpdateNoMagnetometer(&MPU6050_IMU_AHRS, MPU6050_IMU_Gyro, MPU6050_IMU_Accel, MPU6050_IMU->Sample.Period);
 	
 	const FusionEuler MPU6050_IMU_Euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&MPU6050_IMU_AHRS));
 	
 	MPU6050_IMU->Export_Data.Prev_Yaw = MPU6050_IMU->Export_Data.Yaw;
 	
-	MPU6050_IMU->Export_Data.Yaw = MPU6050_IMU_Euler.angle.yaw * 2.0f;
-	MPU6050_IMU->Export_Data.Pitch = MPU6050_IMU_Euler.angle.pitch * 2.0f;
-	MPU6050_IMU->Export_Data.Roll = MPU6050_IMU_Euler.angle.roll * 2.0f;
+	MPU6050_IMU->Export_Data.Yaw = MPU6050_IMU_Euler.angle.yaw;
+	MPU6050_IMU->Export_Data.Pitch = MPU6050_IMU_Euler.angle.pitch;
+	MPU6050_IMU->Export_Data.Roll = MPU6050_IMU_Euler.angle.roll;
 	MPU6050_IMU->Export_Data.Gyro_Yaw = MPU6050_IMU->Calc_Data.Gx / 6.0f;
 	MPU6050_IMU->Export_Data.Gyro_Pitch = MPU6050_IMU->Calc_Data.Gy / 6.0f;
 	MPU6050_IMU->Export_Data.Gyro_Roll = MPU6050_IMU->Calc_Data.Gz / 6.0f;
-	
-	if(MPU6050_IMU->Export_Data.Yaw > 180)
-		MPU6050_IMU->Export_Data.Yaw -= 360;
-	else if(MPU6050_IMU->Export_Data.Yaw < -180)
-		MPU6050_IMU->Export_Data.Yaw += 360;
+	MPU6050_IMU->Export_Data.Temperature = MPU6050_IMU->Calc_Data.Temperature;
 	
 	if((MPU6050_IMU->Export_Data.Yaw - MPU6050_IMU->Export_Data.Prev_Yaw) < - 300)
 		MPU6050_IMU->Export_Data.Turn_Count++;
@@ -143,6 +143,3 @@ void MPU6050_IMU_Calc_Angle(MPU6050_IMU_t *MPU6050_IMU)
 	
 	MPU6050_IMU->Export_Data.Total_Yaw = MPU6050_IMU->Export_Data.Yaw + 360.0f * MPU6050_IMU->Export_Data.Turn_Count;
 }
-
-
-

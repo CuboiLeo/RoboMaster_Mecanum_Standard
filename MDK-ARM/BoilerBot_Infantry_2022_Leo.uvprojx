@@ -1976,6 +1976,11 @@
               <FileType>1</FileType>
               <FilePath>..\Algorithms\Algorithms.c\Kalman_Filter.c</FilePath>
             </File>
+            <File>
+              <FileName>Ramp_Calc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Algorithms\Algorithms.c\Ramp_Calc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

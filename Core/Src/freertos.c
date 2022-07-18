@@ -183,13 +183,15 @@ void StartIMUTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		Board_A_IMU_Func.Board_A_IMU_Get_Data();
-    Board_A_IMU_Func.Board_A_IMU_AHRS_Update();
-		Board_A_IMU_Func.Board_A_IMU_Attitude_Update();
+		Board_A_IMU_Func.Board_A_IMU_Read_Data(&Board_A_IMU);
+		Board_A_IMU_Func.Board_A_IMU_Calc_Angle(&Board_A_IMU);
 		Board_A_IMU_Func.Board_A_IMU_Temp_Control();
-		MPU6050_IMU_Func.MPU6050_IMU_Calibrate(&MPU6050_IMU);
-		MPU6050_IMU_Func.MPU6050_IMU_Read_Data(&MPU6050_IMU);
-		MPU6050_IMU_Func.MPU6050_IMU_Calc_Angle(&MPU6050_IMU);
+		if(MPU6050_IMU.Offline_Flag == 0)
+		{
+			MPU6050_IMU_Func.MPU6050_IMU_Calibrate(&MPU6050_IMU);
+			MPU6050_IMU_Func.MPU6050_IMU_Read_Data(&MPU6050_IMU);
+			MPU6050_IMU_Func.MPU6050_IMU_Calc_Angle(&MPU6050_IMU);
+		}
     vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
   }
   /* USER CODE END StartIMUTask */
@@ -214,7 +216,9 @@ void General_Init(void const * argument)
   CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
 	MPU6050_IMU_Func.MPU6050_IMU_Init();
 	Gimbal_Func.Gimbal_Init();
+	Shooting_Func.Shooting_Init();
 	FusionAhrsInitialise(&MPU6050_IMU_AHRS);
+	FusionAhrsInitialise(&Board_A_IMU_AHRS);
 	vTaskDelete(NULL);
   /* USER CODE END General_Init */
 }

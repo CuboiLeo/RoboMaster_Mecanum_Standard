@@ -42,4 +42,12 @@ boilerbot_infantry_2022_leo\imu_temp_control.o: ../Drivers/STM32F4xx_HAL_Driver/
 boilerbot_infantry_2022_leo\imu_temp_control.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../BSP/BSP.h/Fusion.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../BSP/BSP.h/FusionAhrs.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../BSP/BSP.h/FusionMath.h
 boilerbot_infantry_2022_leo\imu_temp_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../BSP/BSP.h/FusionAxes.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../BSP/BSP.h/FusionCalibration.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../BSP/BSP.h/FusionCompass.h
+boilerbot_infantry_2022_leo\imu_temp_control.o: ../BSP/BSP.h/FusionOffset.h

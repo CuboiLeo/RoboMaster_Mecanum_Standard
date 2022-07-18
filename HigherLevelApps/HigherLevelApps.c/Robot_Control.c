@@ -28,7 +28,7 @@ void Robot_Control_Start(void)
 	Gimbal_Func.Gimbal_Processing(&Gimbal);
 	
 	Shooting_Func.Trigger_Get_Data(&Shooting);
-	Shooting_Func.Trigger_Processing(&Shooting);
+	Shooting_Func.Shooting_Processing(&Shooting);
 	
 	Robot_Control_Func.Robot_Control_Send();
 }

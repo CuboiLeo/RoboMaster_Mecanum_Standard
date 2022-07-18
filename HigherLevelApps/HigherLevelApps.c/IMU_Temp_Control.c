@@ -16,14 +16,13 @@ void Board_A_IMU_Temp_Control(void);
 
 void Board_A_IMU_Temp_Control(void)
 {
-	if(IMU_Export.temp < MPU6500_MAX_TEMP)
+	if(Board_A_IMU.Export_Data.Temperature < MPU6500_MAX_TEMP)
 	{
 		__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_2, MPU6500_TEMP_MAX_PWM - 1);
-		IMU_Export.Temp_ReachFlag = 0;
 	}
 	else
 	{
-		IMU_Export.Temp_ReachFlag = 1;
+		Board_A_IMU.Temperature_Reached_Flag = 1;
 		__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_2, 0);
 	}
 }

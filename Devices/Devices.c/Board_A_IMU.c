@@ -19,82 +19,48 @@
 #define SPI_NSS_LOW HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET)
 #define SPI_NSS_HIGH HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_SET)
 
+Board_A_IMU_t Board_A_IMU;
+FusionAhrs Board_A_IMU_AHRS;
+
 void Board_A_IMU_Init(void);
-void Board_A_IMU_Get_Data(void);
-void Board_A_IMU_AHRS_Update(void);
-void Board_A_IMU_Attitude_Update(void);
-void Board_A_IMU_Export_Data(IMU_Calculated_Data_t *IMU_Calculated_Data, IMU_Export_t *IMU_Export);
-void Board_A_IMU_Reset(IMU_Export_t *IMU_Export);
-void Board_A_IMU_Check(void);
+void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU);
+void Board_A_IMU_Calc_Angle(Board_A_IMU_t *Board_A_IMU);
+void Board_A_IMU_Reset(Board_A_IMU_t *Board_A_IMU);
 
 Board_A_IMU_Func_t Board_A_IMU_Func = Board_A_IMU_Func_GroundInit;
 #undef Board_A_IMU_Func_GroundInit
 
-volatile float q0 = 1.0f;
-volatile float q1 = 0.0f;
-volatile float q2 = 0.0f;
-volatile float q3 = 0.0f;
-volatile float exInt, eyInt, ezInt; /* error integral */
-static volatile float gx, gy, gz, ax, ay, az, mx, my, mz;
-volatile uint32_t last_update, now_update; /* Sampling cycle count, ubit ms */
 static uint8_t tx, rx;
 static uint8_t tx_buff[14] = {0xff};
-static uint8_t mpu_buff[15]; /* buffer to save IMU_Calculated_Data raw data */
-static uint8_t ist_buff[6];  /* buffer to save IST8310 raw data */
-uint32_t IMU_Offset[IMU_OFFSET_NUMBER];
 
-IMU_Original_Data_t IMU_Original_Data;
-IMU_Calculated_Data_t IMU_Calculated_Data;
-IMU_Export_t IMU_Export;
-
-static uint8_t Board_A_IMU_Device_Init(void);
 static HAL_StatusTypeDef Board_A_IMU_Read_Bytes(uint8_t const regAddr, uint8_t *pData, uint8_t len);
 static uint8_t Board_A_IMU_Read_Byte(uint8_t const reg);
 static uint8_t Board_A_IMU_Write_Byte(uint8_t const reg, uint8_t const data);
-static uint8_t Board_A_IMU_Set_Gyro_FSR(uint8_t fsr);
-static uint8_t Board_A_IMU_Set_ACCE_FSR(uint8_t fsr);
 static uint8_t IST8310_Init(void);;
 static void IST8310_Write_Byte(uint8_t addr, uint8_t data);
 static void Board_A_IMU_I2C_Config(uint8_t device_address, uint8_t reg_base_addr, uint8_t data_num);
 static uint8_t IST8310_Read_Byte(uint8_t addr);
-static void IST8310_Get_Data(uint8_t *buff);
-void Quaternion_Init(void);
 
 
 void Board_A_IMU_Init(void)
 {
-    Board_A_IMU_Device_Init();
-    Quaternion_Init();
-}
-
-static uint8_t Board_A_IMU_Device_Init(void)
-{
-    HAL_Delay(100);
-
-    uint8_t i = 0;
-    uint8_t MPU6500_Init_Data[10][2] = {
-        {MPU6500_PWR_MGMT_1, 0x80},     /* Reset Device */
-        {MPU6500_PWR_MGMT_1, 0x03},     /* Clock Source - Gyro-Z */
-        {MPU6500_PWR_MGMT_2, 0x00},     /* Enable Acc & Gyro */
-        {MPU6500_CONFIG, 0x04},         /* LPF 41Hz */
-        {MPU6500_GYRO_CONFIG, 0x18},    /* +-2000dps */
-        {MPU6500_ACCEL_CONFIG, 0x10},   /* +-8G */
-        {MPU6500_ACCEL_CONFIG_2, 0x02}, /* enable LowPassFilter  Set Acc LPF */
-        {MPU6500_USER_CTRL, 0x20},
-    }; /* Enable AUX */
-    for (i = 0; i < 10; i++)
-    {
-        Board_A_IMU_Write_Byte(MPU6500_Init_Data[i][0], MPU6500_Init_Data[i][1]);
-        HAL_Delay(1);
-    }
-
-    Board_A_IMU_Set_Gyro_FSR(3);
-    Board_A_IMU_Set_ACCE_FSR(2);
-
-    IST8310_Init();
-    IMU_Export.IMU_Init_Condition = 1;
-		
-    return 0;
+	uint8_t i = 0;
+	uint8_t MPU6500_Init_Data[10][2] = {
+			{MPU6500_PWR_MGMT_1, 0x80},     /* Reset Device */
+			{MPU6500_PWR_MGMT_1, 0x03},     /* Clock Source - Gyro-Z */
+			{MPU6500_PWR_MGMT_2, 0x00},     /* Enable Acc & Gyro */
+			{MPU6500_CONFIG, 0x04},         /* LPF 41Hz */
+			{MPU6500_GYRO_CONFIG, 0x18},    /* +-2000dps */
+			{MPU6500_ACCEL_CONFIG, 0x10},   /* +-8G */
+			{MPU6500_ACCEL_CONFIG_2, 0x02}, /* enable LowPassFilter  Set Acc LPF */
+			{MPU6500_USER_CTRL, 0x20},
+	}; /* Enable AUX */
+	for (i = 0; i < 10; i++)
+	{
+			Board_A_IMU_Write_Byte(MPU6500_Init_Data[i][0], MPU6500_Init_Data[i][1]);
+			HAL_Delay(1);
+	}
+	IST8310_Init();
 }
 
 static HAL_StatusTypeDef Board_A_IMU_Read_Bytes(uint8_t const regAddr, uint8_t *pData, uint8_t len)
@@ -128,16 +94,6 @@ static uint8_t Board_A_IMU_Write_Byte(uint8_t const reg, uint8_t const data)
     HAL_SPI_TransmitReceive(&BOARD_A_IMU_SPI, &tx, &rx, 1, 55);
     SPI_NSS_HIGH;
     return 0;
-}
-
-static uint8_t Board_A_IMU_Set_Gyro_FSR(uint8_t fsr)
-{
-    return Board_A_IMU_Write_Byte(MPU6500_GYRO_CONFIG, fsr << 3);
-}
-
-static uint8_t Board_A_IMU_Set_ACCE_FSR(uint8_t fsr)
-{
-    return Board_A_IMU_Write_Byte(MPU6500_ACCEL_CONFIG, fsr << 3);
 }
 
 static uint8_t IST8310_Init(void)
@@ -228,12 +184,7 @@ static uint8_t IST8310_Read_Byte(uint8_t addr)
     Board_A_IMU_Write_Byte(MPU6500_I2C_SLV4_CTRL, 0x00);
     HAL_Delay(10);
     return retval;
-}
-
-static void IST8310_Get_Data(uint8_t *buff)
-{
-    Board_A_IMU_Read_Bytes(MPU6500_EXT_SENS_DATA_00, buff, 6);
-}
+}   
 
 static void Board_A_IMU_I2C_Config(uint8_t device_address, uint8_t reg_base_addr, uint8_t data_num)
 {
@@ -269,331 +220,74 @@ static void Board_A_IMU_I2C_Config(uint8_t device_address, uint8_t reg_base_addr
     HAL_Delay(2);
 }
 
-void Quaternion_Init(void)
+void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU)
 {
-    int16_t hx, hy;
-
-    hx = IMU_Calculated_Data.mx;
-    hy = IMU_Calculated_Data.my;
-
-#ifdef BOARD_DOWN
-    if (hx < 0 && hy < 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = -0.005;
-            q1 = -0.199;
-            q2 = 0.979;
-            q3 = -0.0089;
-        }
-        else
-        {
-            q0 = -0.008;
-            q1 = -0.555;
-            q2 = 0.83;
-            q3 = -0.002;
-        }
-    }
-    else if (hx < 0 && hy > 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = 0.005;
-            q1 = -0.199;
-            q2 = -0.978;
-            q3 = 0.012;
-        }
-        else
-        {
-            q0 = 0.005;
-            q1 = -0.553;
-            q2 = -0.83;
-            q3 = -0.0023;
-        }
-    }
-    else if (hx > 0 && hy > 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = 0.0012;
-            q1 = -0.978;
-            q2 = -0.199;
-            q3 = -0.005;
-        }
-        else
-        {
-            q0 = 0.0023;
-            q1 = -0.83;
-            q2 = -0.553;
-            q3 = 0.0023;
-        }
-    }
-    else if (hx > 0 && hy < 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = 0.0025;
-            q1 = 0.978;
-            q2 = -0.199;
-            q3 = 0.008;
-        }
-        else
-        {
-            q0 = 0.0025;
-            q1 = 0.83;
-            q2 = -0.56;
-            q3 = 0.0045;
-        }
-    }
-#else
-    if (hx < 0 && hy < 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = 0.195;
-            q1 = -0.015;
-            q2 = 0.0043;
-            q3 = 0.979;
-        }
-        else
-        {
-            q0 = 0.555;
-            q1 = -0.015;
-            q2 = 0.006;
-            q3 = 0.829;
-        }
-    }
-    else if (hx < 0 && hy > 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = -0.193;
-            q1 = -0.009;
-            q2 = -0.006;
-            q3 = 0.979;
-        }
-        else
-        {
-            q0 = -0.552;
-            q1 = -0.0048;
-            q2 = -0.0115;
-            q3 = 0.8313;
-        }
-    }
-    else if (hx > 0 && hy > 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = -0.9785;
-            q1 = 0.008;
-            q2 = -0.02;
-            q3 = 0.195;
-        }
-        else
-        {
-            q0 = -0.9828;
-            q1 = 0.002;
-            q2 = -0.0167;
-            q3 = 0.5557;
-        }
-    }
-    else if (hx > 0 && hy < 0)
-    {
-        if (fabs(hx / hy) >= 1)
-        {
-            q0 = -0.979;
-            q1 = 0.0116;
-            q2 = -0.0167;
-            q3 = -0.195;
-        }
-        else
-        {
-            q0 = -0.83;
-            q1 = 0.014;
-            q2 = -0.012;
-            q3 = -0.556;
-        }
-    }
-#endif
-}
-
-void Board_A_IMU_Get_Data(void)
-{
-    IMU_Export.Info_Update_Flag = Board_A_IMU_Read_Bytes(MPU6500_ACCEL_XOUT_H, mpu_buff, 14);
-
-    IMU_Original_Data.ax = mpu_buff[0] << 8 | mpu_buff[1];
-    IMU_Original_Data.ay = mpu_buff[2] << 8 | mpu_buff[3];
-    IMU_Original_Data.az = mpu_buff[4] << 8 | mpu_buff[5];
-    IMU_Original_Data.temp = mpu_buff[6] << 8 | mpu_buff[7];
-
-    IMU_Original_Data.Original_Gyro.gx = ((mpu_buff[8] << 8 | mpu_buff[9]) - IMU_Original_Data.Offset.gx_offset);
-    IMU_Original_Data.Original_Gyro.gy = ((mpu_buff[10] << 8 | mpu_buff[11]) - IMU_Original_Data.Offset.gy_offset);
-    IMU_Original_Data.Original_Gyro.gz = ((mpu_buff[12] << 8 | mpu_buff[13]) - IMU_Original_Data.Offset.gz_offset);
-
-    IST8310_Get_Data(ist_buff);
-    memcpy(&IMU_Original_Data.mx, ist_buff, 6);
-
-    memcpy(&IMU_Calculated_Data.ax, &IMU_Original_Data.ax, 6 * sizeof(int16_t));
-
-    IMU_Calculated_Data.temp = 21 + IMU_Original_Data.temp / 333.87f;
+	uint8_t Buffer[14];
+	uint8_t Buffer_Mag[6];
 	
-    IMU_Calculated_Data.Real_Gyro.wx = IMU_Original_Data.Original_Gyro.gx / 16.384f / 57.3f;
-    IMU_Calculated_Data.Real_Gyro.wy = IMU_Original_Data.Original_Gyro.gy / 16.384f / 57.3f;
-    IMU_Calculated_Data.Real_Gyro.wz = IMU_Original_Data.Original_Gyro.gz / 16.384f / 57.3f;
-
-    IMU_Calculated_Data.Gyro.gx = IMU_Original_Data.Original_Gyro.gx;
-    IMU_Calculated_Data.Gyro.gy = IMU_Original_Data.Original_Gyro.gy;
-    IMU_Calculated_Data.Gyro.gz = IMU_Original_Data.Original_Gyro.gz;
-}
-
-void Board_A_IMU_AHRS_Update(void)
-{
-    float norm;
-    float hx, hy, hz, bx, bz;
-    float vx, vy, vz, wx, wy, wz;
-    float ex, ey, ez, halfT;
-    float tempq0, tempq1, tempq2, tempq3;
-		float Kp = 2;
-		float Ki = 0.01;
-
-    float q0q0 = q0 * q0;
-    float q0q1 = q0 * q1;
-    float q0q2 = q0 * q2;
-    float q0q3 = q0 * q3;
-    float q1q1 = q1 * q1;
-    float q1q2 = q1 * q2;
-    float q1q3 = q1 * q3;
-    float q2q2 = q2 * q2;
-    float q2q3 = q2 * q3;
-    float q3q3 = q3 * q3;
-
-    gx = IMU_Calculated_Data.Real_Gyro.wx;
-    gy = IMU_Calculated_Data.Real_Gyro.wy;
-    gz = IMU_Calculated_Data.Real_Gyro.wz;
-    ax = IMU_Calculated_Data.ax;
-    ay = IMU_Calculated_Data.ay;
-    az = IMU_Calculated_Data.az;
-    mx = IMU_Calculated_Data.mx;
-    my = IMU_Calculated_Data.my;
-    mz = IMU_Calculated_Data.mz;
-
-    now_update = HAL_GetTick(); //ms
-    halfT = ((float)(now_update - last_update) / 2000.0f);
-    last_update = now_update;
-
-    /* Fast inverse square-root */
-    norm = inv_sqrt(ax * ax + ay * ay + az * az);
-    ax = ax * norm;
-    ay = ay * norm;
-    az = az * norm;
-
-#ifdef IST8310
-    norm = inv_sqrt(mx * mx + my * my + mz * mz);
-    mx = mx * norm;
-    my = my * norm;
-    mz = mz * norm;
-#else
-    mx = 0;
-    my = 0;
-    mz = 0;
-#endif
-    /* compute reference direction of flux */
-    hx = 2.0f * mx * (0.5f - q2q2 - q3q3) + 2.0f * my * (q1q2 - q0q3) + 2.0f * mz * (q1q3 + q0q2);
-    hy = 2.0f * mx * (q1q2 + q0q3) + 2.0f * my * (0.5f - q1q1 - q3q3) + 2.0f * mz * (q2q3 - q0q1);
-    hz = 2.0f * mx * (q1q3 - q0q2) + 2.0f * my * (q2q3 + q0q1) + 2.0f * mz * (0.5f - q1q1 - q2q2);
-    bx = sqrt((hx * hx) + (hy * hy));
-    bz = hz;
-
-    /* estimated direction of gravity and flux (v and w) */
-    vx = 2.0f * (q1q3 - q0q2);
-    vy = 2.0f * (q0q1 + q2q3);
-    vz = q0q0 - q1q1 - q2q2 + q3q3;
-    wx = 2.0f * bx * (0.5f - q2q2 - q3q3) + 2.0f * bz * (q1q3 - q0q2);
-    wy = 2.0f * bx * (q1q2 - q0q3) + 2.0f * bz * (q0q1 + q2q3);
-    wz = 2.0f * bx * (q0q2 + q1q3) + 2.0f * bz * (0.5f - q1q1 - q2q2);
-
-    /* 
-	 * error is sum of cross product between reference direction 
-	 * of fields and direction measured by sensors 
-	 */
-    ex = (ay * vz - az * vy) + (my * wz - mz * wy);
-    ey = (az * vx - ax * vz) + (mz * wx - mx * wz);
-    ez = (ax * vy - ay * vx) + (mx * wy - my * wx);
-
-    /* PI */
-    if (ex != 0.0f && ey != 0.0f && ez != 0.0f)
-    {
-        exInt = exInt + ex * Ki * halfT;
-        eyInt = eyInt + ey * Ki * halfT;
-        ezInt = ezInt + ez * Ki * halfT;
-
-        gx = gx + Kp * ex + exInt;
-        gy = gy + Kp * ey + eyInt;
-        gz = gz + Kp * ez + ezInt;
-    }
-
-    tempq0 = q0 + (-q1 * gx - q2 * gy - q3 * gz) * halfT;
-    tempq1 = q1 + (q0 * gx + q2 * gz - q3 * gy) * halfT;
-    tempq2 = q2 + (q0 * gy - q1 * gz + q3 * gx) * halfT;
-    tempq3 = q3 + (q0 * gz + q1 * gy - q2 * gx) * halfT;
-
-    /* normalise quaternion */
-    norm = inv_sqrt(tempq0 * tempq0 + tempq1 * tempq1 + tempq2 * tempq2 + tempq3 * tempq3);
-    q0 = tempq0 * norm;
-    q1 = tempq1 * norm;
-    q2 = tempq2 * norm;
-    q3 = tempq3 * norm;
-}
-
-void Board_A_IMU_Attitude_Update(void)
-{
-    /* yaw    -pi----pi */
-    IMU_Calculated_Data.Axis.yaw = -atan2(2 * q1 * q2 + 2 * q0 * q3, -2 * q2 * q2 - 2 * q3 * q3 + 1) * 57.3 + 180.0f;
-    /* pitch  -pi/2----pi/2 */
-    IMU_Calculated_Data.Axis.pit = -asin(-2 * q1 * q3 + 2 * q0 * q2) * 57.3 + 180.0f;
-    /* roll   -pi----pi  */
-    IMU_Calculated_Data.Axis.rol = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) * 57.3 + 180.0f;
+	Board_A_IMU->Sample.Now_Time = HAL_GetTick() / 1000.0f;
+	Board_A_IMU->Sample.Period = Board_A_IMU->Sample.Now_Time - Board_A_IMU->Sample.Prev_Time;
+	Board_A_IMU->Sample.Prev_Time = Board_A_IMU->Sample.Now_Time;
 	
-		Board_A_IMU_Export_Data(&IMU_Calculated_Data, &IMU_Export);
+	Board_A_IMU->Offline_Flag = Board_A_IMU_Read_Bytes(MPU6500_ACCEL_XOUT_H, Buffer, 14);
+	Board_A_IMU_Read_Bytes(MPU6500_EXT_SENS_DATA_00, Buffer_Mag, 6);
+
+	Board_A_IMU->Raw_Data.Ax = ((int16_t)Buffer[0] << 8) | Buffer[1];
+	Board_A_IMU->Raw_Data.Ay = ((int16_t)Buffer[2] << 8) | Buffer[3];
+	Board_A_IMU->Raw_Data.Az = ((int16_t)Buffer[4] << 8) | Buffer[5];
+	Board_A_IMU->Raw_Data.Temperature = ((int16_t)Buffer[6] << 8) | Buffer[7];
+	Board_A_IMU->Raw_Data.Gx = ((int16_t)Buffer[8] << 8) | Buffer[9];
+	Board_A_IMU->Raw_Data.Gy = ((int16_t)Buffer[10] << 8) | Buffer[11];
+	Board_A_IMU->Raw_Data.Gz = ((int16_t)Buffer[12] << 8) | Buffer[13];	
+	memcpy(&Board_A_IMU->Raw_Data.Mx, Buffer_Mag, 6);
+	
+	Board_A_IMU->Calc_Data.Ax = Board_A_IMU->Raw_Data.Ax / 4096.0f;
+	Board_A_IMU->Calc_Data.Ay = Board_A_IMU->Raw_Data.Ay / 4096.0f;
+	Board_A_IMU->Calc_Data.Az = Board_A_IMU->Raw_Data.Az / 4096.0f;
+	Board_A_IMU->Calc_Data.Gx = Board_A_IMU->Raw_Data.Gx / 16.384f;
+	Board_A_IMU->Calc_Data.Gy = Board_A_IMU->Raw_Data.Gy / 16.384f;
+	Board_A_IMU->Calc_Data.Gz = Board_A_IMU->Raw_Data.Gz / 16.384f;
+	Board_A_IMU->Calc_Data.Mx = Board_A_IMU->Raw_Data.Mx;
+	Board_A_IMU->Calc_Data.My = Board_A_IMU->Raw_Data.My;
+	Board_A_IMU->Calc_Data.Mz = Board_A_IMU->Raw_Data.Mz;
+	Board_A_IMU->Calc_Data.Temperature = Board_A_IMU->Raw_Data.Temperature / 333.87f + 21.0f;
 }
 
-void Board_A_IMU_Export_Data(IMU_Calculated_Data_t *IMU_Calculated_Data, IMU_Export_t *IMU_Export)
+void Board_A_IMU_Calc_Angle(Board_A_IMU_t *Board_A_IMU)
 {
-    IMU_Export->temp = IMU_Calculated_Data->temp;
-    for (int i = 0; i < 3; i++)
-    {
-        IMU_Export->Current_Angle[i] = IMU_Calculated_Data->Axis.Real_Angle[i];
-        if (IMU_Calculated_Data->Axis.Real_Angle[i] - IMU_Calculated_Data->Last_Axis.Last_Angle[i] < -300)
-        { 
-            IMU_Calculated_Data->turnCount[i]++;
-        }
-        if (IMU_Calculated_Data->Last_Axis.Last_Angle[i] - IMU_Calculated_Data->Axis.Real_Angle[i] < -300)
-        {
-            IMU_Calculated_Data->turnCount[i]--;
-        }
-        IMU_Export->Total_Angle[i] = IMU_Calculated_Data->Axis.Real_Angle[i] + (360 * IMU_Calculated_Data->turnCount[i]);
+	const FusionVector Board_A_IMU_Accel = {Board_A_IMU->Calc_Data.Ax, Board_A_IMU->Calc_Data.Ay, Board_A_IMU->Calc_Data.Az};
+	const FusionVector Board_A_IMU_Gyro = {Board_A_IMU->Calc_Data.Gx, Board_A_IMU->Calc_Data.Gy, Board_A_IMU->Calc_Data.Gz}; 
+	const FusionVector Board_A_IMU_Magn = {Board_A_IMU->Calc_Data.Mx, Board_A_IMU->Calc_Data.My, Board_A_IMU->Calc_Data.Mz};
+	
+	if(BOARD_A_IMU_USE_MAGN)
+		FusionAhrsUpdate(&Board_A_IMU_AHRS, Board_A_IMU_Gyro, Board_A_IMU_Accel, Board_A_IMU_Magn, Board_A_IMU->Sample.Period);
+	else
+		FusionAhrsUpdateNoMagnetometer(&Board_A_IMU_AHRS, Board_A_IMU_Gyro, Board_A_IMU_Accel, Board_A_IMU->Sample.Period);
 
-        IMU_Calculated_Data->Last_Axis.Last_Angle[i] = IMU_Calculated_Data->Axis.Real_Angle[i];
-
-        Filter_IIRLPF(&IMU_Calculated_Data->Gyro.Original_gX[i], &IMU_Export->SpeedLPF[i], gz_LpfAttFactor);
-				IMU_Calculated_Data->Gyro.Original_gX[i] = IMU_Calculated_Data->Gyro.Original_gX[i] / 16.384f / 6.0f;
-    }
+	
+	const FusionEuler Board_A_IMU_Euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&Board_A_IMU_AHRS));
+	
+	Board_A_IMU->Export_Data.Prev_Yaw = Board_A_IMU->Export_Data.Yaw;
+	
+	Board_A_IMU->Export_Data.Yaw = Board_A_IMU_Euler.angle.yaw;
+	Board_A_IMU->Export_Data.Pitch = Board_A_IMU_Euler.angle.pitch;
+	Board_A_IMU->Export_Data.Roll = Board_A_IMU_Euler.angle.roll;
+	Board_A_IMU->Export_Data.Gyro_Yaw = Board_A_IMU->Calc_Data.Gx / 6.0f;
+	Board_A_IMU->Export_Data.Gyro_Pitch = Board_A_IMU->Calc_Data.Gy / 6.0f;
+	Board_A_IMU->Export_Data.Gyro_Roll = Board_A_IMU->Calc_Data.Gz / 6.0f;
+	Board_A_IMU->Export_Data.Temperature = Board_A_IMU->Calc_Data.Temperature;
+	
+	if((Board_A_IMU->Export_Data.Yaw - Board_A_IMU->Export_Data.Prev_Yaw) < - 300)
+		Board_A_IMU->Export_Data.Turn_Count++;
+	else if((Board_A_IMU->Export_Data.Yaw - Board_A_IMU->Export_Data.Prev_Yaw) > 300)
+		Board_A_IMU->Export_Data.Turn_Count--;
+	
+	Board_A_IMU->Export_Data.Total_Yaw = Board_A_IMU->Export_Data.Yaw + 360.0f * Board_A_IMU->Export_Data.Turn_Count;
 }
 
-void Board_A_IMU_Reset(IMU_Export_t *IMU_Export)
+void Board_A_IMU_Reset(Board_A_IMU_t *Board_A_IMU)
 {
-    for (int i = 0; i < 3; i++)
-    {
-        IMU_Calculated_Data.Last_Axis.Last_Angle[i] = IMU_Calculated_Data.Axis.Real_Angle[i];
-        IMU_Export->Total_Angle[i] = IMU_Calculated_Data.Axis.Real_Angle[i];
-        IMU_Calculated_Data.turnCount[i] = 0;
-    }
-}
-
-void Board_A_IMU_Check(void)
-{
-    if (IMU_Export.Info_Update_Flag != HAL_OK)
-        IMU_Export.Offline_Flag = 1;
-    else
-        IMU_Export.Offline_Flag = 0;
+	Board_A_IMU->Export_Data.Prev_Yaw = Board_A_IMU->Export_Data.Yaw;
+	Board_A_IMU->Export_Data.Total_Yaw = 0;
+	Board_A_IMU->Export_Data.Turn_Count = 0;
 }

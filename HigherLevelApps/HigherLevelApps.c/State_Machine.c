@@ -35,18 +35,21 @@ void Remote_Control_Update(void)
 			{
 				Chassis.Current_Mode = Follow_Gimbal;
 				Gimbal.Current_Mode = Follow_Gimbal;
+				
 				break;
 			}
 			case(SWITCH_MID):
 			{
 				Chassis.Current_Mode = Not_Follow_Gimbal;
 				Gimbal.Current_Mode = Not_Follow_Gimbal;
+				
 				break;
 			}
 			case(SWITCH_UP):
 			{
 				Chassis.Current_Mode = Spin_Top;
 				Gimbal.Current_Mode = Spin_Top;
+				
 				break;
 			}
 		}
@@ -59,18 +62,23 @@ void Remote_Control_Update(void)
 			case(SWITCH_DOWN):
 			{
 				State_Machine.Control_Source = Remote_Control;
-				Shooting_Func.Turn_Friction_Wheel_Off();
+				
+				Shooting.Fric_Wheel.Turned_On = 0;
+				
 				break;
-			}
+			}	
 			case(SWITCH_MID):
 			{
 				State_Machine.Control_Source = Remote_Control;
-				Shooting_Func.Turn_Friction_Wheel_On();
+				
+				Shooting.Fric_Wheel.Turned_On = 1;
+				
 				break;
 			}
 			case(SWITCH_UP):
 			{
 				State_Machine.Control_Source = Computer;
+				
 				break;
 			}
 		}
@@ -118,10 +126,10 @@ void Computer_Update(void)
 		
 		else if(DR16_Export_Data.Keyboard.Press_B.Single_Click_Flag)
 		{
-			if(Shooting.Fric_Wheel_On_Flag)
-				Shooting_Func.Turn_Friction_Wheel_Off();
-			else
-				Shooting_Func.Turn_Friction_Wheel_On();
+			if(Shooting.Fric_Wheel.Turned_On)
+				Shooting.Fric_Wheel.Turned_On = 0;
+			else 
+				Shooting.Fric_Wheel.Turned_On = 1;
 		}
 	}
 }
