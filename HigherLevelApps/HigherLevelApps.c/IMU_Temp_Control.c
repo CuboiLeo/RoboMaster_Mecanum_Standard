@@ -10,9 +10,17 @@
  */
  
 #include "IMU_Temp_Control.h"
-#include "Board_A_IMU.h"
 
+void Board_A_IMU_Temp_Control_Init(void);
 void Board_A_IMU_Temp_Control(void);
+
+IMU_Temp_Control_Func_t IMU_Temp_Control_Func = IMU_Temp_Control_Func_GroundInit;
+#undef IMU_Temp_Control_Func_GroundInit
+
+void Board_A_IMU_Temp_Control_Init(void)
+{
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+}
 
 void Board_A_IMU_Temp_Control(void)
 {

@@ -18,7 +18,9 @@
 #include "i2c.h"
 #include "MPU6050_IMU.h"
 
-void I2C_Read_Bytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data);
-void I2C_Write_Bytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data);
+void I2C_Read_8_Bytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data);
+void I2C_Write_8_Bytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data);
+void I2C_Read_16_Bytes(uint16_t devAddr, uint16_t regAddr, uint8_t length, uint8_t *data);
+void I2C_Write_16_Bytes(uint16_t devAddr, uint16_t regAddr, uint8_t length, uint8_t *data);
 
 #endif

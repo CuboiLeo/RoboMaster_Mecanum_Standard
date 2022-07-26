@@ -19,15 +19,15 @@
 #include <stdio.h>
 #include <string.h>
 
-#define BOARD_A_IMU_USE_MAGN 0
+//#define BOARD_A_IMU_USE_MAGN 1
 
 #define Board_A_IMU_Func_GroundInit       \
     {                                 		\
         &Board_A_IMU_Init,                \
+						&Board_A_IMU_Calibrate,				\
 						&Board_A_IMU_Read_Data,				\
             &Board_A_IMU_Calc_Angle,      \
             &Board_A_IMU_Reset,           \
-						&Board_A_IMU_Temp_Control,		\
     }
 
 typedef struct
@@ -105,10 +105,10 @@ typedef struct
 typedef struct
 {
 	void (*Board_A_IMU_Init)(void);
+	void (*Board_A_IMU_Calibrate)(Board_A_IMU_t *Board_A_IMU);
 	void (*Board_A_IMU_Read_Data)(Board_A_IMU_t *Board_A_IMU);
   void (*Board_A_IMU_Calc_Angle)(Board_A_IMU_t *Board_A_IMU);
   void (*Board_A_IMU_Reset)(Board_A_IMU_t *IMU_Export);
-	void (*Board_A_IMU_Temp_Control)(void);
 }Board_A_IMU_Func_t;
 
 extern Board_A_IMU_t Board_A_IMU;

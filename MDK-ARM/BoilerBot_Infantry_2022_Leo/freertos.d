@@ -55,6 +55,7 @@ boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/IMU
 boilerbot_infantry_2022_leo\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 boilerbot_infantry_2022_leo\freertos.o: ../Core/Inc/tim.h
+boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\freertos.o: ../BSP/BSP.h/Fusion.h
 boilerbot_infantry_2022_leo\freertos.o: ../BSP/BSP.h/FusionAhrs.h
 boilerbot_infantry_2022_leo\freertos.o: ../BSP/BSP.h/FusionMath.h
@@ -93,3 +94,7 @@ boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Sta
 boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\freertos.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/WT901_IMU.h
+boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\freertos.o: ../BSP/BSP.h/CRC_Verification.h
+boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/Buzzer.h

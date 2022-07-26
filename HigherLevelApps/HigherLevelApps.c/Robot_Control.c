@@ -17,6 +17,8 @@ void Robot_Control_Disabled(void);
 Robot_Control_Func_t Robot_Control_Func = Robot_Control_Func_GroundInit;
 #undef Robot_Control_Func_GroundInit
 
+Robot_Mode_t Robot_Mode;
+
 void Robot_Control_Start(void)
 {
 	State_Machine_Func.Remote_Control_Update();

@@ -23,6 +23,7 @@ Board_A_IMU_t Board_A_IMU;
 FusionAhrs Board_A_IMU_AHRS;
 
 void Board_A_IMU_Init(void);
+void Board_A_IMU_Calibrate(Board_A_IMU_t *Board_A_IMU);
 void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU);
 void Board_A_IMU_Calc_Angle(Board_A_IMU_t *Board_A_IMU);
 void Board_A_IMU_Reset(Board_A_IMU_t *Board_A_IMU);
@@ -52,7 +53,7 @@ void Board_A_IMU_Init(void)
 			{MPU6500_CONFIG, 0x04},         /* LPF 41Hz */
 			{MPU6500_GYRO_CONFIG, 0x18},    /* +-2000dps */
 			{MPU6500_ACCEL_CONFIG, 0x10},   /* +-8G */
-			{MPU6500_ACCEL_CONFIG_2, 0x02}, /* enable LowPassFilter  Set Acc LPF */
+			{MPU6500_ACCEL_CONFIG_2, 0x02}, /* Enable LowPassFilter  Set Acc LPF */
 			{MPU6500_USER_CTRL, 0x20},
 	}; /* Enable AUX */
 	for (i = 0; i < 10; i++)
@@ -220,6 +221,37 @@ static void Board_A_IMU_I2C_Config(uint8_t device_address, uint8_t reg_base_addr
     HAL_Delay(2);
 }
 
+void Board_A_IMU_Calibrate(Board_A_IMU_t *Board_A_IMU)
+{
+	if(Board_A_IMU->Calibrated_Flag == 0)
+	{
+		float Buffer[6];
+		
+		for(int i = 0; i < CALIBRATION_SAMPLE; i++)
+		{
+			Board_A_IMU_Read_Data(Board_A_IMU);
+			Buffer[0] += Board_A_IMU->Calc_Data.Ax;
+			Buffer[1] += Board_A_IMU->Calc_Data.Ay;
+			Buffer[2] += Board_A_IMU->Calc_Data.Az;
+			Buffer[3] += Board_A_IMU->Calc_Data.Gx;
+			Buffer[4] += Board_A_IMU->Calc_Data.Gy;
+			Buffer[5] += Board_A_IMU->Calc_Data.Gz;
+			HAL_Delay(1);
+		}
+
+		Board_A_IMU->Offset.Ax = Buffer[0] / CALIBRATION_SAMPLE;
+		Board_A_IMU->Offset.Ay = Buffer[1] / CALIBRATION_SAMPLE;
+		Board_A_IMU->Offset.Az = Buffer[2] / CALIBRATION_SAMPLE - 1.0f;
+		Board_A_IMU->Offset.Gx = Buffer[3] / CALIBRATION_SAMPLE;
+		Board_A_IMU->Offset.Gy = Buffer[4] / CALIBRATION_SAMPLE;
+		Board_A_IMU->Offset.Gz = Buffer[5] / CALIBRATION_SAMPLE;
+		
+		Board_A_IMU->Calibrated_Flag = 1;
+	}
+	else
+		;
+}
+
 void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU)
 {
 	uint8_t Buffer[14];
@@ -251,19 +283,31 @@ void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU)
 	Board_A_IMU->Calc_Data.My = Board_A_IMU->Raw_Data.My;
 	Board_A_IMU->Calc_Data.Mz = Board_A_IMU->Raw_Data.Mz;
 	Board_A_IMU->Calc_Data.Temperature = Board_A_IMU->Raw_Data.Temperature / 333.87f + 21.0f;
+	
+	if(Board_A_IMU->Calibrated_Flag == 1)
+	{
+		Board_A_IMU->Calc_Data.Ax -= Board_A_IMU->Offset.Ax;
+		Board_A_IMU->Calc_Data.Ay -= Board_A_IMU->Offset.Ay;
+		Board_A_IMU->Calc_Data.Az -= Board_A_IMU->Offset.Az;
+		Board_A_IMU->Calc_Data.Gx -= Board_A_IMU->Offset.Gx;
+		Board_A_IMU->Calc_Data.Gy -= Board_A_IMU->Offset.Gy;
+		Board_A_IMU->Calc_Data.Gz -= Board_A_IMU->Offset.Gz;
+	}
 }
 
 void Board_A_IMU_Calc_Angle(Board_A_IMU_t *Board_A_IMU)
 {
 	const FusionVector Board_A_IMU_Accel = {Board_A_IMU->Calc_Data.Ax, Board_A_IMU->Calc_Data.Ay, Board_A_IMU->Calc_Data.Az};
 	const FusionVector Board_A_IMU_Gyro = {Board_A_IMU->Calc_Data.Gx, Board_A_IMU->Calc_Data.Gy, Board_A_IMU->Calc_Data.Gz}; 
-	const FusionVector Board_A_IMU_Magn = {Board_A_IMU->Calc_Data.Mx, Board_A_IMU->Calc_Data.My, Board_A_IMU->Calc_Data.Mz};
-	
-	if(BOARD_A_IMU_USE_MAGN)
-		FusionAhrsUpdate(&Board_A_IMU_AHRS, Board_A_IMU_Gyro, Board_A_IMU_Accel, Board_A_IMU_Magn, Board_A_IMU->Sample.Period);
-	else
-		FusionAhrsUpdateNoMagnetometer(&Board_A_IMU_AHRS, Board_A_IMU_Gyro, Board_A_IMU_Accel, Board_A_IMU->Sample.Period);
 
+	#ifdef BOARD_A_IMU_USE_MAGN
+	const FusionVector Board_A_IMU_Magn = {Board_A_IMU->Calc_Data.Mx, Board_A_IMU->Calc_Data.My, Board_A_IMU->Calc_Data.Mz};
+	FusionAhrsUpdate(&Board_A_IMU_AHRS, Board_A_IMU_Gyro, Board_A_IMU_Accel, Board_A_IMU_Magn, Board_A_IMU->Sample.Period);
+	#endif
+	
+	#ifndef BOARD_A_IMU_USE_MAGN
+	FusionAhrsUpdateNoMagnetometer(&Board_A_IMU_AHRS, Board_A_IMU_Gyro, Board_A_IMU_Accel, Board_A_IMU->Sample.Period);
+	#endif
 	
 	const FusionEuler Board_A_IMU_Euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&Board_A_IMU_AHRS));
 	

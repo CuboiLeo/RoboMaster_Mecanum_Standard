@@ -59,13 +59,13 @@ void Trigger_Get_Data(Shooting_t *Shooting)
 		{
 			DR16_Export_Data.Mouse.Click_Counter++;
 			
-			if(DR16_Export_Data.Mouse.Click_Counter < 40)
+			if(DR16_Export_Data.Mouse.Click_Counter < 10)
 			{
 				Shooting->Type.Single_Fire_Flag = 1;
 				Shooting->Type.Burst_Flag = 0;
 			}
 			
-			else
+			else if(DR16_Export_Data.Mouse.Click_Counter >= 10)
 			{
 				Shooting->Type.Single_Fire_Flag = 0;
 				Shooting->Type.Burst_Flag = 1;
@@ -90,30 +90,52 @@ void Shooting_Processing(Shooting_t *Shooting)
 	
 	if(Shooting->Fric_Wheel_Ready_Flag)
 	{
-		if(Shooting->Type.Single_Fire_Flag && (Shooting->Type.Single_Fired_Flag == 0))
+		if(State_Machine.Control_Source == Remote_Control)
 		{
-			Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
-			Shooting->Type.Single_Fired_Flag = 1;
+			if(Shooting->Type.Single_Fire_Flag && (Shooting->Type.Single_Fired_Flag == 0))
+			{
+				Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
+				Shooting->Type.Single_Fired_Flag = 1;
+			}
+			
+			else if(Shooting->Type.Single_Fire_Flag && Shooting->Type.Single_Fired_Flag)
+			{
+				Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
+				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+			}
+			
+			else if(Shooting->Type.Burst_Flag)
+			{
+				Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000;
+				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+			}
+		
+			else
+				M2006_Trigger.Output_Current = 0;
 		}
 		
-		else if(Shooting->Type.Single_Fire_Flag && Shooting->Type.Single_Fired_Flag)
+		else if(State_Machine.Control_Source == Computer)
 		{
-			Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
-			M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+			if(Shooting->Type.Single_Fire_Flag)
+			{
+				Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
+			}
+			
+			else if((Shooting->Type.Single_Fire_Flag == 0) && (Shooting->Type.Single_Fired_Flag == 0))
+			{
+				Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
+				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+			}
+			
+			else if(Shooting->Type.Burst_Flag)
+			{
+				Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000;
+				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+			}
 		}
-		
-		else if(Shooting->Type.Burst_Flag)
-		{
-			Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000;
-			M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
-		}
-		
-		else
-			M2006_Trigger.Output_Current = 0;
 	}
 	else
 		M2006_Trigger.Output_Current = 0;
-	
 }
 
 void Turn_Friction_Wheel_On(void)

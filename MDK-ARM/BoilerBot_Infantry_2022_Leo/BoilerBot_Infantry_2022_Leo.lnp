@@ -52,7 +52,6 @@
 "boilerbot_infantry_2022_leo\filters.o"
 "boilerbot_infantry_2022_leo\user_defined_math.o"
 "boilerbot_infantry_2022_leo\pid.o"
-"boilerbot_infantry_2022_leo\kalman_filter.o"
 "boilerbot_infantry_2022_leo\ramp_calc.o"
 "boilerbot_infantry_2022_leo\dr16_remote.o"
 "boilerbot_infantry_2022_leo\board_a_imu.o"
@@ -61,11 +60,14 @@
 "boilerbot_infantry_2022_leo\m2006_motor.o"
 "boilerbot_infantry_2022_leo\super_capacitor.o"
 "boilerbot_infantry_2022_leo\mpu6050_imu.o"
+"boilerbot_infantry_2022_leo\referee_system.o"
+"boilerbot_infantry_2022_leo\buzzer.o"
 "boilerbot_infantry_2022_leo\can_setup.o"
 "boilerbot_infantry_2022_leo\i2c_setup.o"
 "boilerbot_infantry_2022_leo\fusionahrs.o"
 "boilerbot_infantry_2022_leo\fusioncompass.o"
 "boilerbot_infantry_2022_leo\fusionoffset.o"
+"boilerbot_infantry_2022_leo\crc_verification.o"
 --strict --scatter "BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

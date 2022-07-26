@@ -82,6 +82,7 @@ boilerbot_infantry_2022_leo\ramp_calc.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../Core/Inc/tim.h
+boilerbot_infantry_2022_leo\ramp_calc.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../BSP/BSP.h/Fusion.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../BSP/BSP.h/FusionAhrs.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../BSP/BSP.h/FusionMath.h

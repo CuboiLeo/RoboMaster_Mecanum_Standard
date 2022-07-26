@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "Board_A_IMU.h"
+#include "IMU_Temp_Control.h"
 #include "DR16_Remote.h"
 #include "M3508_Motor.h"
 #include "GM6020_Motor.h"
@@ -33,7 +34,10 @@
 #include "Super_Capacitor.h"
 #include "Robot_Control.h"
 #include "MPU6050_IMU.h"
+#include "WT901_IMU.h"
 #include "Fusion.h"
+#include "Referee_System.h"
+#include "Buzzer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -157,7 +161,7 @@ void MX_FREERTOS_Init(void) {
   Task_CAN2_RecHandle = osThreadCreate(osThread(Task_CAN2_Rec), NULL);
 
   /* definition and creation of Task_Robot_Ctrl */
-  osThreadDef(Task_Robot_Ctrl, Robot_Control, osPriorityRealtime, 0, 600);
+  osThreadDef(Task_Robot_Ctrl, Robot_Control, osPriorityRealtime, 0, 640);
   Task_Robot_CtrlHandle = osThreadCreate(osThread(Task_Robot_Ctrl), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -183,15 +187,17 @@ void StartIMUTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+		Board_A_IMU_Func.Board_A_IMU_Calibrate(&Board_A_IMU);
 		Board_A_IMU_Func.Board_A_IMU_Read_Data(&Board_A_IMU);
 		Board_A_IMU_Func.Board_A_IMU_Calc_Angle(&Board_A_IMU);
-		Board_A_IMU_Func.Board_A_IMU_Temp_Control();
-		if(MPU6050_IMU.Offline_Flag == 0)
-		{
-			MPU6050_IMU_Func.MPU6050_IMU_Calibrate(&MPU6050_IMU);
-			MPU6050_IMU_Func.MPU6050_IMU_Read_Data(&MPU6050_IMU);
-			MPU6050_IMU_Func.MPU6050_IMU_Calc_Angle(&MPU6050_IMU);
-		}
+		IMU_Temp_Control_Func.Board_A_IMU_Temp_Control();
+		
+		#ifdef USE_MPU6050
+		MPU6050_IMU_Func.MPU6050_IMU_Calibrate(&MPU6050_IMU);
+		MPU6050_IMU_Func.MPU6050_IMU_Read_Data(&MPU6050_IMU);
+		MPU6050_IMU_Func.MPU6050_IMU_Calc_Angle(&MPU6050_IMU);
+		#endif
+		
     vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
   }
   /* USER CODE END StartIMUTask */
@@ -208,17 +214,23 @@ void General_Init(void const * argument)
 {
   /* USER CODE BEGIN General_Init */
   /* Infinite loop */
-
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-	Board_A_IMU_Func.Board_A_IMU_Init();
-	DR16_Func.DR16_USART_Receive_DMA(&huart1);
-	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
-  CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
+	Buzzer_Func.Buzzer_Init();
+	//Buzzer_Func.Buzzer_Robot_Initializing();
+  IMU_Temp_Control_Func.Board_A_IMU_Temp_Control_Init();
+	Board_A_IMU_Func.Board_A_IMU_Init();	
+	#ifdef USE_MPU6050
 	MPU6050_IMU_Func.MPU6050_IMU_Init();
-	Gimbal_Func.Gimbal_Init();
-	Shooting_Func.Shooting_Init();
+	#endif
 	FusionAhrsInitialise(&MPU6050_IMU_AHRS);
 	FusionAhrsInitialise(&Board_A_IMU_AHRS);
+	DR16_Func.DR16_USART_Receive_DMA(&huart1);
+	Referee_System_Func.Referee_System_USART_Receive_DMA(&huart6);
+	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
+  CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
+	Gimbal_Func.Gimbal_Init();
+	Shooting_Func.Shooting_Init();
+	Robot_Mode.Initialized_Flag = 1;
+	Buzzer_Func.Buzzer_Robot_Is_Initialized();
 	vTaskDelete(NULL);
   /* USER CODE END General_Init */
 }

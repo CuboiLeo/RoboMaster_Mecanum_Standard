@@ -100,6 +100,7 @@ int main(void)
   MX_CAN1_Init();
   MX_CAN2_Init();
   MX_I2C2_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
 	
   /* USER CODE END 2 */

@@ -84,6 +84,7 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/tim.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/Fusion.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/FusionAhrs.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/FusionMath.h
@@ -95,3 +96,5 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Algorithms/Algorithms.h/Kalman_Filter.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/CRC_Verification.h

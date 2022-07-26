@@ -30,19 +30,22 @@ void MPU6050_IMU_Init(void)
 	uint8_t Temp_Data;
 	uint8_t Check_Offline;
 	
-	I2C_Read_Bytes(DEV_ADDR, WHO_AM_I, 1, &Check_Offline);
+	I2C_Read_8_Bytes(DEV_ADDR, WHO_AM_I, 1, &Check_Offline);
+	
+	Temp_Data = 0x80;
+	I2C_Write_8_Bytes(DEV_ADDR,	PWR_MGMT_1, 1, &Temp_Data);
 	
 	Temp_Data = 0x07;
-	I2C_Write_Bytes(DEV_ADDR,	SMPLRT_DIV, 1, &Temp_Data);
+	I2C_Write_8_Bytes(DEV_ADDR,	SMPLRT_DIV, 1, &Temp_Data);
 	
 	Temp_Data = 0x00;
-	I2C_Write_Bytes(DEV_ADDR,	GYRO_CONFIG, 1, &Temp_Data);
+	I2C_Write_8_Bytes(DEV_ADDR,	GYRO_CONFIG, 1, &Temp_Data);
+	
+	Temp_Data = 0x01;
+	I2C_Write_8_Bytes(DEV_ADDR,	ACCEL_CONFIG, 1, &Temp_Data);
 	
 	Temp_Data = 0x00;
-	I2C_Write_Bytes(DEV_ADDR,	ACCEL_CONFIG, 1, &Temp_Data);
-	
-	Temp_Data = 0x00;
-	I2C_Write_Bytes(DEV_ADDR,	PWR_MGMT_1, 1, &Temp_Data);
+	I2C_Write_8_Bytes(DEV_ADDR,	PWR_MGMT_1, 1, &Temp_Data);
 	
 	if(Check_Offline == 0x68)
 		MPU6050_IMU.Offline_Flag = 0;
@@ -88,7 +91,7 @@ void MPU6050_IMU_Read_Data(MPU6050_IMU_t *MPU6050_IMU)
 	MPU6050_IMU->Sample.Period = MPU6050_IMU->Sample.Now_Time - MPU6050_IMU->Sample.Prev_Time;
 	MPU6050_IMU->Sample.Prev_Time = MPU6050_IMU->Sample.Now_Time;
 	
-	I2C_Read_Bytes(DEV_ADDR, ACCEL_XOUT_H, 14, Buffer);
+	I2C_Read_8_Bytes(DEV_ADDR, ACCEL_XOUT_H, 14, Buffer);
 
 	MPU6050_IMU->Raw_Data.Ax = ((int16_t)Buffer[0] << 8) | Buffer[1];
 	MPU6050_IMU->Raw_Data.Ay = ((int16_t)Buffer[2] << 8) | Buffer[3];

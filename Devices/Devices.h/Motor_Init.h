@@ -21,7 +21,7 @@ typedef struct
 	 int16_t Actual_Current;
 	 int8_t Temperature;
 	 
-	 int16_t Target_Angle;
+	 int32_t Target_Angle;
 	 int16_t Target_Speed;
 	 int32_t Total_Angle;
 	 int16_t Turn_Count;

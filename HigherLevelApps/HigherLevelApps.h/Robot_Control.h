@@ -32,6 +32,8 @@ typedef struct
 		Spin_Top,
 		Disabled,
 	}Mode;
+	
+	uint8_t Initialized_Flag;
 }Robot_Mode_t;
 			
 typedef struct

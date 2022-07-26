@@ -1972,11 +1972,6 @@
               <FilePath>..\Algorithms\Algorithms.c\PID.c</FilePath>
             </File>
             <File>
-              <FileName>Kalman_Filter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Algorithms\Algorithms.c\Kalman_Filter.c</FilePath>
-            </File>
-            <File>
               <FileName>Ramp_Calc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Algorithms\Algorithms.c\Ramp_Calc.c</FilePath>
@@ -2021,6 +2016,16 @@
               <FileType>1</FileType>
               <FilePath>..\Devices\Devices.c\MPU6050_IMU.c</FilePath>
             </File>
+            <File>
+              <FileName>Referee_System.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Devices\Devices.c\Referee_System.c</FilePath>
+            </File>
+            <File>
+              <FileName>Buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Devices\Devices.c\Buzzer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2050,6 +2055,11 @@
               <FileName>FusionOffset.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\BSP.c\FusionOffset.c</FilePath>
+            </File>
+            <File>
+              <FileName>CRC_Verification.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\BSP.c\CRC_Verification.c</FilePath>
             </File>
           </Files>
         </Group>

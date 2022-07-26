@@ -19,10 +19,12 @@
 #include "I2C_Setup.h"
 #include "Fusion.h"
 
+//#define USE_MPU6050 1
+
 #define I2C_TIMEOUT 100
 #define CALIBRATION_SAMPLE 1000
 
-#define DEV_ADDR 0xD0
+#define DEV_ADDR 0x68
 #define SMPLRT_DIV 0x19 
 #define PWR_MGMT_1 0x6B  
 #define WHO_AM_I 0x75 

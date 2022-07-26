@@ -41,6 +41,7 @@ boilerbot_infantry_2022_leo\board_a_imu.o: ../HigherLevelApps/HigherLevelApps.h/
 boilerbot_infantry_2022_leo\board_a_imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 boilerbot_infantry_2022_leo\board_a_imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Core/Inc/tim.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../BSP/BSP.h/Fusion.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../BSP/BSP.h/FusionAhrs.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../BSP/BSP.h/FusionMath.h

@@ -28,7 +28,7 @@
 #define TOTAL_KEY_NUMBER 16
 
 #define TIME_KEY_SINGLECLICK 1
-#define TIME_KEY_HOLD 20
+#define TIME_KEY_HOLD 10
 
 #define SWITCH_UP 	((uint16_t)1)
 #define SWITCH_MID 	((uint16_t)3)

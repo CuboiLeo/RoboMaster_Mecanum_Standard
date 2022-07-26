@@ -85,6 +85,7 @@ boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/tim.h
+boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/Fusion.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/FusionAhrs.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/FusionMath.h
