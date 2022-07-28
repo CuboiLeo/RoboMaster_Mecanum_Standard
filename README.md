@@ -15,7 +15,7 @@
   - [x] Board A IMU
   - [x] MPU6050 IMU
   - [x] Motors
-  - [x] Super-Capacitor
+  - [x] Super Capacitor
   - [ ] Referee System
 
 - Basic Controls
@@ -30,3 +30,31 @@
   - [ ] Power Limiting (Requires Referee System Communication)
   - [ ] Shooter Heat Regulation (Requires Referee System Communication)
   - [ ] Level Up Adjustments (Requires Referee System Communication)
+
+## System Flow Chart
+```mermaid
+graph TD;
+    BoilerBot_Infantry_2022-->Interrupt_Timer;
+    Interrupt_Timer--USART1-->DR16_Remote_Control;
+    Interrupt_Timer--USART6-->Referee_System;
+    BoilerBot_Infantry_2022-->FreeRTOS;
+    FreeRTOS-->General_Initialization;
+    FreeRTOS-->IMU_Communication_&_Calculation;
+    IMU_Communication_&_Calculation--SPI5-->MPU6500;
+    IMU_Communication_&_Calculation--I2C-->MPU6050;
+    FreeRTOS-->CAN_Send_Message;
+    CAN_Send_Message-->Send_to_All;
+    FreeRTOS-->CAN1_Receive_Message;
+    CAN1_Receive_Message-->M2006_Trigger_Motor;
+    CAN1_Receive_Message-->Super_Capacitor;
+    CAN1_Receive_Message-->4*M3508_Chassis_Motors;
+    CAN1_Receive_Message-->GM6020_Yaw_Motor;
+    FreeRTOS-->CAN2_Receive_Message;
+    CAN2_Receive_Message-->2*M3508_Friction_Wheel_Motors;
+    CAN2_Receive_Message-->GM6020_Pitch_Motor;
+    FreeRTOS-->Robot_Control;
+    Robot_Control-->State_Machine;
+    Robot_Control-->Chassis_Control;
+    Robot_Control-->Gimbal_Control;
+    Robot_Control-->Shooting_Control;
+```
