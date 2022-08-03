@@ -20,6 +20,7 @@ void Check_M2006_Trigger(void);
 M2006_Func_t M2006_Func = M2006_Func_GroundInit;
 #undef M2006_Func_GroundInit
 
+//Obatin trigger motor data from CAN
 void M2006_Trigger_Get_Data(CAN_Export_Data_t RxMessage)
 {
 	M2006_Trigger.Prev_Angle = M2006_Trigger.Actual_Angle;
@@ -33,6 +34,7 @@ void M2006_Trigger_Get_Data(CAN_Export_Data_t RxMessage)
 	M2006_Trigger.Info_Update_Frame++;
 }
 
+//Send trigger data through specified identifier
 void M2006_Trigger_Send_Data(int16_t Trigger_Current)
 {
 	CAN_Func.CAN_0x1FF_Send_Data(&hcan1,0,Trigger_Current,0,0);

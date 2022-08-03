@@ -16,6 +16,8 @@ void I2C_Write_8_Bytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t
 void I2C_Read_16_Bytes(uint16_t devAddr, uint16_t regAddr, uint8_t length, uint8_t *data);
 void I2C_Write_16_Bytes(uint16_t devAddr, uint16_t regAddr, uint8_t length, uint8_t	*data);
 
+//I2C read and write functions based on register bit length
+
 void I2C_Read_8_Bytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data)
 {
 	HAL_I2C_Mem_Read(&hi2c2, devAddr<<1, regAddr, I2C_MEMADD_SIZE_8BIT, data, length, I2C_TIMEOUT);

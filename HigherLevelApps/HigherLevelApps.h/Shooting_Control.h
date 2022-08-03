@@ -17,11 +17,11 @@
 #include "DR16_Remote.h"
 #include "Ramp_Calc.h"
 
-#define FRIC_SPEED_16	5300
-#define FRIC_SPEED_28	7400
-#define TRIGGER_DIRECTION -1
-#define FRIC_LEFT_DIRECTION -1
-#define FRIC_RIGHT_DIRECTION 1
+#define FRIC_SPEED_16	5300 //Tested value for 16m/s 
+#define FRIC_SPEED_28	7400 //Tested value for 28m/s
+#define TRIGGER_DIRECTION -1 //Trigger motor direction
+#define FRIC_LEFT_DIRECTION -1 //Left friction wheel motor direction
+#define FRIC_RIGHT_DIRECTION 1 //Right friction wheel motor direction
 
 #define Shooting_Func_GroundInit	\
 {																	\
@@ -35,9 +35,9 @@ typedef struct
 {
 	struct
 	{
-		uint8_t Single_Fire_Flag;
-		uint8_t Single_Fired_Flag;
-		uint8_t Burst_Flag;
+		uint8_t Single_Fire_Flag; //Signal that need to fire once
+		uint8_t Single_Fired_Flag;	//Signal that it has fired once already
+		uint8_t Burst_Flag;	//Signal continuous shooting
 	}Type;
 	
 	struct

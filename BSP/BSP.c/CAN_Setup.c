@@ -28,6 +28,7 @@ CAN_Data_t CAN_Data[2] = CAN_Data_GroundInit;
 CAN_Devices_t *Monitor_CAN[] = {&Monitor_CAN1, &Monitor_CAN2};
 CAN_Devices_t Monitor_CAN1, Monitor_CAN2;
 
+//Initialization for the filter
 static void CAN_FILTER_Init(CAN_FilterTypeDef *CAN_Filter, CAN_HandleTypeDef *hcanx)
 {
     CAN_Filter->FilterFIFOAssignment = CAN_FILTER_FIFO0; 
@@ -44,6 +45,7 @@ static void CAN_FILTER_Init(CAN_FilterTypeDef *CAN_Filter, CAN_HandleTypeDef *hc
     HAL_CAN_ConfigFilter(hcanx, CAN_Filter);
 }
 
+//CAN interrupt initialization
 void CAN_IT_Init(CAN_HandleTypeDef *hcanx, uint8_t Can_type)
 {
     uint8_t Canx_type = Can_type - 1;
@@ -52,6 +54,7 @@ void CAN_IT_Init(CAN_HandleTypeDef *hcanx, uint8_t Can_type)
     __HAL_CAN_ENABLE_IT(hcanx, CAN_IT_RX_FIFO0_MSG_PENDING); 
 }
 
+//Export CAN data based on ID
 void CAN_RxMessage_Export_Data(CAN_HandleTypeDef *hcanx, osMessageQId CANx_Handle, uint8_t Can_type)
 {
     CAN_Export_Data_t CAN_Export_Data[2];
@@ -64,6 +67,7 @@ void CAN_RxMessage_Export_Data(CAN_HandleTypeDef *hcanx, osMessageQId CANx_Handl
     xQueueSendToBackFromISR(CANx_Handle, &CAN_Export_Data[Canx_type], 0); 
 }
 
+//Send CAN data
 void CAN_SendData(osMessageQId CANx_Handle, CAN_HandleTypeDef *CANx, uint8_t id_type, uint32_t id, uint8_t data[8])
 {
     CAN_Send_Data_t CAN_Send_Data;
@@ -88,6 +92,7 @@ void CAN_SendData(osMessageQId CANx_Handle, CAN_HandleTypeDef *CANx, uint8_t id_
     xQueueSend(CANx_Handle, &CAN_Send_Data, 0);
 }
 
+//Specified identifier 0x1FF package
 void CAN_0x1FF_Send_Data(CAN_HandleTypeDef *hcanx, int16_t Output_1, int16_t Output_2, int16_t Output_3, int16_t Output_4)
 {
 	uint8_t data[8];
@@ -104,6 +109,7 @@ void CAN_0x1FF_Send_Data(CAN_HandleTypeDef *hcanx, int16_t Output_1, int16_t Out
 	CAN_SendData(CAN_SendHandle, hcanx, CAN_ID_STD, 0x1FF, data);
 }
 
+//Specified identifier 0x200 package
 void CAN_0x200_Send_Data(CAN_HandleTypeDef *hcanx, int16_t Output_1, int16_t Output_2, int16_t Output_3, int16_t Output_4)
 {
 	uint8_t data[8];
@@ -119,6 +125,8 @@ void CAN_0x200_Send_Data(CAN_HandleTypeDef *hcanx, int16_t Output_1, int16_t Out
 
 	CAN_SendData(CAN_SendHandle, hcanx, CAN_ID_STD, 0x200, data);
 }
+
+//Specified identifier 0x2FF package
 void CAN_0x2FF_Send_Data(CAN_HandleTypeDef *hcanx, int16_t Output_1, int16_t Output_2, int16_t Output_3, int16_t Output_4)
 {
 	uint8_t data[8];
@@ -135,6 +143,7 @@ void CAN_0x2FF_Send_Data(CAN_HandleTypeDef *hcanx, int16_t Output_1, int16_t Out
 	CAN_SendData(CAN_SendHandle, hcanx, CAN_ID_STD, 0x2FF, data);
 }
 
+//Specified identifier 0x210 package
 void CAN_0x210_Send_Data(CAN_HandleTypeDef *hcanx, int16_t Target_Power)
 {
 	uint8_t data[8];

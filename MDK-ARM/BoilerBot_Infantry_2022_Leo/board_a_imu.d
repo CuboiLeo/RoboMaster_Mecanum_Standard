@@ -53,7 +53,6 @@ boilerbot_infantry_2022_leo\board_a_imu.o: ../BSP/BSP.h/FusionCompass.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../BSP/BSP.h/FusionOffset.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/MPU6500_Reg.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/IST8310_Reg.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ../Algorithms/Algorithms.h/Filters.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/GM6020_Motor.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Core/Inc/can.h
@@ -94,7 +93,6 @@ boilerbot_infantry_2022_leo\board_a_imu.o: ../HigherLevelApps/HigherLevelApps.h/
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Core/Inc/i2c.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ../Algorithms/Algorithms.h/Kalman_Filter.h
-boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\board_a_imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/MPU6050_IMU.h

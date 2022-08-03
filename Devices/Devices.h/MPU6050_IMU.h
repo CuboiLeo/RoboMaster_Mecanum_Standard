@@ -13,17 +13,18 @@
 #define __MPU6050_IMU_H 
 
 #include <stdint.h>
+#include <math.h>
 #include "i2c.h"
 #include "User_Defined_Math.h"
-#include "Kalman_Filter.h"
 #include "I2C_Setup.h"
 #include "Fusion.h"
 
 //#define USE_MPU6050 1
 
-#define I2C_TIMEOUT 100
-#define CALIBRATION_SAMPLE 1000
+#define I2C_TIMEOUT 100 //Timeout of I2C communication
+#define CALIBRATION_SAMPLE 1000 //Number of samples to take
 
+//Register addresses
 #define DEV_ADDR 0x68
 #define SMPLRT_DIV 0x19 
 #define PWR_MGMT_1 0x6B  

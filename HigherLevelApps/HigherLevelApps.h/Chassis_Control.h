@@ -17,10 +17,10 @@
 #include "Gimbal_Control.h"
 #include "Robot_Control.h"
 
-#define MOTOR_SPEED_MAX 3000 //6880
-#define MOTOR_GEAR_RATIO 19
-#define CHASSIS_WIDTH_HALF 0.15f
-#define CHASSIS_LENGTH_HALF 0.18f
+#define MOTOR_SPEED_MAX 3000 //6880(theoretical max speed) //This is where to change the maximum speed
+#define MOTOR_GEAR_RATIO 19 //Gear ratio of m3508 planetary gear
+#define CHASSIS_WIDTH_HALF 0.15f //Measured value of the chassis's half width
+#define CHASSIS_LENGTH_HALF 0.18f //Measured value of the chassis's half length
 
 #define Chassis_Func_GroundInit		\
 {																	\
@@ -38,14 +38,14 @@ typedef struct
 		float Vx;
 		float Vy;
 		float Wz;
-	}Chassis_Coord;
+	}Chassis_Coord; //Chassis coordinate
 	
 	struct
 	{
 		float Vx;
 		float Vy;
 		float Wz;
-	}Gimbal_Coord;
+	}Gimbal_Coord; //Gimbal coordinate
 	
 	float Wheel_Speed[4];
 	

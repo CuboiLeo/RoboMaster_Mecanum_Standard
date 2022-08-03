@@ -14,12 +14,15 @@
 #include "spi.h"
 #include "IMU_Temp_Control.h"
 #include "Fusion.h"
+#include "MPU6500_Reg.h"
+#include "IST8310_Reg.h"
+#include "User_Defined_Math.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
-//#define BOARD_A_IMU_USE_MAGN 1
+//#define BOARD_A_IMU_USE_MAGN 1 //Uncomment this to use magnetometer
 
 #define Board_A_IMU_Func_GroundInit       \
     {                                 		\

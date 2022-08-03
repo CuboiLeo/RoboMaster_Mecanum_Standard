@@ -9,7 +9,6 @@
  * 
  */
 
-#include <math.h>
 #include "MPU6050_IMU.h"
 
 MPU6050_IMU_t MPU6050_IMU;
@@ -25,6 +24,7 @@ void MPU6050_IMU_Calc_Angle(MPU6050_IMU_t *MPU6050_IMU);
 MPU6050_IMU_Func_t MPU6050_IMU_Func = MPU6050_IMU_Func_GroundInit;
 #undef MPU6050_IMU_Func_GroundInit
 
+//Initialize MPU6050
 void MPU6050_IMU_Init(void)
 {
 	uint8_t Temp_Data;
@@ -53,6 +53,7 @@ void MPU6050_IMU_Init(void)
 		MPU6050_IMU.Offline_Flag = 1;
 }
 
+//Calibrate IMU data to reduce zero deviation
 void MPU6050_IMU_Calibrate(MPU6050_IMU_t *MPU6050_IMU)
 {
 	if(MPU6050_IMU->Calibrated_Flag == 0)
@@ -87,6 +88,7 @@ void MPU6050_IMU_Calibrate(MPU6050_IMU_t *MPU6050_IMU)
 
 void MPU6050_IMU_Read_Data(MPU6050_IMU_t *MPU6050_IMU)
 {
+	//Calculate sample period
 	MPU6050_IMU->Sample.Now_Time = HAL_GetTick() / 1000.0f;
 	MPU6050_IMU->Sample.Period = MPU6050_IMU->Sample.Now_Time - MPU6050_IMU->Sample.Prev_Time;
 	MPU6050_IMU->Sample.Prev_Time = MPU6050_IMU->Sample.Now_Time;
@@ -122,6 +124,7 @@ void MPU6050_IMU_Read_Data(MPU6050_IMU_t *MPU6050_IMU)
 
 void MPU6050_IMU_Calc_Angle(MPU6050_IMU_t *MPU6050_IMU)
 {
+	//Use fusion for AHRS estimation
 	const FusionVector MPU6050_IMU_Accel = {MPU6050_IMU->Calc_Data.Ax, MPU6050_IMU->Calc_Data.Ay, MPU6050_IMU->Calc_Data.Az};
 	const FusionVector MPU6050_IMU_Gyro = {MPU6050_IMU->Calc_Data.Gx, MPU6050_IMU->Calc_Data.Gy, MPU6050_IMU->Calc_Data.Gz}; 
 	
@@ -134,11 +137,12 @@ void MPU6050_IMU_Calc_Angle(MPU6050_IMU_t *MPU6050_IMU)
 	MPU6050_IMU->Export_Data.Yaw = MPU6050_IMU_Euler.angle.yaw;
 	MPU6050_IMU->Export_Data.Pitch = MPU6050_IMU_Euler.angle.pitch;
 	MPU6050_IMU->Export_Data.Roll = MPU6050_IMU_Euler.angle.roll;
-	MPU6050_IMU->Export_Data.Gyro_Yaw = MPU6050_IMU->Calc_Data.Gx / 6.0f;
-	MPU6050_IMU->Export_Data.Gyro_Pitch = MPU6050_IMU->Calc_Data.Gy / 6.0f;
-	MPU6050_IMU->Export_Data.Gyro_Roll = MPU6050_IMU->Calc_Data.Gz / 6.0f;
+	MPU6050_IMU->Export_Data.Gyro_Yaw = MPU6050_IMU->Calc_Data.Gx / 6.0f; // degree/s to RPM
+	MPU6050_IMU->Export_Data.Gyro_Pitch = MPU6050_IMU->Calc_Data.Gy / 6.0f; // degree/s to RPM
+	MPU6050_IMU->Export_Data.Gyro_Roll = MPU6050_IMU->Calc_Data.Gz / 6.0f; // degree/s to RPM
 	MPU6050_IMU->Export_Data.Temperature = MPU6050_IMU->Calc_Data.Temperature;
 	
+	//Record number of turns
 	if((MPU6050_IMU->Export_Data.Yaw - MPU6050_IMU->Export_Data.Prev_Yaw) < - 300)
 		MPU6050_IMU->Export_Data.Turn_Count++;
 	else if((MPU6050_IMU->Export_Data.Yaw - MPU6050_IMU->Export_Data.Prev_Yaw) > 300)

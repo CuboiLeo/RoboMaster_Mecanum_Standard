@@ -10,7 +10,7 @@
  */
 #include "Robot_Control.h"
 
-void Robot_Control_Start(void);
+void Robot_Control_Start(void); 
 void Robot_Control_Send(void);
 void Robot_Control_Disabled(void);
 
@@ -19,9 +19,10 @@ Robot_Control_Func_t Robot_Control_Func = Robot_Control_Func_GroundInit;
 
 Robot_Mode_t Robot_Mode;
 
+//The function name tells you what it does
 void Robot_Control_Start(void)
 {
-	State_Machine_Func.Remote_Control_Update();
+	State_Machine_Func.Remote_Control_Update(); 
 	
 	Chassis_Func.Chassis_Speed_Get_Data(&Chassis);
 	Chassis_Func.Chassis_Processing(&Chassis);

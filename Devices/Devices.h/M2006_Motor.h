@@ -17,12 +17,13 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define M2006_TRIGGER_ID 0x206
-#define M2006_OUTPUT_MAX 10000.0f
-#define M2006_GEAR_RATIO 36
-#define M2006_MECH_ANGLE_MAX 8192
-#define M2006_FEEDER_HOLE_NUM 8
-#define M2006_ANGLE_1_BULLET 36864 //(M2006_MECH_ANGLE_MAX * M2006_GEAR_RATIO / M2006_FEEDER_HOLE_NUM)
+#define M2006_TRIGGER_ID 0x206 //Trigger motor ID
+#define M2006_OUTPUT_MAX 10000.0f //M2006 motor maximum output current
+#define M2006_GEAR_RATIO 36 //M2006 motor gear ratio
+#define M2006_MECH_ANGLE_MAX 8192 //M2006 motor maximum mechanical angle
+#define M2006_FEEDER_HOLE_NUM 8 //Number of holes in the feeder
+#define M2006_ANGLE_1_BULLET 36864 //Mechanical angle needed to turn feeder for one bullet 
+																	 //Calculated by (M2006_MECH_ANGLE_MAX * M2006_GEAR_RATIO / M2006_FEEDER_HOLE_NUM)
 
 #define M2006_Func_GroundInit		  		\
 		{														  		\

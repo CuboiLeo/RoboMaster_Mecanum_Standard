@@ -10,12 +10,8 @@
  */
 
 #include "Board_A_IMU.h"
-#include "MPU6500_Reg.h"
-#include "IST8310_Reg.h"
-#include "Filters.h"
-#include "User_Defined_Math.h"
 
-#define BOARD_A_IMU_SPI hspi5
+#define BOARD_A_IMU_SPI hspi5 
 #define SPI_NSS_LOW HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET)
 #define SPI_NSS_HIGH HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_SET)
 
@@ -221,6 +217,7 @@ static void Board_A_IMU_I2C_Config(uint8_t device_address, uint8_t reg_base_addr
     HAL_Delay(2);
 }
 
+//Calibrate board A IMU to reduce zero deviation
 void Board_A_IMU_Calibrate(Board_A_IMU_t *Board_A_IMU)
 {
 	if(Board_A_IMU->Calibrated_Flag == 0)
@@ -252,11 +249,13 @@ void Board_A_IMU_Calibrate(Board_A_IMU_t *Board_A_IMU)
 		;
 }
 
+
 void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU)
 {
 	uint8_t Buffer[14];
 	uint8_t Buffer_Mag[6];
 	
+	//Calculate sampling period
 	Board_A_IMU->Sample.Now_Time = HAL_GetTick() / 1000.0f;
 	Board_A_IMU->Sample.Period = Board_A_IMU->Sample.Now_Time - Board_A_IMU->Sample.Prev_Time;
 	Board_A_IMU->Sample.Prev_Time = Board_A_IMU->Sample.Now_Time;
@@ -264,6 +263,7 @@ void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU)
 	Board_A_IMU->Offline_Flag = Board_A_IMU_Read_Bytes(MPU6500_ACCEL_XOUT_H, Buffer, 14);
 	Board_A_IMU_Read_Bytes(MPU6500_EXT_SENS_DATA_00, Buffer_Mag, 6);
 
+	//Obtain data from buffer
 	Board_A_IMU->Raw_Data.Ax = ((int16_t)Buffer[0] << 8) | Buffer[1];
 	Board_A_IMU->Raw_Data.Ay = ((int16_t)Buffer[2] << 8) | Buffer[3];
 	Board_A_IMU->Raw_Data.Az = ((int16_t)Buffer[4] << 8) | Buffer[5];
@@ -284,7 +284,7 @@ void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU)
 	Board_A_IMU->Calc_Data.Mz = Board_A_IMU->Raw_Data.Mz;
 	Board_A_IMU->Calc_Data.Temperature = Board_A_IMU->Raw_Data.Temperature / 333.87f + 21.0f;
 	
-	if(Board_A_IMU->Calibrated_Flag == 1)
+	if(Board_A_IMU->Calibrated_Flag == 1) //If calibration is done, offset should be deducted
 	{
 		Board_A_IMU->Calc_Data.Ax -= Board_A_IMU->Offset.Ax;
 		Board_A_IMU->Calc_Data.Ay -= Board_A_IMU->Offset.Ay;
@@ -297,6 +297,7 @@ void Board_A_IMU_Read_Data(Board_A_IMU_t *Board_A_IMU)
 
 void Board_A_IMU_Calc_Angle(Board_A_IMU_t *Board_A_IMU)
 {
+	//Use fusion to do the AHRS estimation
 	const FusionVector Board_A_IMU_Accel = {Board_A_IMU->Calc_Data.Ax, Board_A_IMU->Calc_Data.Ay, Board_A_IMU->Calc_Data.Az};
 	const FusionVector Board_A_IMU_Gyro = {Board_A_IMU->Calc_Data.Gx, Board_A_IMU->Calc_Data.Gy, Board_A_IMU->Calc_Data.Gz}; 
 
@@ -316,11 +317,12 @@ void Board_A_IMU_Calc_Angle(Board_A_IMU_t *Board_A_IMU)
 	Board_A_IMU->Export_Data.Yaw = Board_A_IMU_Euler.angle.yaw;
 	Board_A_IMU->Export_Data.Pitch = Board_A_IMU_Euler.angle.pitch;
 	Board_A_IMU->Export_Data.Roll = Board_A_IMU_Euler.angle.roll;
-	Board_A_IMU->Export_Data.Gyro_Yaw = Board_A_IMU->Calc_Data.Gx / 6.0f;
-	Board_A_IMU->Export_Data.Gyro_Pitch = Board_A_IMU->Calc_Data.Gy / 6.0f;
-	Board_A_IMU->Export_Data.Gyro_Roll = Board_A_IMU->Calc_Data.Gz / 6.0f;
+	Board_A_IMU->Export_Data.Gyro_Yaw = Board_A_IMU->Calc_Data.Gx / 6.0f; // degree/s to RPM
+	Board_A_IMU->Export_Data.Gyro_Pitch = Board_A_IMU->Calc_Data.Gy / 6.0f; // degree/s to RPM
+	Board_A_IMU->Export_Data.Gyro_Roll = Board_A_IMU->Calc_Data.Gz / 6.0f; // degree/s to RPM
 	Board_A_IMU->Export_Data.Temperature = Board_A_IMU->Calc_Data.Temperature;
 	
+	//Record number of turns
 	if((Board_A_IMU->Export_Data.Yaw - Board_A_IMU->Export_Data.Prev_Yaw) < - 300)
 		Board_A_IMU->Export_Data.Turn_Count++;
 	else if((Board_A_IMU->Export_Data.Yaw - Board_A_IMU->Export_Data.Prev_Yaw) > 300)

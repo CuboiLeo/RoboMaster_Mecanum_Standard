@@ -17,12 +17,12 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define M3508_CHASSIS_START_ID 0x201
-#define M3508_CHASSIS_END_ID	0x204
-#define M3508_FRIC_WHEEL_LEFT_ID 0x201
-#define M3508_FRIC_WHEEL_RIGHT_ID 0x202
-#define M3508_SPEED_MAX 9000.0f
-#define M3508_OUTPUT_MAX 16384.0f
+#define M3508_CHASSIS_START_ID 0x201 //Starting ID for chassis motors
+#define M3508_CHASSIS_END_ID	0x204 //Ending ID for chassis motors
+#define M3508_FRIC_WHEEL_LEFT_ID 0x201 //Left friction wheel motor ID
+#define M3508_FRIC_WHEEL_RIGHT_ID 0x202 //Right friction wheel motor ID
+#define M3508_SPEED_MAX 9000.0f //M3508 maximum speed
+#define M3508_OUTPUT_MAX 16384.0f //M3508 maximum output current
 
 #define M3508_Func_GroundInit					   \
 		{																	   \

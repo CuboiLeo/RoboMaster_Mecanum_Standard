@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define SUPERCAP_ID 0x211
+#define SUPERCAP_ID 0x211 //Supercapacitor ID
 
 #define Super_Capacitor_Func_GroundInit		\
 		{																			\

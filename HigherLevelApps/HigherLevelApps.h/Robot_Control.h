@@ -23,6 +23,7 @@
 							&Robot_Control_Disabled, 	\
 		}
 
+
 typedef struct
 {
 	enum

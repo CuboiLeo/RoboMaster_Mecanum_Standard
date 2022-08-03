@@ -17,11 +17,11 @@
 #include "usart.h"
 #include <stdint.h>
 
-#define REFEREE_BUFFER_LEN 245
-#define REFEREE_FRAME_HEADER 0xA5
-#define REFEREE_FRAME_HEADER_LEN 5
-#define REFEREE_ID_LEN 2
-#define REFEREE_FRAME_TAIL_LEN 2
+#define REFEREE_BUFFER_LEN 245	//Buffer length to receive all data
+#define REFEREE_FRAME_HEADER 0xA5 //Frame header
+#define REFEREE_FRAME_HEADER_LEN 5 //Frame header length
+#define REFEREE_ID_LEN 2	//ID length
+#define REFEREE_FRAME_TAIL_LEN 2 //Frame tail length
 
 #define Referee_System_Func_GroundInit	\
 {																				\

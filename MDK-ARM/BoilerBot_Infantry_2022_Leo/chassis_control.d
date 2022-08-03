@@ -88,9 +88,10 @@ boilerbot_infantry_2022_leo\chassis_control.o: ../BSP/BSP.h/FusionAxes.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../BSP/BSP.h/FusionCalibration.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../BSP/BSP.h/FusionCompass.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../BSP/BSP.h/FusionOffset.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/MPU6500_Reg.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/IST8310_Reg.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../Core/Inc/i2c.h
-boilerbot_infantry_2022_leo\chassis_control.o: ../Algorithms/Algorithms.h/Kalman_Filter.h
-boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\chassis_control.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\chassis_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+boilerbot_infantry_2022_leo\chassis_control.o: ../Devices/Devices.h/MPU6050_IMU.h

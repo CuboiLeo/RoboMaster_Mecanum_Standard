@@ -17,10 +17,10 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define GM6020_YAW_ID 0x20B
-#define GM6020_PITCH_ID 0x20A
-#define GM6020_OUTPUT_MAX 30000.0f
-#define GM6020_MECH_ANGLE_MAX 8192.0f
+#define GM6020_YAW_ID 0x20B //Yaw motor ID
+#define GM6020_PITCH_ID 0x20A //Pitch Motor ID
+#define GM6020_OUTPUT_MAX 30000.0f //GM6020 motor maximum output current
+#define GM6020_MECH_ANGLE_MAX 8192.0f //GM6020 maximum mechanical angle
 #define GM6020_ANGLE_CONVERT 0.0439453125f //(360/GM6020_MECH_ANGLE_MAX)
 
 #define GM6020_Func_GroundInit        \

@@ -24,7 +24,7 @@
 				&Buzzer_Modules_Offline,			\
 }
 
-#define MAX_VOLUME 270
+#define MAX_VOLUME 270 //Maximum volume
 
 typedef struct
 {

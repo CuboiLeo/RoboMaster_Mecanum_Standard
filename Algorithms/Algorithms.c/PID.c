@@ -15,6 +15,7 @@ float Positional_PID(PID_t *PID, float Target_Value, float Measured_Value);
 float Incremental_PID(PID_t *PID, float Target_Value, float Measured_Value);
 void Clear_PID_Data(PID_t *PID);
 
+//Initializing all the used PID parameters in the header file
 PID_t Chassis_Angle_PID = Chassis_Angle_PIDInit;
 #undef Chassis_Angle_PIDInit
 
@@ -73,7 +74,7 @@ float Incremental_PID(PID_t *PID, float Target_Value, float Measured_Value)
 	
 	PID->P_Out = PID->Kp * (PID->Error - PID->Prev_Error);
 	PID->I_Out = PID->Ki * PID->Error;
-	PID->D_Out = PID->Kd * (PID->Error - 2.0f*PID->Prev_Error + PID->Prev_Prev_Error);
+	PID->D_Out = PID->Kd * (PID->Error - 2.0f * PID->Prev_Error + PID->Prev_Prev_Error);
 	
 	PID->I_Out = VAL_LIMIT(PID->I_Out,PID->I_Out_Max,-PID->I_Out_Max);
 	PID->Output = (PID->P_Out + PID->I_Out + PID->D_Out);

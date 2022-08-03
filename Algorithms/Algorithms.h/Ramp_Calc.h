@@ -12,7 +12,8 @@
 #define __RAMP_CALC_H
 
 #include "User_Defined_Math.h"
-#define RAMP_RATE 0.5f
+
+#define RAMP_RATE 0.5f //This determines how fast the ramping is
 
 #define Ramp_Calc_Func_GroundInit	\
 		{															\

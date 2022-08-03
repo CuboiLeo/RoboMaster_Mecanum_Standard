@@ -19,6 +19,7 @@ void Clear_Ramp(Ramp_Calc_t *Ramp_Calc);
 Ramp_Calc_Func_t Ramp_Calc_Func = Ramp_Calc_Func_GroundInit;
 #undef Ramp_Calc_Func_GroundInit
 
+//Slowly ramp up the given value to the maximum
 float Ramp_Up(Ramp_Calc_t *Ramp_Calc, float Max_Value)
 {
 	Ramp_Calc->Current_Value += RAMP_RATE;
@@ -30,6 +31,7 @@ float Ramp_Up(Ramp_Calc_t *Ramp_Calc, float Max_Value)
 	return Ramp_Calc->Current_Value;
 }
 
+//Slowly ramp down the given value to the minimum
 float Ramp_Down(Ramp_Calc_t *Ramp_Calc, float Min_Value)
 {
 	Ramp_Calc->Current_Value -= RAMP_RATE;

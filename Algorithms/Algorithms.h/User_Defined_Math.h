@@ -16,26 +16,10 @@
 
 #define DEG_TO_RAD(DEG) (DEG * 0.0174532925199432957692369076848f)
 #define RAD_TO_DEG(RAD)	(RAD * 57.295779513082320876798154814105f)
-#define ANGLE_LIMIT_360(val, angle) \
-  do                                \
-  {                                 \
-    (val) = (angle) - (int)(angle); \
-    (val) += (int)(angle) % 360;    \
-  } while (0)
-
-#define ANGLE_LIMIT_180(val, angle) \
-  do                                \
-  {                                 \
-    (val) = (angle) - (int)(angle); \
-    (val) += (int)(angle) % 360;    \
-    if((val)>180)                   \
-      (val) -= 360;                 \
-  } while (0)
 
 #define VAL_MIN(a, b) ((a) < (b) ? (b) : (a))
 #define VAL_MAX(a, b) ((a) > (b) ? (b) : (a))
  
-extern float inv_sqrt(float x);
 extern float VAL_LIMIT(float Value, float Upper_Limit, float Lower_Limit);
 extern float Find_Gimbal_Min_Angle(float Angle);
 

@@ -60,6 +60,7 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/MPU6050_IMU.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/i2c.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/GM6020_Motor.h
@@ -70,7 +71,6 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Algorithms/Algorithms.h/User_Defi
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/M3508_Motor.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/M2006_Motor.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Super_Capacitor.h
-boilerbot_infantry_2022_leo\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h/Robot_Control.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h
@@ -92,8 +92,9 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/FusionAxes.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/FusionCalibration.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/FusionCompass.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/FusionOffset.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/MPU6500_Reg.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/IST8310_Reg.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/MPU6050_IMU.h
-boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Algorithms/Algorithms.h/Kalman_Filter.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Referee_System.h

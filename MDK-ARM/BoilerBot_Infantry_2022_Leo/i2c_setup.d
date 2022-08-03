@@ -40,6 +40,7 @@ boilerbot_infantry_2022_leo\i2c_setup.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/i2c.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/main.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/MPU6050_IMU.h
+boilerbot_infantry_2022_leo\i2c_setup.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Algorithms/Algorithms.h/User_Defined_Math.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/GM6020_Motor.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/can.h
@@ -66,7 +67,6 @@ boilerbot_infantry_2022_leo\i2c_setup.o: ../Algorithms/Algorithms.h/User_Defined
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/M3508_Motor.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/M2006_Motor.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/Super_Capacitor.h
-boilerbot_infantry_2022_leo\i2c_setup.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/DR16_Remote.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/dma.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/usart.h
@@ -93,6 +93,7 @@ boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/FusionAxes.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/FusionCalibration.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/FusionCompass.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/FusionOffset.h
+boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/MPU6500_Reg.h
+boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/IST8310_Reg.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/MPU6050_IMU.h
-boilerbot_infantry_2022_leo\i2c_setup.o: ../Algorithms/Algorithms.h/Kalman_Filter.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/I2C_Setup.h

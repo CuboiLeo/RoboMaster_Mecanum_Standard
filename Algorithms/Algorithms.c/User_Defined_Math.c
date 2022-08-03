@@ -10,23 +10,10 @@
  */
 #include "User_Defined_Math.h"
 
-float inv_sqrt(float x);
 float VAL_LIMIT(float Value, float Upper_Limit,float Lower_Limit);
 float Find_Gimbal_Min_Angle(float Angle);
 
-float inv_sqrt(float x)
-{
-    float halfx = 0.5f * x;
-    float y = x;
-    long i = *(long *)&y;
-
-    i = 0x5f3759df - (i >> 1);
-    y = *(float *)&i;
-    y = y * (1.5f - (halfx * y * y));
-
-    return y;
-}
-
+//Limit value through upper and lower bounds
 float VAL_LIMIT(float Value, float Upper_Limit, float Lower_Limit)
 {
 	if(Value > Upper_Limit)
@@ -37,6 +24,7 @@ float VAL_LIMIT(float Value, float Upper_Limit, float Lower_Limit)
 	return Value;
 }
 
+//Find the minimum rotation angle for gimbal
 float Find_Gimbal_Min_Angle(float Angle)
 {
 	float angle_diff = Angle - YAW_MID_MECH_ANGLE;

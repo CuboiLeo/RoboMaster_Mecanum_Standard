@@ -23,6 +23,7 @@ Referee_System_Func_t Referee_System_Func = Referee_System_Func_GroundInit;
 uint8_t Referee_System_Buffer[REFEREE_BUFFER_LEN];
 uint16_t DMA_Counter;
 
+//Enable USART DMA transfer
 static int USART_Receive_DMA_NO_IT(UART_HandleTypeDef *huartx, uint8_t *pData, uint32_t Size)
 {
 	if(huartx->RxState == HAL_UART_STATE_READY)
@@ -66,6 +67,7 @@ void Referee_System_Handler(UART_HandleTypeDef *huartx)
 	Referee_System.Info_Update_Frame++;
 }
 
+//Get referee system data based on ID
 void Referee_Get_Data(uint16_t Data_Length)
 {
 	for(int i = 0; i < Data_Length;)

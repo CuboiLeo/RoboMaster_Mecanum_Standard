@@ -23,11 +23,13 @@ void Buzzer_Play_Song(int Song[],int Song_Length);
 
 Buzzer_t Buzzer;
 
+//Enable timer's PWM function
 void Buzzer_Init(void)
 {
 	HAL_TIM_PWM_Start(&htim12, TIM_CHANNEL_1);
 }
 
+//Sound effect for initializing
 void Buzzer_Robot_Initializing(void)
 {
 	Buzzer_Choose_Note(Low_Ti);
@@ -57,6 +59,7 @@ void Buzzer_Robot_Initializing(void)
 	HAL_Delay(1000);
 }
 
+//Sound effect for initialization finished
 void Buzzer_Robot_Is_Initialized(void)
 {
 	Buzzer_Choose_Note(Mid_Do);
@@ -72,6 +75,7 @@ void Buzzer_Robot_Is_Initialized(void)
 	Buzzer_On(MAX_VOLUME, 1000);
 }
 
+//Sound effect for offline modules
 void Buzzer_Modules_Offline(void)
 {
 }
@@ -84,6 +88,7 @@ void Buzzer_Play_Song(int Song[], int Song_Length)
 	}
 }
 
+//Turn on buzzer for set amount of duration
 void Buzzer_On(int Volume, int Duration)
 {
 	__HAL_TIM_SetCompare(&htim12, TIM_CHANNEL_1, Volume);
@@ -91,6 +96,7 @@ void Buzzer_On(int Volume, int Duration)
 	__HAL_TIM_SetCompare(&htim12, TIM_CHANNEL_1, 0);
 }
 
+//Choose note, constants are calculated for desired frequency of each note
 void Buzzer_Choose_Note(int Note)
 {
 	switch(Note)

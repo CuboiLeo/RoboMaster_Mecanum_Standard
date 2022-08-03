@@ -19,21 +19,23 @@
 #include <stdio.h>
 #include <string.h>
 
-#define DR16_BUFFER_NUMBER 22
-#define DR16_BUFFER_TRUE_NUMBER 18
-#define DR16_BUFFER_LAST_NUMBER 4
+#define DR16_BUFFER_NUMBER 22 //Total buffer number
+#define DR16_BUFFER_TRUE_NUMBER 18 //Useful data
+#define DR16_BUFFER_LAST_NUMBER 4 //Verification bits
 
-#define DR16_JOYSTICK_MAX 660
+#define DR16_JOYSTICK_MAX 660 //Joystick maximum value
 
-#define TOTAL_KEY_NUMBER 16
+#define TOTAL_KEY_NUMBER 16 //Total number of keys that are provided
 
-#define TIME_KEY_SINGLECLICK 1
-#define TIME_KEY_HOLD 10
+#define TIME_KEY_SINGLECLICK 1 //Time for single click
+#define TIME_KEY_HOLD 10	//Time for holding
 
+//Switch states and corresponding value
 #define SWITCH_UP 	((uint16_t)1)
 #define SWITCH_MID 	((uint16_t)3)
 #define SWITCH_DOWN ((uint16_t)2)
 
+//Bit shift for keys
 #define KEY_W ((uint16_t)0x01<<0)
 #define KEY_S ((uint16_t)0x01<<1)
 #define KEY_A ((uint16_t)0x01<<2)

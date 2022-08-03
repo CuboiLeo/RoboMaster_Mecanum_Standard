@@ -28,6 +28,7 @@
 	 if(pData == NULL)
 		 return;
 	 
+	 //Obtain data through communication protocol provided by DJI
 	 DR16_Export_Data.Remote_Control.Joystick_Left_Vx = (((pData[2] >> 6) | (pData[3] << 2) | (pData[4] << 10)) & 0x07FF) - 1024;
 	 DR16_Export_Data.Remote_Control.Joystick_Left_Vy = (((pData[4] >> 1) | (pData[5] << 7)) & 0x07FF) - 1024;
 	 DR16_Export_Data.Remote_Control.Joystick_Right_Vx = ((pData[0] | (pData[1] << 8)) & 0x07FF) - 1024;
@@ -41,6 +42,7 @@
 	 DR16_Export_Data.Mouse.Right_Click = pData[13];
 	 DR16_Export_Data.Keyboard.Buffer = pData[14] | (pData[15] << 8);
 	 
+	 //Prevent zero deviation
 	 if(DR16_Export_Data.Remote_Control.Joystick_Left_Vx <= 20 && DR16_Export_Data.Remote_Control.Joystick_Left_Vx >= -20)
 		 DR16_Export_Data.Remote_Control.Joystick_Left_Vx = 0;
 	 if(DR16_Export_Data.Remote_Control.Joystick_Left_Vy <= 20 && DR16_Export_Data.Remote_Control.Joystick_Left_Vy >= -20)
@@ -56,7 +58,7 @@
 	 DR16_Export_Data.Info_Update_Frame++;
  }
  
-/**	<Keyboard Control>
+/**	<Keyboard Control> Pretty cool hah?
  * ©°©¤©¤©¤©´   ©°©¤©¤©¤©Ð©¤©¤©¤©Ð©¤©¤©¤©Ð©¤©¤©¤©´ ©°©¤©¤©¤©Ð©¤©¤©¤©Ð©¤©¤©¤©Ð©¤©¤©¤©´ ©°©¤©¤©¤©Ð©¤©¤©¤©Ð©¤©¤©¤©Ð©¤©¤©¤©´ ©°©¤©¤©¤©Ð©¤©¤©¤©Ð©¤©¤©¤©´
  * ©¦Esc©¦   ©¦ F1©¦ F2©¦ F3©¦ F4©¦ ©¦ F5©¦ F6©¦ F7©¦ F8©¦ ©¦ F9©¦F10©¦F11©¦F12©¦ ©¦P/S©¦S L©¦P/B©¦  ©°©´    ©°©´    ©°©´
  * ©¸©¤©¤©¤©¼   ©¸©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©¼ ©¸©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©¼ ©¸©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©¼ ©¸©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©¼  ©¸©¼    ©¸©¼    ©¸©¼
@@ -75,6 +77,7 @@
  
  void Keyboard_Data_Process(void)
  {
+	 //Detect what key is pressed and what state it is in
 	 if(DR16_Export_Data.Keyboard.Buffer & KEY_W)
 		 Key_State_Detect(&DR16_Export_Data.Keyboard.Press_W);
 	 else
@@ -155,11 +158,13 @@
 	 else
 		 Key_State_Clear(&DR16_Export_Data.Keyboard.Press_B); 
  }
- 
+
+
 void Key_State_Detect(Key_State *Key)
  {
 	 Key->State_Count++;
 	 
+	 //Determine key state
 	 if(Key->State_Count >= TIME_KEY_SINGLECLICK && Key->State_Count <= TIME_KEY_HOLD)
 		 Key->Single_Click_Flag = 1;
 	 else if(Key->State_Count > TIME_KEY_HOLD)
@@ -183,7 +188,8 @@ void Key_State_Detect(Key_State *Key)
 	 else
 		 DR16_Export_Data.Offline_Flag = 0;
  }
-	 
+
+ //Enable USART DMA Transfer
  static int USART_Receive_DMA_NO_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint32_t Size)
  {
 	 if(huart->RxState == HAL_UART_STATE_READY)
@@ -201,6 +207,8 @@ void Key_State_Detect(Key_State *Key)
 		 return HAL_BUSY;
 	 return HAL_OK;
  }
+ 
+ //Receive data if pass verification
  void DR16_Handler(UART_HandleTypeDef *huart)
  {
 	 __HAL_DMA_DISABLE(huart->hdmarx);

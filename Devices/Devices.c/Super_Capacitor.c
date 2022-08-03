@@ -20,6 +20,7 @@ Super_Capacitor_Func_t Super_Capacitor_Func = Super_Capacitor_Func_GroundInit;
 
 Super_Capacitor_t Super_Capacitor;
 
+//Obtain super capacitor data from CAN
 void Super_Capacitor_Get_Data(CAN_Export_Data_t RxMessage)
 {
 	Super_Capacitor.Input_Voltage = (int16_t)(RxMessage.CANx_Export_RxMessage[0] << 8 | RxMessage.CANx_Export_RxMessage[1]);
@@ -30,6 +31,7 @@ void Super_Capacitor_Get_Data(CAN_Export_Data_t RxMessage)
 	Super_Capacitor.Info_Update_Frame++;
 }
 
+//Send super capacitor data through specified identifier
 void Super_Capacitor_Send_Data(int16_t Target_Power)
 {
 	CAN_Func.CAN_0x210_Send_Data(&hcan1,Target_Power);

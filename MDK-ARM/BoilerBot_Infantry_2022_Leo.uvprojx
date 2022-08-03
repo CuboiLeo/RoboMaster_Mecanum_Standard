@@ -1957,11 +1957,6 @@
           <GroupName>Algorithms</GroupName>
           <Files>
             <File>
-              <FileName>Filters.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Algorithms\Algorithms.c\Filters.c</FilePath>
-            </File>
-            <File>
               <FileName>User_Defined_Math.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Algorithms\Algorithms.c\User_Defined_Math.c</FilePath>

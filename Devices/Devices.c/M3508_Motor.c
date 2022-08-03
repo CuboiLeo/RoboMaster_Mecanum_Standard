@@ -25,6 +25,7 @@ void Check_M3508_Fric_Wheel(void);
 M3508_Func_t M3508_Func = M3508_Func_GroundInit;
 #undef M3508_Func_GroundInit
 
+//Obtain chassis data from CAN
 void M3508_Chassis_Get_Data(CAN_Export_Data_t RxMessage)
 {
 	uint8_t ID;
@@ -38,11 +39,13 @@ void M3508_Chassis_Get_Data(CAN_Export_Data_t RxMessage)
   M3508_Chassis[ID].Info_Update_Frame++;
 }
 
+//Send chassis data through specified identifier
 void M3508_Chassis_Send_Data(int16_t Motor_1_Current,int16_t Motor_2_Current,int16_t Motor_3_Current,int16_t Motor_4_Current)
 {
 	CAN_Func.CAN_0x200_Send_Data(&hcan1,Motor_1_Current,Motor_2_Current,Motor_3_Current,Motor_4_Current);
 }
 
+//Obtain friction wheel data from CAN
 void M3508_Fric_Wheel_Get_Data(CAN_Export_Data_t RxMessage)
 {
 	switch(RxMessage.CAN_RxHeader.StdId)
@@ -66,6 +69,7 @@ void M3508_Fric_Wheel_Get_Data(CAN_Export_Data_t RxMessage)
 	}
 }
 
+//Send friction wheel data through specified identifier
 void M3508_Fric_Wheel_Send_Data(int16_t Fric_Wheel_Left_Current,int16_t Fric_Wheel_Right_Current)
 {
 	CAN_Func.CAN_0x200_Send_Data(&hcan2,Fric_Wheel_Left_Current,Fric_Wheel_Right_Current,0,0);
