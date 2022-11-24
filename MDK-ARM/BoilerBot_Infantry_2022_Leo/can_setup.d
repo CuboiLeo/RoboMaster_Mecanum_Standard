@@ -40,6 +40,7 @@ boilerbot_infantry_2022_leo\can_setup.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm
 boilerbot_infantry_2022_leo\can_setup.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 boilerbot_infantry_2022_leo\can_setup.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 boilerbot_infantry_2022_leo\can_setup.o: ../Core/Inc/FreeRTOSConfig.h
+boilerbot_infantry_2022_leo\can_setup.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\can_setup.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 boilerbot_infantry_2022_leo\can_setup.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
 boilerbot_infantry_2022_leo\can_setup.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h

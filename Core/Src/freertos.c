@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include "Board_A_IMU.h"
 #include "IMU_Temp_Control.h"
 #include "DR16_Remote.h"
@@ -38,6 +39,7 @@
 #include "Fusion.h"
 #include "Referee_System.h"
 #include "Buzzer.h"
+#include "Jetson_Tx2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +59,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+osThreadId CPU_RunTimeHandle;
 /* USER CODE END Variables */
 osThreadId Task_IMUHandle;
 osThreadId Task_InitHandle;
@@ -73,6 +75,7 @@ osMessageQId CAN_SendHandle;
 /* USER CODE BEGIN FunctionPrototypes */
 void StartIMUTask(void const * argument);
 void General_Initialization(void const * argument);
+void CPU_RunTime(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartIMUTask(void const * argument);
@@ -165,6 +168,7 @@ void MX_FREERTOS_Init(void) {
   Task_Robot_CtrlHandle = osThreadCreate(osThread(Task_Robot_Ctrl), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
+
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
@@ -224,13 +228,12 @@ void General_Init(void const * argument)
 	FusionAhrsInitialise(&MPU6050_IMU_AHRS);
 	FusionAhrsInitialise(&Board_A_IMU_AHRS);
 	DR16_Func.DR16_USART_Receive_DMA(&huart1);
-	Referee_System_Func.Referee_System_USART_Receive_DMA(&huart6);
+	Tx2_Func.Jetson_Tx2_Initialization();
+	Referee_System_Func.Referee_UART_Receive_Interrupt(&huart6, Referee_System.Buffer, REFEREE_BUFFER_LEN);
 	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
   CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
 	Gimbal_Func.Gimbal_Init();
 	Shooting_Func.Shooting_Init();
-	Robot_Mode.Initialized_Flag = 1;
-	Buzzer_Func.Buzzer_Robot_Is_Initialized();
 	vTaskDelete(NULL);
   /* USER CODE END General_Init */
 }

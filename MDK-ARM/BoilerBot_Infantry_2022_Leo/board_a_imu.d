@@ -91,6 +91,7 @@ boilerbot_infantry_2022_leo\board_a_imu.o: ../HigherLevelApps/HigherLevelApps.h/
 boilerbot_infantry_2022_leo\board_a_imu.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/Jetson_Tx2.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../Core/Inc/i2c.h
 boilerbot_infantry_2022_leo\board_a_imu.o: ../BSP/BSP.h/I2C_Setup.h

@@ -19,7 +19,7 @@
 #include "MPU6050_IMU.h"
 
 #define YAW_DIRECTION 1 //Yaw motor direction
-#define YAW_MID_MECH_ANGLE 5924 //This is measured for yaw origin
+#define YAW_MID_MECH_ANGLE 6650 //This is measured for yaw origin
 #define PITCH_DIRECTION 1 //Pitch motor direction
 #define PITCH_MID_MECH_ANGLE 5800 // This is measured for pitch origin
 #define PITCH_LOWER_LIMIT 5120 //Pitch cannot rotate 360 degree, so these are the limits in mechanical angle

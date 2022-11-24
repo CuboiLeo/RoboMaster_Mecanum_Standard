@@ -24,7 +24,6 @@
 				&Get_CRC16_Check_Sum,				\
 				&Verify_CRC16_Check_Sum,		\
 				&Append_CRC16_Check_Sum,		\
-				&int_into_char,							\
 }
 
 typedef struct
@@ -35,7 +34,6 @@ typedef struct
 	uint16_t (*Get_CRC16_Check_Sum)(uint8_t *pchMessage, uint32_t dwLength, uint16_t wCRC);
 	uint32_t (*Verify_CRC16_Check_Sum)(uint8_t *pchMessage, uint32_t dwLength);
 	void (*Append_CRC16_Check_Sum)(uint8_t *pchMessage, uint32_t dwLength);
-	void (*int_into_char)(char *Data, int16_t i);
 }CRC_Verif_Func_t;
 
 extern CRC_Verif_Func_t CRC_Verif_Func;

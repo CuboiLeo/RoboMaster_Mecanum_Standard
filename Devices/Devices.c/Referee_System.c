@@ -12,220 +12,195 @@
 
 Referee_System_t Referee_System;
 
-static int USART_Receive_DMA_NO_IT(UART_HandleTypeDef *huartx, uint8_t *pData, uint32_t Size);
-void Referee_System_USART_Receive_DMA(UART_HandleTypeDef *huartx);
-void Referee_System_Handler(UART_HandleTypeDef *huartx);
+HAL_StatusTypeDef Referee_UART_Receive_DMA_No_Interrupt(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef Referee_UART_Receive_Interrupt(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+void Referee_System_Handler(UART_HandleTypeDef *huart);
 void Referee_Get_Data(uint16_t Data_Length);
 
 Referee_System_Func_t Referee_System_Func = Referee_System_Func_GroundInit;
 #undef Referee_System_Func_GroundInit
 
-uint8_t Referee_System_Buffer[REFEREE_BUFFER_LEN];
-uint16_t DMA_Counter;
-
-//Enable USART DMA transfer
-static int USART_Receive_DMA_NO_IT(UART_HandleTypeDef *huartx, uint8_t *pData, uint32_t Size)
+HAL_StatusTypeDef Referee_UART_Receive_DMA_No_Interrupt(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
 {
-	if(huartx->RxState == HAL_UART_STATE_READY)
-	{
-		if((pData == NULL) || (Size == 0))
-			return HAL_ERROR;
+	if (huart->RxState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0))
+    {
+      return HAL_ERROR;
+    }
+
+		huart->pRxBuffPtr = pData;
+		huart->RxXferSize = Size;
+		huart->ErrorCode = HAL_UART_ERROR_NONE;
 		
-		huartx->pRxBuffPtr = pData;
-		huartx->RxXferSize = Size;
-		huartx->ErrorCode = HAL_UART_ERROR_NONE;
+		/* Enable the DMA Stream */
+		HAL_DMA_Start(huart->hdmarx,(uint32_t)&huart->Instance->DR,(uint32_t)pData, Size);
+		/* Enable the DMA transfer for the receiver request by setting the DMAR bit in the UART CR3 register */
+		SET_BIT(huart->Instance->CR3, USART_CR3_DMAR);
 		
-		HAL_DMA_Start(huartx->hdmarx, (uint32_t)&huartx->Instance->DR, (uint32_t)pData, Size);
-		
-		SET_BIT(huartx->Instance->CR3, USART_CR3_DMAR);
-	}
-	else
-		return HAL_BUSY;
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+
+HAL_StatusTypeDef Referee_UART_Receive_Interrupt(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+	__HAL_UART_CLEAR_IDLEFLAG(huart);
+	__HAL_UART_ENABLE(huart);
+	__HAL_UART_ENABLE_IT(huart,UART_IT_IDLE);
+	Referee_UART_Receive_DMA_No_Interrupt(huart,pData,Size);
 	
 	return HAL_OK;
 }
 
-void Referee_System_USART_Receive_DMA(UART_HandleTypeDef *huartx)
+
+void Referee_System_Handler(UART_HandleTypeDef *huart)
 {
-	__HAL_UART_CLEAR_IDLEFLAG(huartx);
-	__HAL_UART_ENABLE(huartx);
-	__HAL_UART_ENABLE_IT(huartx, UART_IT_IDLE);
-	USART_Receive_DMA_NO_IT(huartx, Referee_System_Buffer, REFEREE_BUFFER_LEN);
-}
+	__HAL_UART_CLEAR_IDLEFLAG(huart);
+  __HAL_DMA_DISABLE(huart->hdmarx);
 
-void Referee_System_Handler(UART_HandleTypeDef *huartx)
-{
-	__HAL_UART_CLEAR_IDLEFLAG(huartx);
-  __HAL_DMA_DISABLE(huartx->hdmarx);
+  Referee_System.DMA_Counter = __HAL_DMA_GET_COUNTER(huart->hdmarx);
+  Referee_System_Func.Referee_Get_Data(REFEREE_BUFFER_LEN - Referee_System.DMA_Counter);
 
-	DMA_Counter = __HAL_DMA_GET_COUNTER(huartx->hdmarx);
-	Referee_Get_Data(REFEREE_BUFFER_LEN - DMA_Counter);
-
-	__HAL_DMA_SET_COUNTER(huartx->hdmarx, REFEREE_BUFFER_LEN);
-	__HAL_DMA_ENABLE(huartx->hdmarx);
-
-	Referee_System.Info_Update_Frame++;
+  __HAL_DMA_SET_COUNTER(huart->hdmarx, REFEREE_BUFFER_LEN);
+  __HAL_DMA_ENABLE(huart->hdmarx);
 }
 
 //Get referee system data based on ID
 void Referee_Get_Data(uint16_t Data_Length)
 {
-	for(int i = 0; i < Data_Length;)
+	for(int n = 0; n < Data_Length;)
 	{
-		if(Referee_System_Buffer[i] == REFEREE_FRAME_HEADER)
+		if(Referee_System.Buffer[n] == REFEREE_FRAME_HEADER_START)
 		{
-			switch(Referee_System_Buffer[i + 5] | Referee_System_Buffer[i + 6] << 8)
+			switch(Referee_System.Buffer[n + 5] | Referee_System.Buffer[n + 6] << 8)
 			{
-				case Game_State:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Game_State_Len))
-					{
-						memcpy(&Referee_System.Game_State, &Referee_System_Buffer[i + 7], 11);
-						i += Game_State_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Game_Result:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Game_Result_Len))
-					{
-						memcpy(&Referee_System.Game_Result, &Referee_System_Buffer[i + 7], 1);
-						i += Game_Result_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Alive_Robot:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Alive_Robot_Len))
-					{
-						memcpy(&Referee_System.Alive_Robot, &Referee_System_Buffer[i + 7], 32);
-						i += Alive_Robot_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Event:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Event_Len))
-					{
-						memcpy(&Referee_System.Event, &Referee_System_Buffer[i + 7], 4);
-						i += Event_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Warning:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Warning_Len))
-					{
-						memcpy(&Referee_System.Warning, &Referee_System_Buffer[i + 7], 4);
-						i += Warning_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Robot_State:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Robot_State_Len))
-					{
-						memcpy(&Referee_System.Robot_State, &Referee_System_Buffer[i + 7], 27);
-						i += Robot_State_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Power_n_Heat:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Power_n_Heat_Len))
-					{
-						memcpy(&Referee_System.Power_n_Heat, &Referee_System_Buffer[i + 7], 16);
-						i += Power_n_Heat_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Location:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Location_Len))
-					{
-						memcpy(&Referee_System.Location, &Referee_System_Buffer[i + 7], 16);
-						i += Location_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Robot_Buff:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Robot_Buff_Len))
-					{
-						memcpy(&Referee_System.Robot_Buff, &Referee_System_Buffer[i + 7], 1);
-						i += Robot_Buff_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Damage:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Damage_Len))
-					{
-						memcpy(&Referee_System.Damage, &Referee_System_Buffer[i + 7], 1);
-						i += Damage_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case Shooter:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Shooter_Len))
-					{
-						memcpy(&Referee_System.Shooter, &Referee_System_Buffer[i + 7], 7);
-						i += Shooter_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-
-				case Remaining_Ammo:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, Remaining_Ammo_Len))
-					{
-						memcpy(&Referee_System.Remaining_Ammo, &Referee_System_Buffer[i + 7], 6);
-						i += Remaining_Ammo_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				case RFID:
-					if(CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System_Buffer + i, RFID_Len))
-					{
-						memcpy(&Referee_System.RFID, &Referee_System_Buffer[i + 7], 4);
-						i += RFID_Len;
-						Referee_System.Offline_Flag = 0;
-					}
-					else
-						i++;
-					break;
-					
-				default:
-					i++;
-					break;
+				case REFEREE_GAME_STATUS:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_GAME_STATUS_LEN))
+                {
+                    memcpy(&Referee_System.Game_Status, &Referee_System.Buffer[n + 7], sizeof(uint8_t[11]));
+                    n += REFEREE_GAME_STATUS_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_GAME_RESULT:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_GAME_RESULT_LEN))
+                {
+                    memcpy(&Referee_System.Game_Result, &Referee_System.Buffer[n + 7], sizeof(uint8_t[1]));
+                    n += REFEREE_GAME_RESULT_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_ROBOT_HP:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_ROBOT_HP_LEN))
+                {
+                    memcpy(&Referee_System.Alive_Robot, &Referee_System.Buffer[n + 7], sizeof(uint8_t[32]));
+                    n += REFEREE_ROBOT_HP_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_EVENT_DATA:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_EVENT_DATA_LEN))
+                {
+                    memcpy(&Referee_System.Event, &Referee_System.Buffer[n + 7], sizeof(uint8_t[4]));
+                    n += REFEREE_EVENT_DATA_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_REFEREE_WARNING: 
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_REFEREE_WARNING_LEN))
+                {
+                    memcpy(&Referee_System.Warning, &Referee_System.Buffer[n + 7], sizeof(uint8_t[2]));
+                    n += REFEREE_REFEREE_WARNING_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_ROBOT_STATE:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_ROBOT_STATE_LEN))
+                {
+                    memcpy(&Referee_System.Robot_State, &Referee_System.Buffer[n + 7], sizeof(uint8_t[27]));
+                    n += REFEREE_ROBOT_STATE_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_POWER_HEAT:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_POWER_HEAT_LEN))
+                {
+                    memcpy(&Referee_System.Power_n_Heat, &Referee_System.Buffer[n + 7], sizeof(uint8_t[16]));
+                    n += REFEREE_POWER_HEAT_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_ROBOT_POSITION:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_ROBOT_POSITION_LEN))
+                {
+                    memcpy(&Referee_System.Location, &Referee_System.Buffer[n + 7], sizeof(uint8_t[16]));
+                    n += REFEREE_ROBOT_POSITION_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_ROBOT_BUFF:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_ROBOT_BUFF_LEN))
+                {
+                    memcpy(&Referee_System.Robot_Buff, &Referee_System.Buffer[n + 7], sizeof(uint8_t[1]));
+                    n += REFEREE_ROBOT_BUFF_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_INJURY_STATE:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_INJURY_STATE_LEN))
+                {
+                    memcpy(&Referee_System.Damage, &Referee_System.Buffer[n + 7], sizeof(uint8_t[1]));
+                    n += REFEREE_INJURY_STATE_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_SHOOTER_STATE:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_SHOOTER_STATE_LEN))
+                {
+                    memcpy(&Referee_System.Shooter, &Referee_System.Buffer[n + 7], sizeof(uint8_t[7]));
+                    n += REFEREE_SHOOTER_STATE_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_REMAINING_AMMO:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_REMAINING_AMMO_LEN))
+                {
+                    memcpy(&Referee_System.Remaining_Ammo, &Referee_System.Buffer[n + 7], sizeof(uint8_t[6]));
+                    n += REFEREE_REMAINING_AMMO_LEN;
+                }
+                else
+                    n++;
+                break;
+            case REFEREE_ROBOT_RFID:
+                if (CRC_Verif_Func.Verify_CRC16_Check_Sum(Referee_System.Buffer + n, REFEREE_ROBOT_RFID_LEN))
+                {
+                    memcpy(&Referee_System.RFID, &Referee_System.Buffer[n + 7], sizeof(uint8_t[4]));
+                    n += REFEREE_ROBOT_RFID_LEN;
+                }
+                else
+                    n++;
+                break;
+            default:
+                n++;
+                break;
+          }
 			}
+      else
+				n++;
 		}
-		else
-			i++;
-	}
-	Referee_System.Info_Update_Frame++;
 }

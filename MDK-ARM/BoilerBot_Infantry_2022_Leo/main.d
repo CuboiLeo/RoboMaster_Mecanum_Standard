@@ -38,6 +38,7 @@ boilerbot_infantry_2022_leo\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/FreeRTOSConfig.h
+boilerbot_infantry_2022_leo\main.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
 boilerbot_infantry_2022_leo\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
@@ -53,6 +54,5 @@ boilerbot_infantry_2022_leo\main.o: ../Core/Inc/can.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/dma.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/i2c.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/spi.h
-boilerbot_infantry_2022_leo\main.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/usart.h
 boilerbot_infantry_2022_leo\main.o: ../Core/Inc/gpio.h

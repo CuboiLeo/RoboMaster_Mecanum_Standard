@@ -61,13 +61,14 @@
 "boilerbot_infantry_2022_leo\mpu6050_imu.o"
 "boilerbot_infantry_2022_leo\referee_system.o"
 "boilerbot_infantry_2022_leo\buzzer.o"
+"boilerbot_infantry_2022_leo\jetson_tx2.o"
 "boilerbot_infantry_2022_leo\can_setup.o"
 "boilerbot_infantry_2022_leo\i2c_setup.o"
 "boilerbot_infantry_2022_leo\fusionahrs.o"
 "boilerbot_infantry_2022_leo\fusioncompass.o"
 "boilerbot_infantry_2022_leo\fusionoffset.o"
 "boilerbot_infantry_2022_leo\crc_verification.o"
---strict --scatter "BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.sct"
+--library_type=microlib --strict --scatter "BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "BoilerBot_Infantry_2022_Leo.map" -o BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.axf

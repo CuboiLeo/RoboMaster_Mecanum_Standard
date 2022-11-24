@@ -23,6 +23,8 @@ Robot_Mode_t Robot_Mode;
 void Robot_Control_Start(void)
 {
 	State_Machine_Func.Remote_Control_Update(); 
+	Tx2_Func.Jetson_Tx2_Get_Data();
+	Tx2_Func.Jetson_Tx2_Send_Data();
 	
 	Chassis_Func.Chassis_Speed_Get_Data(&Chassis);
 	Chassis_Func.Chassis_Processing(&Chassis);

@@ -44,6 +44,7 @@
  *----------------------------------------------------------*/
 
 /* USER CODE BEGIN Includes */
+#include "tim.h"
 /* Section where include file can be added */
 /* USER CODE END Includes */
 
@@ -133,6 +134,13 @@ standard names. */
 #define xPortSysTickHandler SysTick_Handler
 
 /* USER CODE BEGIN Defines */
+
+#define configUSE_TRACE_FACILITY 1
+#define configGENERATE_RUN_TIME_STATS 1
+#define configUSE_STATS_FORMATTING_FUNCTIONS 1
+#define configSUPPORT_DYNAMIC_ALLOCATION 1
+#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS() ConfigureTimerForRunTimeStats()
+#define portGET_RUN_TIME_COUNTER_VALUE()	FreeRTOSRunTimeTicks
 /* Section where parameter definitions can be added (for instance, to override default ones in FreeRTOS.h) */
 /* USER CODE END Defines */
 

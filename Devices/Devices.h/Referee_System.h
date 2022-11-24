@@ -16,74 +16,94 @@
 #include "dma.h"
 #include "usart.h"
 #include <stdint.h>
-
-#define REFEREE_BUFFER_LEN 245	//Buffer length to receive all data
-#define REFEREE_FRAME_HEADER 0xA5 //Frame header
-#define REFEREE_FRAME_HEADER_LEN 5 //Frame header length
-#define REFEREE_ID_LEN 2	//ID length
-#define REFEREE_FRAME_TAIL_LEN 2 //Frame tail length
+#include <stdbool.h>
 
 #define Referee_System_Func_GroundInit	\
 {																				\
-		&Referee_System_USART_Receive_DMA,	\
+		&Referee_UART_Receive_Interrupt,		\
 				&Referee_System_Handler,				\
 				&Referee_Get_Data,							\
 }
 
-typedef struct
+#define REFEREE_BUFFER_LEN 												 389u					//Buffer length to receive all data
+#define REFEREE_FRAME_HEADER_START 								 0xA5 				//Frame header
+#define REFEREE_FRAME_HEADER_LEN 									 5 						//Frame header length
+#define REFEREE_ID_LEN 														 2						//ID length
+#define REFEREE_FRAME_TAIL_LEN 										 2 						//Frame tail length
+
+#define REFEREE_OFFSET_SOF         								 0  					//SOF offset
+#define REFEREE_OFFSET_DATA_LENGTH 								 1  					//Data length offset
+#define REFEREE_OFFSET_SEQ         								 3  					//SEQ offset
+#define REFEREE_OFFSET_CRC8        								 4  					//CRC offset
+
+#define       REFEREE_GAME_STATUS	              	 0x0001 
+#define       REFEREE_GAME_RESULT              		 0x0002 
+#define       REFEREE_ROBOT_HP                     0x0003 
+#define       REFEREE_DART_LAUNCH                  0x0004
+#define       REFEREE_AI_CHALLENGEBUFF             0x0005
+#define       REFEREE_EVENT_DATA                   0x0101
+#define       REFEREE_SUPPLY_STATION               0x0102
+//#define       REFEREE_REQUEST_RECHARGE             0x0103
+#define       REFEREE_REFEREE_WARNING              0x0104
+#define       REFEREE_DART_COUNTDOWN               0x0105
+#define       REFEREE_ROBOT_STATE                  0x0201
+#define       REFEREE_POWER_HEAT                   0x0202
+#define       REFEREE_ROBOT_POSITION               0x0203
+#define       REFEREE_ROBOT_BUFF                   0x0204
+#define       REFEREE_AERIAL_ENERGY                0x0205
+#define       REFEREE_INJURY_STATE                 0x0206
+#define       REFEREE_SHOOTER_STATE                0x0207
+#define       REFEREE_REMAINING_AMMO             	 0x0208
+#define       REFEREE_ROBOT_RFID                   0x0209
+#define       REFEREE_DART_CLIENT                  0x020A
+#define       REFEREE_ROBOT_COMMUNICATE            0x0301
+#define       REFEREE_USER_DEFINED                 0x0302
+
+
+/*Calculation: REFEREE_FRAME_HEADER_LEN(5-byte) + REFEREE_ID_LEN(2-byte) + DATA(n-byte) + REFEREE_FRAME_TAIL_LEN(2-byte,CRC16)*/
+#define       REFEREE_GAME_STATUS_LEN	             20
+#define       REFEREE_GAME_RESULT_LEN              10 
+#define       REFEREE_ROBOT_HP_LEN                 41 
+#define       REFEREE_DART_LAUNCH_LEN              12
+#define       REFEREE_AI_CHALLENGEBUFF_LEN         20
+#define       REFEREE_EVENT_DATA_LEN               13
+#define       REFEREE_SUPPLY_STATION_LEN           13
+//#define       REFEREE_REQUEST_RECHARGE_LEN         11
+#define       REFEREE_REFEREE_WARNING_LEN          11
+#define       REFEREE_DART_COUNTDOWN_LEN           10	
+#define       REFEREE_ROBOT_STATE_LEN              36
+#define       REFEREE_POWER_HEAT_LEN               25
+#define       REFEREE_ROBOT_POSITION_LEN           25
+#define       REFEREE_ROBOT_BUFF_LEN               10
+#define       REFEREE_AERIAL_ENERGY_LEN            10
+#define       REFEREE_INJURY_STATE_LEN             10
+#define       REFEREE_SHOOTER_STATE_LEN            16
+#define       REFEREE_REMAINING_AMMO_LEN           15
+#define       REFEREE_ROBOT_RFID_LEN               13
+#define       REFEREE_DART_CLIENT_LEN              21
+#define       REFEREE_ROBOT_COMMUNICATE_LEN        35
+#define       REFEREE_USER_DEFINED_LEN             26
+
+
+typedef __packed struct
 {
-	enum
-	{
-		Game_State = 0x0001,
-		Game_Result = 0x0002,
-		Alive_Robot = 0x0003,
-		
-		Event = 0x0101,
-		Warning = 0x0104,
-		
-		Robot_State = 0x0201,
-		Power_n_Heat = 0x0202,
-		Location = 0x0203,
-		Robot_Buff = 0x0204,
-		Damage = 0x0206,
-		Shooter = 0x0207,
-		Remaining_Ammo = 0x0208,
-		RFID = 0x0209,
-	}ID;
+	uint16_t DMA_Counter;
+	uint8_t Buffer[REFEREE_BUFFER_LEN];
 	
-	enum
-	{
-		Game_State_Len = 20,
-		Game_Result_Len = 10,
-		Alive_Robot_Len = 41,
-		
-		Event_Len = 13,
-		Warning_Len = 11,
-		
-		Robot_State_Len = 36,
-		Power_n_Heat_Len = 25,
-		Location_Len = 25,
-		Robot_Buff_Len = 10,
-		Damage_Len = 10,
-		Shooter_Len = 16,
-		Remaining_Ammo_Len = 15,
-		RFID_Len = 13
-	}Length;
-	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint8_t Type;
 		uint8_t Progress;
 		uint16_t Remaining_Time;
 		uint64_t Sync_Time_Stamp;
-	}Game_State;
+	}Game_Status;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint8_t Winner;
 	}Game_Result;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint16_t Red_1_HP;   
 		uint16_t Red_2_HP;  
@@ -106,18 +126,18 @@ typedef struct
 		uint16_t Blue_Base_HP;   
 	}Alive_Robot;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint32_t Type;
 	}Event;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint8_t Card;
 		uint8_t Foul_Robot_ID;
 	}Warning;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint8_t ID;
 		uint8_t Level;
@@ -139,7 +159,7 @@ typedef struct
 		uint16_t Chassis_Power_Max;	
 	}Robot_State;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint16_t Chassis_Voltage;
 		uint16_t Chassis_Current;
@@ -150,7 +170,7 @@ typedef struct
 		uint16_t Mobile_Shooter_Heat;
 	}Power_n_Heat;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		float x;
 		float y;
@@ -158,18 +178,18 @@ typedef struct
 		float Yaw;
 	}Location;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint8_t Buff;
 	}Robot_Buff;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint8_t Armor_ID;
 		uint8_t Type;
 	}Damage;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint8_t Ammo_Type;
 		uint8_t Shooter_Type;
@@ -177,26 +197,26 @@ typedef struct
 		float Speed;
 	}Shooter;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint16_t Type_17mm;
 		uint16_t Type_42mm;
 		uint16_t Type_Gold;
 	}Remaining_Ammo;
 	
-	struct
+	struct __attribute__ ((__packed__))
 	{
 		uint32_t State;
 	}RFID;
-	
+		
 	uint16_t Info_Update_Frame;
 	uint8_t Offline_Flag;
 }Referee_System_t;
 
 typedef struct
 {
-	void (*Referee_System_USART_Receive_DMA)(UART_HandleTypeDef *huartx);
-	void (*Referee_System_Handler)(UART_HandleTypeDef *huartx);
+	HAL_StatusTypeDef (*Referee_UART_Receive_Interrupt)(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+	void (*Referee_System_Handler)(UART_HandleTypeDef *huart);
 	void (*Referee_Get_Data)(uint16_t Data_Length);
 }Referee_System_Func_t;
 

@@ -1,0 +1,9 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	ignorecase = true
+[remote "origin"]
+	url = https://github.com/CuboiLeo/BoilerBot_Infantry_2022_Leo.git
+	fetch = +refs/*:refs/*
+	mirror = true

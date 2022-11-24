@@ -31,29 +31,46 @@ typedef struct
 	enum
 	{
 		Low_Do,
+		Low_Do_N,
 		Low_Re,
+		Low_Re_N,
 		Low_Mi,
 		Low_Fa,
+		Low_Fa_N,
 		Low_So,
+		Low_So_N,
 		Low_La,
+		Low_La_N,
 		Low_Ti,
 		
 		Mid_Do,
+		Mid_Do_N,
 		Mid_Re,
+		Mid_Re_N,
 		Mid_Mi,
 		Mid_Fa,
+		Mid_Fa_N,
 		Mid_So,
+		Mid_So_N,
 		Mid_La,
+		Mid_La_N,
 		Mid_Ti,
 		
 		High_Do,
+		High_Do_N,
 		High_Re,
+		High_Re_N,
 		High_Mi,
 		High_Fa,
+		High_Fa_N,
 		High_So,
+		High_So_N,
 		High_La,
+		High_La_N,
 		High_Ti,
 	}Note;
+	
+	
 }Buzzer_t;
 
 typedef struct

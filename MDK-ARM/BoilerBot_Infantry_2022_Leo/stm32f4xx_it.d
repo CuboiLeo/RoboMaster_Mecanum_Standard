@@ -48,6 +48,7 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/can.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/FreeRTOSConfig.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
@@ -80,10 +81,10 @@ boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Jetson_Tx2.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
-boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/Fusion.h
 boilerbot_infantry_2022_leo\stm32f4xx_it.o: ../BSP/BSP.h/FusionAhrs.h

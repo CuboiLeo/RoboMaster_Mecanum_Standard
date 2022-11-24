@@ -15,6 +15,7 @@
 #include "Gimbal_Control.h"
 #include "State_Machine.h"
 #include "Shooting_Control.h"
+#include "Jetson_Tx2.h"
 
 #define Robot_Control_Func_GroundInit		\
 		{																		\

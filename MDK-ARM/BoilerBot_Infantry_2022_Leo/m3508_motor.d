@@ -41,6 +41,7 @@ boilerbot_infantry_2022_leo\m3508_motor.o: ../BSP/BSP.h/CAN_Setup.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Core/Inc/FreeRTOSConfig.h
+boilerbot_infantry_2022_leo\m3508_motor.o: ../Core/Inc/tim.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
 boilerbot_infantry_2022_leo\m3508_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
