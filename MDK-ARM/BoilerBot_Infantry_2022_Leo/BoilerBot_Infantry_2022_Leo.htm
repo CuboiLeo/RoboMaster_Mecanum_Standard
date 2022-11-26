@@ -3,7 +3,7 @@
 <title>Static Call Graph - [BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image BoilerBot_Infantry_2022_Leo\BoilerBot_Infantry_2022_Leo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Nov 22 16:11:53 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Nov 25 17:15:10 2022
 <BR><P>
 <H3>Maximum Stack Usage =        400 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -932,7 +932,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.constdata)
 </UL>
-<P><STRONG><a name="[7]"></a>Chassis_Processing</STRONG> (Thumb, 574 bytes, Stack size 40 bytes, chassis_control.o(i.Chassis_Processing))
+<P><STRONG><a name="[7]"></a>Chassis_Processing</STRONG> (Thumb, 564 bytes, Stack size 40 bytes, chassis_control.o(i.Chassis_Processing))
 <BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = Chassis_Processing &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
@@ -945,7 +945,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> chassis_control.o(.data)
 </UL>
-<P><STRONG><a name="[5]"></a>Chassis_Speed_Get_Data</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, chassis_control.o(i.Chassis_Speed_Get_Data))
+<P><STRONG><a name="[5]"></a>Chassis_Speed_Get_Data</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, chassis_control.o(i.Chassis_Speed_Get_Data))
 <BR>[Address Reference Count : 1]<UL><LI> chassis_control.o(.data)
 </UL>
 <P><STRONG><a name="[45]"></a>Check_CAN</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, can_setup.o(i.Check_CAN))
@@ -984,7 +984,7 @@ Global Symbols
 <P><STRONG><a name="[16]"></a>Clear_Ramp</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ramp_calc.o(i.Clear_Ramp))
 <BR>[Address Reference Count : 1]<UL><LI> ramp_calc.o(.data)
 </UL>
-<P><STRONG><a name="[15f]"></a>Computer_Update</STRONG> (Thumb, 98 bytes, Stack size 20 bytes, state_machine.o(i.Computer_Update))
+<P><STRONG><a name="[15f]"></a>Computer_Update</STRONG> (Thumb, 126 bytes, Stack size 20 bytes, state_machine.o(i.Computer_Update))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = Computer_Update
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Remote_Control_Update
@@ -1706,8 +1706,10 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> pid.o(.data)
 </UL>
-<P><STRONG><a name="[6]"></a>Inverse_Kinematic_Calc</STRONG> (Thumb, 264 bytes, Stack size 32 bytes, chassis_control.o(i.Inverse_Kinematic_Calc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Inverse_Kinematic_Calc
+<P><STRONG><a name="[6]"></a>Inverse_Kinematic_Calc</STRONG> (Thumb, 328 bytes, Stack size 40 bytes, chassis_control.o(i.Inverse_Kinematic_Calc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Inverse_Kinematic_Calc
+</UL>
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VAL_LIMIT
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> chassis_control.o(.data)
 </UL>
@@ -1972,8 +1974,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> referee_system.o(.data)
 </UL>
-<P><STRONG><a name="[4]"></a>Remote_Control_Update</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, state_machine.o(i.Remote_Control_Update))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Remote_Control_Update &rArr; Computer_Update
+<P><STRONG><a name="[4]"></a>Remote_Control_Update</STRONG> (Thumb, 176 bytes, Stack size 16 bytes, state_machine.o(i.Remote_Control_Update))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = Remote_Control_Update &rArr; Computer_Update
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Computer_Update
 </UL>
@@ -2126,6 +2128,7 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[109]"></a>VAL_LIMIT</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, user_defined_math.o(i.VAL_LIMIT))
 <BR><BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Control_Get_Data
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Inverse_Kinematic_Calc
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Positional_PID
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Incremental_PID
 </UL>

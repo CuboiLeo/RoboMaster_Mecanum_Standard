@@ -16,11 +16,14 @@
 #include "User_Defined_Math.h"
 #include "Gimbal_Control.h"
 #include "Robot_Control.h"
+#include "Super_Capacitor.h"
 
 #define MOTOR_SPEED_MAX 3000 //6880(theoretical max speed) //This is where to change the maximum speed
 #define MOTOR_GEAR_RATIO 19 //Gear ratio of m3508 planetary gear
 #define CHASSIS_WIDTH_HALF 0.15f //Measured value of the chassis's half width
 #define CHASSIS_LENGTH_HALF 0.18f //Measured value of the chassis's half length
+#define CHASSIS_NORMAL_SPEED_COEFF 200 //Normal speed coeff
+#define CHASSIS_SPINTOP_RATE 3 //Chassis spintop rate
 
 #define Chassis_Func_GroundInit		\
 {																	\

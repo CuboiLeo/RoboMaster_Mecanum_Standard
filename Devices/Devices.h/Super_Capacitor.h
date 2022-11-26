@@ -34,6 +34,8 @@ typedef struct
 	float Actual_Power;
 	float Target_Power;
 	
+	uint8_t Super_Cap_On;
+	float Super_Cap_Accel_Rate;
 	uint16_t Info_Update_Frame;
 	uint8_t Offline_Flag;
 }Super_Capacitor_t;

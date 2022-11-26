@@ -53,7 +53,9 @@ void Gimbal_Processing(Gimbal_t *Gimbal)
 		{
 			//Reset the target angle so gimbal doesn't spin like crazy
 			if(Gimbal->Prev_Mode != Follow_Gimbal)
+			{
 				GM6020_Yaw.Target_Angle = YAW_DIRECTION * (GM6020_Yaw.Total_Angle);
+			}
 			
 			//If remote control is controlling then gimbal keeps moving accordingly
 			if(DR16_Export_Data.Remote_Control.Joystick_Right_Vx != 0)

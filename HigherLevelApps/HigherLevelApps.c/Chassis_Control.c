@@ -1,4 +1,4 @@
-/**
+	/**
  * @file Chassis_Control.c
  * @author Leo Liu
  * @brief control chassis
@@ -20,16 +20,15 @@ Chassis_Func_t Chassis_Func = Chassis_Func_GroundInit;
 
 void Chassis_Speed_Get_Data(Chassis_t *Chassis)
 {
-	//The multiplying/dividing constant are tested value and can be changed
 	if(State_Machine.Control_Source == Remote_Control)
 	{
-		Chassis->Gimbal_Coord.Vx = DR16_Export_Data.Remote_Control.Joystick_Left_Vx / 300.0f;
-		Chassis->Gimbal_Coord.Vy = DR16_Export_Data.Remote_Control.Joystick_Left_Vy / 300.0f;
+		Chassis->Gimbal_Coord.Vx = DR16_Export_Data.Remote_Control.Joystick_Left_Vx / 660.0f;
+		Chassis->Gimbal_Coord.Vy = DR16_Export_Data.Remote_Control.Joystick_Left_Vy / 660.0f;
 	}
 	else if(State_Machine.Control_Source == Computer)
 	{
-		Chassis->Gimbal_Coord.Vx = (DR16_Export_Data.Keyboard.Press_D.Hold_Flag - DR16_Export_Data.Keyboard.Press_A.Hold_Flag) * 2.2f;
-		Chassis->Gimbal_Coord.Vy = (DR16_Export_Data.Keyboard.Press_W.Hold_Flag - DR16_Export_Data.Keyboard.Press_S.Hold_Flag) * 2.2f;
+		Chassis->Gimbal_Coord.Vx = (DR16_Export_Data.Keyboard.Press_D.Hold_Flag - DR16_Export_Data.Keyboard.Press_A.Hold_Flag);
+		Chassis->Gimbal_Coord.Vy = (DR16_Export_Data.Keyboard.Press_W.Hold_Flag - DR16_Export_Data.Keyboard.Press_S.Hold_Flag);
 	}
 }
 
@@ -51,7 +50,9 @@ void Inverse_Kinematic_Calc(Chassis_t *Chassis)
 	//First calculate the speed ratio for all the wheels
 	for(int i = 0; i < 4; i++)
 	{
-		Chassis->Wheel_Speed[i] *= 100;
+		Chassis->Wheel_Speed[i] *= CHASSIS_NORMAL_SPEED_COEFF;
+		if(Super_Capacitor.Super_Cap_On)
+			Chassis->Wheel_Speed[i] *= (1 + Super_Capacitor.Super_Cap_Accel_Rate);
 		if(fabs(Chassis->Wheel_Speed[i]) > temp_speed_max)
 			temp_speed_max = fabs(Chassis->Wheel_Speed[i]);
 		if(temp_speed_max > M3508_SPEED_MAX)
@@ -64,20 +65,21 @@ void Inverse_Kinematic_Calc(Chassis_t *Chassis)
 		Chassis->Wheel_Speed[i] *= speed_ratio;
 		M3508_Chassis[i].Target_Speed = Chassis->Wheel_Speed[i];
 		M3508_Chassis[i].Output_Current = PID_Func.Positional_PID(&Chassis_Speed_PID,M3508_Chassis[i].Target_Speed,M3508_Chassis[i].Actual_Speed);
+		M3508_Chassis[i].Output_Current = VAL_LIMIT(M3508_Chassis[i].Output_Current, M3508_OUTPUT_MAX, (-M3508_OUTPUT_MAX));
 	}
 }
 
 void Chassis_Processing(Chassis_t *Chassis)
 {
+	float angle_diff = DEG_TO_RAD((GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
+	
 	//Calculate different variables based on current mode
 	switch(Chassis->Current_Mode)
 	{
 		case(Follow_Gimbal):
 		{
 			//Chassis always approaches the yaw motor mid mechanical angle
-			//And because chassis and gimbal coordinates are alligned, they are the same 
-			float angle_diff = DEG_TO_RAD((GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
-			
+			//And because chassis and gimbal coordinates are alligned, they are the same
 			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx;
 			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vy;
 			Chassis->Chassis_Coord.Wz = PID_Func.Positional_PID(&Chassis_Angle_PID,0,angle_diff);
@@ -87,9 +89,7 @@ void Chassis_Processing(Chassis_t *Chassis)
 		
 		case(Not_Follow_Gimbal):
 		{
-			//The gimbal coordinate is converted to chassis coordinate through trigonometry
-			float angle_diff = DEG_TO_RAD((GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
-			
+			//The gimbal coordinate is converted to chassis coordinate through trigonometry	
 			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx * cos(angle_diff) - Chassis->Gimbal_Coord.Vy * sin(angle_diff);
 			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vx * sin(angle_diff) + Chassis->Gimbal_Coord.Vy * cos(angle_diff);
 			Chassis->Chassis_Coord.Wz = 0;
@@ -100,11 +100,9 @@ void Chassis_Processing(Chassis_t *Chassis)
 		case(Spin_Top):
 		{
 			//The gimbal coordinate is converted to chassis coordinate through trigonometry
-			float angle_diff = DEG_TO_RAD((GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
-			
 			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx * cos(angle_diff) - Chassis->Gimbal_Coord.Vy * sin(angle_diff);
 			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vx * sin(angle_diff) + Chassis->Gimbal_Coord.Vy * cos(angle_diff);
-			Chassis->Chassis_Coord.Wz = 5; //This is where you control how fast the spintop spins
+			Chassis->Chassis_Coord.Wz = CHASSIS_SPINTOP_RATE; //This is where you control how fast the spintop spins
 			
 			break;
 		}
@@ -121,6 +119,9 @@ void Chassis_Processing(Chassis_t *Chassis)
 			break;
 		}
 	}
+	
+	if(fabs(Chassis->Chassis_Coord.Wz) < 1.5f)
+			Chassis->Chassis_Coord.Wz = 0;
 	
 	Chassis_Func.Inverse_Kinematic_Calc(Chassis);
 }

@@ -63,6 +63,17 @@ void Remote_Control_Update(void)
 				break;
 			}
 		}
+		
+		if(!Shooting.Fric_Wheel.Turned_On)
+		{
+			if(DR16_Export_Data.Remote_Control.Dial_Wheel < -50)
+			{
+				Super_Capacitor.Super_Cap_On = 1;
+				Super_Capacitor.Super_Cap_Accel_Rate = fabs((float)DR16_Export_Data.Remote_Control.Dial_Wheel / 1000);
+			}
+			else
+				Super_Capacitor.Super_Cap_On = 0;
+		}
 	}
 	
 	/*
@@ -152,6 +163,17 @@ void Computer_Update(void)
 				Shooting.Fric_Wheel.Turned_On = 0;
 			else 
 				Shooting.Fric_Wheel.Turned_On = 1;
+		}
+		
+		else if(DR16_Export_Data.Keyboard.Press_C.Single_Click_Flag)
+		{
+			if(Super_Capacitor.Super_Cap_On)
+				Super_Capacitor.Super_Cap_On = 0;
+			else
+			{
+				Super_Capacitor.Super_Cap_On = 1;
+				Super_Capacitor.Super_Cap_Accel_Rate = 0.66f;
+			}
 		}
 	}
 }
