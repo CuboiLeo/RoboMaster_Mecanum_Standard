@@ -32,7 +32,7 @@ void Gimbal_Control_Get_Data(Gimbal_t *Gimbal)
 	//The multiplying/dividing constant are tested value and can be changed
 	if(State_Machine.Control_Source == Remote_Control)
 	{
-		GM6020_Yaw.Target_Angle -= DR16_Export_Data.Remote_Control.Joystick_Right_Vx / 150.0f;
+		GM6020_Yaw.Target_Angle -= DR16_Export_Data.Remote_Control.Joystick_Right_Vx / 100.0f;
 		GM6020_Pitch.Target_Angle += DR16_Export_Data.Remote_Control.Joystick_Right_Vy / 300.0f;
 		GM6020_Pitch.Target_Angle = VAL_LIMIT(GM6020_Pitch.Target_Angle,PITCH_UPPER_LIMIT,PITCH_LOWER_LIMIT);
 	}

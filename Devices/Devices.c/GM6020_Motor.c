@@ -16,8 +16,7 @@ Motor_Init_t GM6020_Pitch;
 
 void GM6020_Yaw_Get_Data(CAN_Export_Data_t RxMessage);
 void GM6020_Pitch_Get_Data(CAN_Export_Data_t RxMessage);
-void GM6020_Yaw_Send_Data(int16_t Yaw_Output);
-void GM6020_Pitch_Send_Data(int16_t Pitch_Output);
+void GM6020_Gimbal_Send_Data(int16_t Pitch_Output, int16_t Yaw_Output);
 void Check_GM6020_Yaw(void);
 void Check_GM6020_Pitch(void);
 
@@ -56,16 +55,10 @@ void GM6020_Pitch_Get_Data(CAN_Export_Data_t RxMessage)
 	GM6020_Pitch.Info_Update_Frame++;
 }
 
-//Send yaw data through specified identifier
-void GM6020_Yaw_Send_Data(int16_t Yaw_Output)
+//Send gimbal data through specified identifier
+void GM6020_Gimbal_Send_Data(int16_t Pitch_Output,int16_t Yaw_Output)
 {
-	CAN_Func.CAN_0x2FF_Send_Data(&hcan1,0,0,Yaw_Output,0);
-}
-
-//Send pitch data through specified identifier
-void GM6020_Pitch_Send_Data(int16_t Pitch_Output)
-{
-	CAN_Func.CAN_0x2FF_Send_Data(&hcan2,0,Pitch_Output,0,0);
+	CAN_Func.CAN_0x2FF_Send_Data(&hcan1,0,Pitch_Output,Yaw_Output,0);
 }
 
 

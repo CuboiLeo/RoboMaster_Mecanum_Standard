@@ -27,8 +27,7 @@
     {                                 \
         &GM6020_Yaw_Get_Data,         \
             &GM6020_Pitch_Get_Data,   \
-						&GM6020_Yaw_Send_Data, 		\
-						&GM6020_Pitch_Send_Data, 	\
+						&GM6020_Gimbal_Send_Data, \
             &Check_GM6020_Yaw,        \
             &Check_GM6020_Pitch,      \
     }
@@ -37,8 +36,7 @@ typedef struct
 {
 	void (*GM6020_Yaw_Get_Data)(CAN_Export_Data_t RxMessage);
   void (*GM6020_Pitch_Get_Data)(CAN_Export_Data_t RxMessage);
-	void (*GM6020_Yaw_Send_Data)(int16_t Yaw_Output);
-	void (*GM6020_Pitch_Send_Data)(int16_t Pitch_Output);
+	void (*GM6020_Gimbal_Send_Data)(int16_t Pitch_Output, int16_t Yaw_Output);
   void (*Check_GM6020_Yaw)(void);
   void (*Check_GM6020_Pitch)(void);
 }GM6020_Func_t;

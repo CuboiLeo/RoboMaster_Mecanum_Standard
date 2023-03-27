@@ -59,7 +59,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-osThreadId CPU_RunTimeHandle;
+
 /* USER CODE END Variables */
 osThreadId Task_IMUHandle;
 osThreadId Task_InitHandle;
@@ -73,9 +73,7 @@ osMessageQId CAN_SendHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-void StartIMUTask(void const * argument);
-void General_Initialization(void const * argument);
-void CPU_RunTime(void const * argument);
+
 /* USER CODE END FunctionPrototypes */
 
 void StartIMUTask(void const * argument);
@@ -275,15 +273,14 @@ void CAN1_Rec(void const * argument)
   {
     xQueueReceive(CAN1_ReceiveHandle, &CAN_Export_Data, portMAX_DELAY);
 		ID = CAN_Export_Data.CAN_RxHeader.StdId;
-		if(ID == M2006_TRIGGER_ID)
-			M2006_Func.M2006_Trigger_Get_Data(CAN_Export_Data);
-		else if(ID == SUPERCAP_ID)
+		if(ID == SUPERCAP_ID)
 			Super_Capacitor_Func.Super_Capacitor_Get_Data(CAN_Export_Data);
 		else if(ID >= M3508_CHASSIS_START_ID && ID <= M3508_CHASSIS_END_ID)
 			M3508_Func.M3508_Chassis_Get_Data(CAN_Export_Data);
 		else if(ID == GM6020_YAW_ID)
 			GM6020_Func.GM6020_Yaw_Get_Data(CAN_Export_Data);
-		
+		else if(ID == GM6020_PITCH_ID)
+			GM6020_Func.GM6020_Pitch_Get_Data(CAN_Export_Data);
 		Monitor_CAN1.Info_Update_Frame++;
   }
   /* USER CODE END CAN1_Rec */
@@ -308,8 +305,8 @@ void CAN2_Rec(void const * argument)
 		ID = CAN_Export_Data.CAN_RxHeader.StdId;
     if(ID == M3508_FRIC_WHEEL_LEFT_ID || ID == M3508_FRIC_WHEEL_RIGHT_ID)
 			M3508_Func.M3508_Fric_Wheel_Get_Data(CAN_Export_Data);
-		else if(ID == GM6020_PITCH_ID)
-			GM6020_Func.GM6020_Pitch_Get_Data(CAN_Export_Data);
+		else if(ID == M2006_TRIGGER_ID)
+			M2006_Func.M2006_Trigger_Get_Data(CAN_Export_Data);
 		
 		Monitor_CAN2.Info_Update_Frame++;
   }

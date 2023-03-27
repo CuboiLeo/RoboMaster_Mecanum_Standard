@@ -866,10 +866,10 @@ ARM Macro Assembler    Page 14
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=boilerbot_infantry_2022_leo\startup_stm32f427xx.d -oboilerbo
 t_infantry_2022_leo\startup_stm32f427xx.o -I..\Core\Inc -I.\RTE\_BoilerBot_Infa
-ntry_2022_Leo -IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Co
+ntry_2022_Leo -IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Co
 re\Include -IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\D
 rivers\CMSIS\Device\ST\STM32F4xx\Include --predefine="__MICROLIB SETA 1" --pred
-efine="__UVISION_VERSION SETA 536" --predefine="_RTE_ SETA 1" --predefine="STM3
+efine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="STM3
 2F427xx SETA 1" --predefine="_RTE_ SETA 1" --list=startup_stm32f427xx.lst start
 up_stm32f427xx.s
 

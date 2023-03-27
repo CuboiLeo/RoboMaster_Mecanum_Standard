@@ -30,12 +30,17 @@ void M3508_Chassis_Get_Data(CAN_Export_Data_t RxMessage)
 {
 	uint8_t ID;
   ID = (uint8_t)(RxMessage.CAN_RxHeader.StdId - M3508_CHASSIS_START_ID);
-		
+	
+	M3508_Chassis[ID].Prev_Angle = M3508_Chassis[ID].Actual_Angle;
   M3508_Chassis[ID].Actual_Angle = (int16_t)(RxMessage.CANx_Export_RxMessage[0] << 8 | RxMessage.CANx_Export_RxMessage[1]);
   M3508_Chassis[ID].Actual_Speed = (int16_t)(RxMessage.CANx_Export_RxMessage[2] << 8 | RxMessage.CANx_Export_RxMessage[3]);
   M3508_Chassis[ID].Actual_Current = (int16_t)(RxMessage.CANx_Export_RxMessage[4] << 8 | RxMessage.CANx_Export_RxMessage[5]);
   M3508_Chassis[ID].Temperature = RxMessage.CANx_Export_RxMessage[6];
-
+	if((M3508_Chassis[ID].Actual_Angle - M3508_Chassis[ID].Prev_Angle) < -6500 )
+		M3508_Chassis[ID].Turn_Count++;
+	else if((M3508_Chassis[ID].Actual_Angle - M3508_Chassis[ID].Prev_Angle) > 6500)
+		M3508_Chassis[ID].Turn_Count--;
+	M3508_Chassis[ID].Total_Angle = M3508_Chassis[ID].Actual_Angle + (M3508_MECH_ANGLE_MAX * M3508_Chassis[ID].Turn_Count);
   M3508_Chassis[ID].Info_Update_Frame++;
 }
 

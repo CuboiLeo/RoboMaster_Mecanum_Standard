@@ -37,7 +37,7 @@ void M2006_Trigger_Get_Data(CAN_Export_Data_t RxMessage)
 //Send trigger data through specified identifier
 void M2006_Trigger_Send_Data(int16_t Trigger_Current)
 {
-	CAN_Func.CAN_0x1FF_Send_Data(&hcan1,0,Trigger_Current,0,0);
+	CAN_Func.CAN_0x1FF_Send_Data(&hcan2,0,Trigger_Current,0,0);
 }
 
 void Check_M2006_Trigger(void)
