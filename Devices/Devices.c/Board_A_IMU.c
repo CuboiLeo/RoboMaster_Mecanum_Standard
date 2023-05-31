@@ -324,11 +324,11 @@ void Board_A_IMU_Calc_Angle(Board_A_IMU_t *Board_A_IMU)
 	
 	//Record number of turns
 	if((Board_A_IMU->Export_Data.Yaw - Board_A_IMU->Export_Data.Prev_Yaw) < - 300)
-		Board_A_IMU->Export_Data.Turn_Count++;
-	else if((Board_A_IMU->Export_Data.Yaw - Board_A_IMU->Export_Data.Prev_Yaw) > 300)
 		Board_A_IMU->Export_Data.Turn_Count--;
+	else if((Board_A_IMU->Export_Data.Yaw - Board_A_IMU->Export_Data.Prev_Yaw) > 300)
+		Board_A_IMU->Export_Data.Turn_Count++;
 	
-	Board_A_IMU->Export_Data.Total_Yaw = Board_A_IMU->Export_Data.Yaw + 360.0f * Board_A_IMU->Export_Data.Turn_Count;
+	Board_A_IMU->Export_Data.Total_Yaw = Board_A_IMU->Export_Data.Yaw - 360.0f * Board_A_IMU->Export_Data.Turn_Count;
 }
 
 void Board_A_IMU_Reset(Board_A_IMU_t *Board_A_IMU)

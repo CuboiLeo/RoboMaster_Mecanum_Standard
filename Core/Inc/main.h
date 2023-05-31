@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define SPI5_NSS_Pin GPIO_PIN_6
 #define SPI5_NSS_GPIO_Port GPIOF
+#define Button_Pin GPIO_PIN_2
+#define Button_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

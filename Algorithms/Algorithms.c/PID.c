@@ -28,20 +28,20 @@ PID_t Fric_Wheel_PID = Fric_Wheel_PIDInit;
 PID_t Yaw_Angle_PID = Yaw_Angle_PIDInit;
 #undef Yaw_Angle_PIDInit
 
-PID_t Yaw_Speed_PID = Yaw_Speed_PIDInit;
-#undef Yaw_Speed_PIDInit
-
 PID_t Pitch_Angle_PID = Pitch_Angle_PIDInit;
 #undef Pitch_Angle_PIDInit
-
-PID_t Pitch_Speed_PID = Pitch_Speed_PIDInit;
-#undef Pitch_Speed_PIDInit
 
 PID_t Trigger_Angle_PID = Trigger_Angle_PIDInit;
 #undef Trigger_Angle_PIDInit
 
 PID_t Trigger_Speed_PID = Trigger_Speed_PIDInit;
 #undef Trigger_Speed_PIDInit
+
+PID_t AutoAim_Pitch_PID = AutoAim_Pitch_PIDInit;
+#undef AutoAim_Pitch_PIDInit
+
+PID_t AutoAim_Yaw_PID = AutoAim_Yaw_PIDInit;
+#undef AutoAim_Yaw_PIDInit
 
 PID_Func_t PID_Func = PID_Func_GroundInit;
 #undef PID_Func_GroundInit

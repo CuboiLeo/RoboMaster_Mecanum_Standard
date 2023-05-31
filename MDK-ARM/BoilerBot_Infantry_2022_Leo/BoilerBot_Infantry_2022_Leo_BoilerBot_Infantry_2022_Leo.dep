@@ -2,7 +2,7 @@ Dependencies for Project 'BoilerBot_Infantry_2022_Leo', Target 'BoilerBot_Infant
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f427xx.s)(0x6388D6BC)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1" -I ..\Core\Inc-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "STM32F427xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f427xx.lst --xref -o boilerbot_infantry_2022_leo\startup_stm32f427xx.o --depend boilerbot_infantry_2022_leo\startup_stm32f427xx.d)
 F (../Core/Src/main.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\main.o --omf_browse boilerbot_infantry_2022_leo\main.crf --depend boilerbot_infantry_2022_leo\main.d)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -58,9 +58,9 @@ I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (../Core/Inc/gpio.h)(0x6388D6BB)
-F (../Core/Src/gpio.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\gpio.o --omf_browse boilerbot_infantry_2022_leo\gpio.crf --depend boilerbot_infantry_2022_leo\gpio.d)
+F (../Core/Src/gpio.c)(0x64712EBA)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\gpio.o --omf_browse boilerbot_infantry_2022_leo\gpio.crf --depend boilerbot_infantry_2022_leo\gpio.d)
 I (../Core/Inc/gpio.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -95,13 +95,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
-F (../Core/Src/freertos.c)(0x641E46DE)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\freertos.o --omf_browse boilerbot_infantry_2022_leo\freertos.crf --depend boilerbot_infantry_2022_leo\freertos.d)
+F (../Core/Src/freertos.c)(0x647128D0)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\freertos.o --omf_browse boilerbot_infantry_2022_leo\freertos.crf --depend boilerbot_infantry_2022_leo\freertos.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x641DDDFC)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -147,7 +147,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x641DDDFC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
@@ -168,7 +168,7 @@ I (../Core/Inc/can.h)(0x6388D6BB)
 I (../BSP/BSP.h/CAN_Setup.h)(0x6388D6BA)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
@@ -176,12 +176,13 @@ I (../Devices/Devices.h/DR16_Remote.h)(0x6388D6BB)
 I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
 I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
@@ -189,10 +190,9 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
 I (../Devices/Devices.h/WT901_IMU.h)(0x6388D6BB)
 I (../Devices/Devices.h/Referee_System.h)(0x6388D6BB)
 I (../BSP/BSP.h/CRC_Verification.h)(0x6388D6BA)
-I (../Devices/Devices.h/Buzzer.h)(0x6388D6BB)
 F (../Core/Src/can.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\can.o --omf_browse boilerbot_infantry_2022_leo\can.crf --depend boilerbot_infantry_2022_leo\can.d)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -229,7 +229,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 F (../Core/Src/dma.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\dma.o --omf_browse boilerbot_infantry_2022_leo\dma.crf --depend boilerbot_infantry_2022_leo\dma.d)
 I (../Core/Inc/dma.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -266,7 +266,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 F (../Core/Src/i2c.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\i2c.o --omf_browse boilerbot_infantry_2022_leo\i2c.crf --depend boilerbot_infantry_2022_leo\i2c.d)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -303,7 +303,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 F (../Core/Src/spi.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\spi.o --omf_browse boilerbot_infantry_2022_leo\spi.crf --depend boilerbot_infantry_2022_leo\spi.d)
 I (../Core/Inc/spi.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -340,7 +340,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 F (../Core/Src/tim.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\tim.o --omf_browse boilerbot_infantry_2022_leo\tim.crf --depend boilerbot_infantry_2022_leo\tim.d)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -377,7 +377,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 F (../Core/Src/usart.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\usart.o --omf_browse boilerbot_infantry_2022_leo\usart.crf --depend boilerbot_infantry_2022_leo\usart.d)
 I (../Core/Inc/usart.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -413,7 +413,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 F (../Core/Src/stm32f4xx_it.c)(0x641E54DC)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\stm32f4xx_it.o --omf_browse boilerbot_infantry_2022_leo\stm32f4xx_it.crf --depend boilerbot_infantry_2022_leo\stm32f4xx_it.d)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -480,17 +480,18 @@ I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -507,7 +508,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
 I (../Devices/Devices.h/Referee_System.h)(0x6388D6BB)
 I (../BSP/BSP.h/CRC_Verification.h)(0x6388D6BA)
 F (../Core/Src/stm32f4xx_hal_msp.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\stm32f4xx_hal_msp.o --omf_browse boilerbot_infantry_2022_leo\stm32f4xx_hal_msp.crf --depend boilerbot_infantry_2022_leo\stm32f4xx_hal_msp.d)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1318,7 +1319,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1366,7 +1367,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1415,7 +1416,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1462,7 +1463,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1510,7 +1511,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x641DDDFC)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1559,7 +1560,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1609,7 +1610,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1659,7 +1660,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1710,7 +1711,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1750,13 +1751,13 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x641DDDFC)
-F (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c)(0x641DDF82)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\port.o --omf_browse boilerbot_infantry_2022_leo\port.crf --depend boilerbot_infantry_2022_leo\port.d)
+F (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c)(0x64712F7E)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\port.o --omf_browse boilerbot_infantry_2022_leo\port.crf --depend boilerbot_infantry_2022_leo\port.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x641DDDFC)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (../Core/Inc/FreeRTOSConfig.h)(0x638ADC94)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1796,14 +1797,14 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x641DDDFC)
-F (..\HigherLevelApps\HigherLevelApps.c\Robot_Control.c)(0x641E4745)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\robot_control.o --omf_browse boilerbot_infantry_2022_leo\robot_control.crf --depend boilerbot_infantry_2022_leo\robot_control.d)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+F (..\HigherLevelApps\HigherLevelApps.c\Robot_Control.c)(0x6473AC2D)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\robot_control.o --omf_browse boilerbot_infantry_2022_leo\robot_control.crf --depend boilerbot_infantry_2022_leo\robot_control.d)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1866,8 +1867,8 @@ I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -1883,15 +1884,16 @@ I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-F (..\HigherLevelApps\HigherLevelApps.c\State_Machine.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\state_machine.o --omf_browse boilerbot_infantry_2022_leo\state_machine.crf --depend boilerbot_infantry_2022_leo\state_machine.d)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+F (..\HigherLevelApps\HigherLevelApps.c\State_Machine.c)(0x6477C268)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\state_machine.o --omf_browse boilerbot_infantry_2022_leo\state_machine.crf --depend boilerbot_infantry_2022_leo\state_machine.d)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
 I (../Devices/Devices.h/DR16_Remote.h)(0x6388D6BB)
 I (../Core/Inc/dma.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -1952,14 +1954,14 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x641DDDFC
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x62C4E92F)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -1975,16 +1977,17 @@ I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-F (..\HigherLevelApps\HigherLevelApps.c\Chassis_Control.c)(0x64207366)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\chassis_control.o --omf_browse boilerbot_infantry_2022_leo\chassis_control.crf --depend boilerbot_infantry_2022_leo\chassis_control.d)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+F (..\HigherLevelApps\HigherLevelApps.c\Chassis_Control.c)(0x64766F8A)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\chassis_control.o --omf_browse boilerbot_infantry_2022_leo\chassis_control.crf --depend boilerbot_infantry_2022_leo\chassis_control.d)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2047,13 +2050,14 @@ I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -2069,11 +2073,11 @@ I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
-F (..\HigherLevelApps\HigherLevelApps.c\Gimbal_Control.c)(0x641F8CEB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\gimbal_control.o --omf_browse boilerbot_infantry_2022_leo\gimbal_control.crf --depend boilerbot_infantry_2022_leo\gimbal_control.d)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
+F (..\HigherLevelApps\HigherLevelApps.c\Gimbal_Control.c)(0x6477A831)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\gimbal_control.o --omf_browse boilerbot_infantry_2022_leo\gimbal_control.crf --depend boilerbot_infantry_2022_leo\gimbal_control.d)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
 I (../Devices/Devices.h/DR16_Remote.h)(0x6388D6BB)
 I (../Core/Inc/dma.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2134,17 +2138,18 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x641DDDFC)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x62C4E92F)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -2161,10 +2166,10 @@ I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
 F (..\HigherLevelApps\HigherLevelApps.c\Shooting_Control.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\shooting_control.o --omf_browse boilerbot_infantry_2022_leo\shooting_control.crf --depend boilerbot_infantry_2022_leo\shooting_control.d)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2226,14 +2231,14 @@ I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x62C4E92F)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -2249,7 +2254,8 @@ I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
 F (..\HigherLevelApps\HigherLevelApps.c\IMU_Temp_Control.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\imu_temp_control.o --omf_browse boilerbot_infantry_2022_leo\imu_temp_control.crf --depend boilerbot_infantry_2022_leo\imu_temp_control.d)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
@@ -2257,7 +2263,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2291,7 +2297,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
 I (../BSP/BSP.h/FusionAhrs.h)(0x6388D6BA)
@@ -2324,7 +2330,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x641DDDFC)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
@@ -2332,12 +2338,13 @@ I (../Devices/Devices.h/DR16_Remote.h)(0x6388D6BB)
 I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
 I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
@@ -2346,7 +2353,7 @@ F (..\Algorithms\Algorithms.c\User_Defined_Math.c)(0x6388D6BA)(--c99 -c --cpu Co
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2401,7 +2408,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
@@ -2411,13 +2418,14 @@ I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -2433,12 +2441,12 @@ I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
-F (..\Algorithms\Algorithms.c\PID.c)(0x6388D6BA)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\pid.o --omf_browse boilerbot_infantry_2022_leo\pid.crf --depend boilerbot_infantry_2022_leo\pid.d)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+F (..\Algorithms\Algorithms.c\PID.c)(0x6473B0D9)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\pid.o --omf_browse boilerbot_infantry_2022_leo\pid.crf --depend boilerbot_infantry_2022_leo\pid.d)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2498,16 +2506,17 @@ I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -2529,7 +2538,7 @@ I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2584,7 +2593,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
@@ -2594,12 +2603,13 @@ I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -2618,7 +2628,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
 F (..\Devices\Devices.c\DR16_Remote.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\dr16_remote.o --omf_browse boilerbot_infantry_2022_leo\dr16_remote.crf --depend boilerbot_infantry_2022_leo\dr16_remote.d)
 I (../Devices/Devices.h/DR16_Remote.h)(0x6388D6BB)
 I (../Core/Inc/dma.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2658,10 +2668,10 @@ I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
-F (..\Devices\Devices.c\Board_A_IMU.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\board_a_imu.o --omf_browse boilerbot_infantry_2022_leo\board_a_imu.crf --depend boilerbot_infantry_2022_leo\board_a_imu.d)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+F (..\Devices\Devices.c\Board_A_IMU.c)(0x6470F72F)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\board_a_imu.o --omf_browse boilerbot_infantry_2022_leo\board_a_imu.crf --depend boilerbot_infantry_2022_leo\board_a_imu.d)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2731,7 +2741,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x641DDDFC)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x641DDDFC)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
@@ -2739,12 +2749,13 @@ I (../Devices/Devices.h/DR16_Remote.h)(0x6388D6BB)
 I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
 I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
 I (../BSP/BSP.h/I2C_Setup.h)(0x6388D6BA)
@@ -2752,7 +2763,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025DA44)
 F (..\Devices\Devices.c\M3508_Motor.c)(0x638ADFAE)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\m3508_motor.o --omf_browse boilerbot_infantry_2022_leo\m3508_motor.crf --depend boilerbot_infantry_2022_leo\m3508_motor.d)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2809,7 +2820,7 @@ I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 F (..\Devices\Devices.c\GM6020_Motor.c)(0x641E46BE)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\gm6020_motor.o --omf_browse boilerbot_infantry_2022_leo\gm6020_motor.crf --depend boilerbot_infantry_2022_leo\gm6020_motor.d)
 I (../Devices/Devices.h/GM6020_Motor.h)(0x641E46B7)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2866,7 +2877,7 @@ I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 F (..\Devices\Devices.c\M2006_Motor.c)(0x641E46C8)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\m2006_motor.o --omf_browse boilerbot_infantry_2022_leo\m2006_motor.crf --depend boilerbot_infantry_2022_leo\m2006_motor.d)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2923,7 +2934,7 @@ I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 F (..\Devices\Devices.c\Super_Capacitor.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\super_capacitor.o --omf_browse boilerbot_infantry_2022_leo\super_capacitor.crf --depend boilerbot_infantry_2022_leo\super_capacitor.d)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -2981,7 +2992,7 @@ I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025DA4E)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x62C4E92F)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -3038,7 +3049,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
@@ -3047,13 +3058,14 @@ I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -3075,7 +3087,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
 I (../Core/Inc/dma.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -3110,10 +3122,10 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 I (../Core/Inc/usart.h)(0x6388D6BB)
-F (..\Devices\Devices.c\Buzzer.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\buzzer.o --omf_browse boilerbot_infantry_2022_leo\buzzer.crf --depend boilerbot_infantry_2022_leo\buzzer.d)
-I (../Devices/Devices.h/Buzzer.h)(0x6388D6BB)
+F (..\Devices\Devices.c\Buzzer.c)(0x64712C2F)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\buzzer.o --omf_browse boilerbot_infantry_2022_leo\buzzer.crf --depend boilerbot_infantry_2022_leo\buzzer.d)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
 I (../Core/Inc/tim.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -3150,10 +3162,10 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
-F (..\Devices\Devices.c\Jetson_Tx2.c)(0x6388D6BB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\jetson_tx2.o --omf_browse boilerbot_infantry_2022_leo\jetson_tx2.crf --depend boilerbot_infantry_2022_leo\jetson_tx2.d)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
+F (..\Devices\Devices.c\Jetson_Tx2.c)(0x644442EF)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\jetson_tx2.o --omf_browse boilerbot_infantry_2022_leo\jetson_tx2.crf --depend boilerbot_infantry_2022_leo\jetson_tx2.d)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
 I (../Core/Inc/dma.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -3195,7 +3207,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025DA4E)
 F (..\BSP\BSP.c\CAN_Setup.c)(0x6388D6BA)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\can_setup.o --omf_browse boilerbot_infantry_2022_leo\can_setup.crf --depend boilerbot_infantry_2022_leo\can_setup.d)
 I (../BSP/BSP.h/CAN_Setup.h)(0x6388D6BA)
 I (../Core/Inc/can.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x641DDDF8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x638ADC97)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x641DDDF8)
@@ -3286,7 +3298,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x641DDDF8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x641DDDF8)
 I (../Core/Inc/i2c.h)(0x6388D6BB)
-I (../Core/Inc/main.h)(0x6388D6BB)
+I (../Core/Inc/main.h)(0x64712E2E)
 I (../Devices/Devices.h/MPU6050_IMU.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x62C4E92F)
 I (../Algorithms/Algorithms.h/User_Defined_Math.h)(0x6388D6BA)
@@ -3311,7 +3323,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x641DDDFC
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025DA44)
 I (../Devices/Devices.h/Motor_Init.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/Chassis_Control.h)(0x641F9E26)
-I (../Algorithms/Algorithms.h/PID.h)(0x641DDFDD)
+I (../Algorithms/Algorithms.h/PID.h)(0x64766F9A)
 I (../Devices/Devices.h/M3508_Motor.h)(0x638ADF91)
 I (../Devices/Devices.h/M2006_Motor.h)(0x6388D6BB)
 I (../Devices/Devices.h/Super_Capacitor.h)(0x6388D6BB)
@@ -3320,13 +3332,14 @@ I (../Core/Inc/dma.h)(0x6388D6BB)
 I (../Core/Inc/usart.h)(0x6388D6BB)
 I (C:\Keil_v5\ARM\ARMCC\include\assert.h)(0x6025DA48)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025DA4C)
-I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x641E4DE5)
-I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x6388D6BB)
+I (../HigherLevelApps/HigherLevelApps.h/Gimbal_Control.h)(0x6477A8DB)
+I (../HigherLevelApps/HigherLevelApps.h/Robot_Control.h)(0x647128BD)
 I (../HigherLevelApps/HigherLevelApps.h/State_Machine.h)(0x6388D6BB)
-I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x642081F9)
+I (../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h)(0x6468F9EA)
 I (../Algorithms/Algorithms.h/Ramp_Calc.h)(0x6388D6BA)
-I (../Devices/Devices.h/Jetson_Tx2.h)(0x6388D6BB)
-I (../Devices/Devices.h/Board_A_IMU.h)(0x6388D6BB)
+I (../Devices/Devices.h/Jetson_Tx2.h)(0x64443B73)
+I (../Devices/Devices.h/Buzzer.h)(0x64712D0E)
+I (../Devices/Devices.h/Board_A_IMU.h)(0x646FBD10)
 I (../Core/Inc/spi.h)(0x6388D6BB)
 I (../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h)(0x6388D6BB)
 I (../BSP/BSP.h/Fusion.h)(0x6388D6BA)
@@ -3338,7 +3351,7 @@ I (../BSP/BSP.h/FusionCompass.h)(0x6388D6BA)
 I (../BSP/BSP.h/FusionOffset.h)(0x6388D6BA)
 I (../Devices/Devices.h/MPU6500_Reg.h)(0x6388D6BB)
 I (../Devices/Devices.h/IST8310_Reg.h)(0x6388D6BB)
-F (..\BSP\BSP.c\FusionAhrs.c)(0x6388D6BA)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\fusionahrs.o --omf_browse boilerbot_infantry_2022_leo\fusionahrs.crf --depend boilerbot_infantry_2022_leo\fusionahrs.d)
+F (..\BSP\BSP.c\FusionAhrs.c)(0x64766E21)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Devices/Devices.h -I ../Algorithms/Algorithms.h -I ../BSP/BSP.h -I ../FreeRTOS/FreeRTOS.h -I ../HigherLevelApps/HigherLevelApps.h -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_BoilerBot_Infantry_2022_Leo-IC:\Users\edcan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\edcan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o boilerbot_infantry_2022_leo\fusionahrs.o --omf_browse boilerbot_infantry_2022_leo\fusionahrs.crf --depend boilerbot_infantry_2022_leo\fusionahrs.d)
 I (C:\Keil_v5\ARM\ARMCC\include\float.h)(0x6025DA4E)
 I (../BSP/BSP.h/FusionAhrs.h)(0x6388D6BA)
 I (../BSP/BSP.h/FusionMath.h)(0x6388D6BA)

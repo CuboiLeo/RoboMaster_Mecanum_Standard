@@ -80,6 +80,7 @@ boilerbot_infantry_2022_leo\ramp_calc.o: ../HigherLevelApps/HigherLevelApps.h/Sh
 boilerbot_infantry_2022_leo\ramp_calc.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../Devices/Devices.h/Jetson_Tx2.h
+boilerbot_infantry_2022_leo\ramp_calc.o: ../Devices/Devices.h/Buzzer.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\ramp_calc.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h

@@ -28,22 +28,54 @@
 
 typedef struct
 {
-	uint8_t Rx_Buffer[2];
+	uint8_t Rx_Buffer[7];
 	uint8_t Tx_Buffer[2];
 	
 	struct
 	{
 		uint8_t Super_Capacitor_Charge;
 		uint8_t Team_Color; //0 for red, 1 for blue
-		uint8_t Is_In_AutoAim;
+		uint8_t Is_In_AutoAim; // 0 for not Auto Aiming, 1 for Auto Aiming
 		float Current_Pitch;
 	}Sending;
 	
 	struct
 	{
-		uint8_t Auto_Aiming_Yaw;
-		uint8_t Auto_Aiming_Pitch;
-	}Auto_Aiming;
+		uint8_t Frame_ID;
+		uint8_t Frame_Type; //0 for heart beat, 1 for auto aiming, 2 for navigation
+		
+		struct
+		{
+			float X_Vel;	// 0.1 m/s
+			float Y_Vel; // 0.1 m/s
+			int8_t Yaw_Angular_Rate;  // degree/s
+			uint8_t State; // 0 for stationary, 1 for moving, 2 for spinning
+		}Navigation;
+			
+		struct
+		{
+			int8_t Yaw;
+			int8_t Pitch;
+			uint8_t State;
+			uint8_t _;
+		}Auto_Aiming;
+			
+		struct
+		{
+			uint8_t a;
+			uint8_t b;
+			uint8_t c;
+			uint8_t d;
+		}Heart_Beat;
+		
+		uint8_t CRC8;
+	}Receiving;
+	
+	enum
+	{
+		Red = 1,
+		Blue = 2,
+	}Team_Color;
 	
 }Tx2_Data_t;
 

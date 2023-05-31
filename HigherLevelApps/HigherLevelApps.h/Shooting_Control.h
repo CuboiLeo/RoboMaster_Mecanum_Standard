@@ -38,6 +38,7 @@ typedef struct
 		uint8_t Single_Fire_Flag; //Signal that need to fire once
 		uint8_t Single_Fired_Flag;	//Signal that it has fired once already
 		uint8_t Burst_Flag;	//Signal continuous shooting
+		uint8_t Auto_Aiming; //Auto aiming mode
 	}Type;
 	
 	struct

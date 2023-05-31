@@ -16,6 +16,7 @@
 #include "State_Machine.h"
 #include "Shooting_Control.h"
 #include "Jetson_Tx2.h"
+#include "Buzzer.h"
 
 #define Robot_Control_Func_GroundInit		\
 		{																		\

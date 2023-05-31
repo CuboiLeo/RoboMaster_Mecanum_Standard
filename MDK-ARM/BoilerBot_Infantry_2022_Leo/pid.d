@@ -79,6 +79,7 @@ boilerbot_infantry_2022_leo\pid.o: ../HigherLevelApps/HigherLevelApps.h/State_Ma
 boilerbot_infantry_2022_leo\pid.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\pid.o: ../Devices/Devices.h/Super_Capacitor.h
 boilerbot_infantry_2022_leo\pid.o: ../Devices/Devices.h/Jetson_Tx2.h
+boilerbot_infantry_2022_leo\pid.o: ../Devices/Devices.h/Buzzer.h
 boilerbot_infantry_2022_leo\pid.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\pid.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\pid.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h

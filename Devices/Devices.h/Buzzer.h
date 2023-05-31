@@ -19,18 +19,21 @@
 #define Buzzer_Func_GroundInit				\
 {																			\
 		&Buzzer_Init,											\
+				&Buzzer_State,								\
 				&Buzzer_Robot_Initializing,		\
 				&Buzzer_Robot_Is_Initialized,	\
 				&Buzzer_Modules_Offline,			\
+				&Buzzer_Play_Song, 						\
 }
 
 #define MAX_VOLUME 270 //Maximum volume
+#define NORMAL_VOLUME 50
 
 typedef struct
 {
 	enum
 	{
-		Low_Do,
+		Low_Do = 1,
 		Low_Do_N,
 		Low_Re,
 		Low_Re_N,
@@ -70,15 +73,20 @@ typedef struct
 		High_Ti,
 	}Note;
 	
+	uint8_t Button_State;
+	uint8_t Button_Prev_State;
+	uint8_t Song_Number;
 	
 }Buzzer_t;
 
 typedef struct
 {
 	void (*Buzzer_Init)(void);
+	void (*Buzzer_State)(void);
 	void (*Buzzer_Robot_Initializing)(void);
 	void (*Buzzer_Robot_Is_Initialized)(void);
 	void (*Buzzer_Modules_Offline)(void);
+	void (*Buzzer_Play_Song)(void);
 }Buzzer_Func_t;
 
 extern Buzzer_t Buzzer;

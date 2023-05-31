@@ -71,7 +71,7 @@ void Inverse_Kinematic_Calc(Chassis_t *Chassis)
 
 void Chassis_Processing(Chassis_t *Chassis)
 {
-	float angle_diff = DEG_TO_RAD((GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
+	Gimbal.Angle_Difference = DEG_TO_RAD((GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
 	
 	//Calculate different variables based on current mode
 	switch(Chassis->Current_Mode)
@@ -82,16 +82,17 @@ void Chassis_Processing(Chassis_t *Chassis)
 			//And because chassis and gimbal coordinates are alligned, they are the same
 			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx;
 			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vy;
-			Chassis->Chassis_Coord.Wz = PID_Func.Positional_PID(&Chassis_Angle_PID,0,angle_diff);
-			
+//			if(fabs(Gimbal.Angle_Difference) < 0.05f)
+//				Chassis_Angle_PID.Kp = 10.0f;
+			Chassis->Chassis_Coord.Wz = PID_Func.Positional_PID(&Chassis_Angle_PID,0,Gimbal.Angle_Difference);
 			break;
 		}	
 		
 		case(Not_Follow_Gimbal):
 		{
 			//The gimbal coordinate is converted to chassis coordinate through trigonometry	
-			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx * cos(angle_diff) - Chassis->Gimbal_Coord.Vy * sin(angle_diff);
-			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vx * sin(angle_diff) + Chassis->Gimbal_Coord.Vy * cos(angle_diff);
+			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx * cos(Gimbal.Angle_Difference) - Chassis->Gimbal_Coord.Vy * sin(Gimbal.Angle_Difference);
+			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vx * sin(Gimbal.Angle_Difference) + Chassis->Gimbal_Coord.Vy * cos(Gimbal.Angle_Difference);
 			Chassis->Chassis_Coord.Wz = 0;
 			
 			break;
@@ -100,8 +101,8 @@ void Chassis_Processing(Chassis_t *Chassis)
 		case(Spin_Top):
 		{
 			//The gimbal coordinate is converted to chassis coordinate through trigonometry
-			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx * cos(angle_diff) - Chassis->Gimbal_Coord.Vy * sin(angle_diff);
-			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vx * sin(angle_diff) + Chassis->Gimbal_Coord.Vy * cos(angle_diff);
+			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx * cos(Gimbal.Angle_Difference) - Chassis->Gimbal_Coord.Vy * sin(Gimbal.Angle_Difference);
+			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vx * sin(Gimbal.Angle_Difference) + Chassis->Gimbal_Coord.Vy * cos(Gimbal.Angle_Difference);
 			Chassis->Chassis_Coord.Wz = CHASSIS_SPINTOP_RATE; //This is where you control how fast the spintop spins
 			
 			break;

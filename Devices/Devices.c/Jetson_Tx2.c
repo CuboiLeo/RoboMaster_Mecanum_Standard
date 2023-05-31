@@ -39,15 +39,43 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 
 void Jetson_Tx2_Get_Data(void)
 {
-	Tx2_Data.Auto_Aiming.Auto_Aiming_Yaw = Tx2_Data.Rx_Buffer[0];
-	Tx2_Data.Auto_Aiming.Auto_Aiming_Pitch = Tx2_Data.Rx_Buffer[1];
+	Tx2_Data.Receiving.Frame_ID = Tx2_Data.Rx_Buffer[0];
+	Tx2_Data.Receiving.Frame_Type = Tx2_Data.Rx_Buffer[1];
+	switch(Tx2_Data.Receiving.Frame_Type)
+	{
+		case 0:
+			Tx2_Data.Receiving.Auto_Aiming.Yaw = (int8_t)Tx2_Data.Rx_Buffer[2];
+			Tx2_Data.Receiving.Auto_Aiming.Pitch = (int8_t)Tx2_Data.Rx_Buffer[3];
+			Tx2_Data.Receiving.Auto_Aiming.State = Tx2_Data.Rx_Buffer[4];
+			Tx2_Data.Receiving.Auto_Aiming._ = Tx2_Data.Rx_Buffer[5];
+			break;
+		
+		case 1:
+			Tx2_Data.Receiving.Navigation.X_Vel = 0.1f * (int8_t)Tx2_Data.Rx_Buffer[2];
+			Tx2_Data.Receiving.Navigation.Y_Vel = 0.1f * (int8_t)Tx2_Data.Rx_Buffer[3];
+			Tx2_Data.Receiving.Navigation.Yaw_Angular_Rate = (int8_t)Tx2_Data.Rx_Buffer[4];
+			Tx2_Data.Receiving.Navigation.State = Tx2_Data.Rx_Buffer[5];
+			break;
+		
+		case 2:
+			Tx2_Data.Receiving.Heart_Beat.a = Tx2_Data.Rx_Buffer[2];
+			Tx2_Data.Receiving.Heart_Beat.b = Tx2_Data.Rx_Buffer[3];
+			Tx2_Data.Receiving.Heart_Beat.c = Tx2_Data.Rx_Buffer[4];
+			Tx2_Data.Receiving.Heart_Beat.d = Tx2_Data.Rx_Buffer[5];
+			break;
+		
+		default:
+			break;
+	}
+	
+	Tx2_Data.Receiving.CRC8 = Tx2_Data.Rx_Buffer[6];
 }
 
 void Jetson_Tx2_Send_Data(void)
 {
 	Tx2_Data.Sending.Super_Capacitor_Charge = Tx2_Data.Sending.Super_Capacitor_Charge + 1;
-	Tx2_Data.Sending.Team_Color = 1;
-	Tx2_Data.Sending.Is_In_AutoAim = Tx2_Data.Sending.Is_In_AutoAim + 2;
+	Tx2_Data.Sending.Team_Color = Red;
+	Tx2_Data.Sending.Is_In_AutoAim = 1;
 	Tx2_Data.Tx_Buffer[0] = Tx2_Data.Sending.Super_Capacitor_Charge;
 	Tx2_Data.Tx_Buffer[1] = (Tx2_Data.Sending.Team_Color << 1) | Tx2_Data.Sending.Is_In_AutoAim;
 }
