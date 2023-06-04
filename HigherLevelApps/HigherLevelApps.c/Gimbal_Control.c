@@ -23,7 +23,7 @@ Gimbal_t Gimbal;
 void Gimbal_Init(void)
 {
 	//Set the origin for yaw and pitch
-	Gimbal.Target_Yaw = YAW_MID_MECH_ANGLE;
+	Gimbal.Target_Yaw = Board_A_IMU.Export_Data.Total_Yaw;
 	Gimbal.Target_Pitch = PITCH_MID_MECH_ANGLE;
 }
 
@@ -39,8 +39,8 @@ void Gimbal_Control_Get_Data(Gimbal_t *Gimbal)
 	
 	else if(State_Machine.Control_Source == Computer)
 	{
-		Gimbal->Target_Yaw -= (float)DR16_Export_Data.Mouse.x / 40.0f;
-		Gimbal->Target_Pitch -= (float)DR16_Export_Data.Mouse.y / 30.0f;
+		Gimbal->Target_Yaw -= (float)DR16_Export_Data.Mouse.x / 60.0f;
+		Gimbal->Target_Pitch -= (float)DR16_Export_Data.Mouse.y / 5.0f;
 		Gimbal->Target_Pitch = VAL_LIMIT(Gimbal->Target_Pitch,PITCH_UPPER_LIMIT,PITCH_LOWER_LIMIT);
 	}
 }

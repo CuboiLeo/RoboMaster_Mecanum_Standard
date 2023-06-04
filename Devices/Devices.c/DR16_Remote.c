@@ -163,22 +163,25 @@
 void Key_State_Detect(Key_State *Key)
  {
 	 Key->State_Count++;
-	 
-	 //Determine key state
-	 if(Key->State_Count >= TIME_KEY_SINGLECLICK && Key->State_Count <= TIME_KEY_HOLD)
-		 Key->Single_Click_Flag = 1;
-	 else if(Key->State_Count > TIME_KEY_HOLD)
+	 Key->Current_State = 1;
+	 if(Key->State_Count > 1)
 	 {
-		 Key->Single_Click_Flag = 0;
-		 Key->Hold_Flag = 1; 
+		 Key->Prev_State = 1;
+		 Key->Hold_Flag = 1;
 	 }
+	 if(Key->Current_State == 1 && Key->Prev_State == 0)
+		 Key->Switch_Flag = 1;
+	 else
+		 Key->Switch_Flag = 0;
  }
  
  void Key_State_Clear(Key_State *Key)
  {
-	 Key->Single_Click_Flag = 0;
 	 Key->Hold_Flag = 0;
 	 Key->State_Count = 0;
+	 Key->Switch_Flag = 0;
+	 Key->Current_State = 0;
+	 Key->Prev_State = 0;
  }
  
  void Check_DR16(void)

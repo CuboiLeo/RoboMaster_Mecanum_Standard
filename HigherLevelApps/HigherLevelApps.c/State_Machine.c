@@ -125,13 +125,13 @@ void Computer_Update(void)
 	*/
 	if(State_Machine.Control_Source == Computer)
 	{
-		if(DR16_Export_Data.Keyboard.Press_R.Single_Click_Flag)
+		if(DR16_Export_Data.Keyboard.Press_R.Switch_Flag)
 		{
 			Chassis.Current_Mode = Follow_Gimbal;
 			Gimbal.Current_Mode = Follow_Gimbal;
 		}
 		
-		else if(DR16_Export_Data.Keyboard.Press_F.Single_Click_Flag)
+		else if(DR16_Export_Data.Keyboard.Press_F.Switch_Flag)
 		{
 			if(Chassis.Current_Mode == Not_Follow_Gimbal && Gimbal.Current_Mode == Not_Follow_Gimbal)
 			{
@@ -145,7 +145,7 @@ void Computer_Update(void)
 			}
 		}
 		
-		else if(DR16_Export_Data.Keyboard.Press_G.Single_Click_Flag)
+		else if(DR16_Export_Data.Keyboard.Press_G.Switch_Flag)
 		{
 			if(Chassis.Current_Mode == Spin_Top && Gimbal.Current_Mode == Spin_Top)
 			{
@@ -159,7 +159,7 @@ void Computer_Update(void)
 			}
 		}
 		
-		else if(DR16_Export_Data.Keyboard.Press_B.Single_Click_Flag)
+		else if(DR16_Export_Data.Keyboard.Press_B.Switch_Flag)
 		{
 			if(Shooting.Fric_Wheel.Turned_On)
 				Shooting.Fric_Wheel.Turned_On = 0;
@@ -167,15 +167,12 @@ void Computer_Update(void)
 				Shooting.Fric_Wheel.Turned_On = 1;
 		}
 		
-		else if(DR16_Export_Data.Keyboard.Press_C.Single_Click_Flag)
+		if(DR16_Export_Data.Keyboard.Press_Shift.Hold_Flag)
 		{
-			if(Super_Capacitor.Super_Cap_On)
-				Super_Capacitor.Super_Cap_On = 0;
-			else
-			{
-				Super_Capacitor.Super_Cap_On = 1;
-				Super_Capacitor.Super_Cap_Accel_Rate = 0.66f;
-			}
+			Super_Capacitor.Super_Cap_On = 1;
+			Super_Capacitor.Super_Cap_Accel_Rate = 2.0f;
 		}
+		else if(!DR16_Export_Data.Keyboard.Press_Shift.Hold_Flag)
+			Super_Capacitor.Super_Cap_On = 0;
 	}
 }

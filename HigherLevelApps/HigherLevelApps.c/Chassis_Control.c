@@ -71,7 +71,7 @@ void Inverse_Kinematic_Calc(Chassis_t *Chassis)
 
 void Chassis_Processing(Chassis_t *Chassis)
 {
-	Gimbal.Angle_Difference = DEG_TO_RAD((GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
+	Gimbal.Angle_Difference = DEG_TO_RAD(Find_Gimbal_Min_Angle(GM6020_Yaw.Actual_Angle - YAW_MID_MECH_ANGLE) * GM6020_ANGLE_CONVERT);
 	
 	//Calculate different variables based on current mode
 	switch(Chassis->Current_Mode)

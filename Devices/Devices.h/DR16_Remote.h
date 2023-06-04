@@ -27,9 +27,6 @@
 
 #define TOTAL_KEY_NUMBER 16 //Total number of keys that are provided
 
-#define TIME_KEY_SINGLECLICK 1 //Time for single click
-#define TIME_KEY_HOLD 10	//Time for holding
-
 //Switch states and corresponding value
 #define SWITCH_UP 	((uint16_t)1)
 #define SWITCH_MID 	((uint16_t)3)
@@ -66,9 +63,11 @@
 		
 typedef struct
 {
-	uint8_t Single_Click_Flag;
 	uint8_t Hold_Flag;
+	uint8_t Switch_Flag;
 	uint8_t State_Count;
+	uint8_t Current_State;
+	uint8_t Prev_State;
 }Key_State;
 	
 typedef struct
