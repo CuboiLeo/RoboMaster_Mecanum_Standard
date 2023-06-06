@@ -189,7 +189,7 @@ void StartIMUTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		Board_A_IMU_Func.Board_A_IMU_Calibrate(&Board_A_IMU);
+		//Board_A_IMU_Func.Board_A_IMU_Calibrate(&Board_A_IMU);
 		Board_A_IMU_Func.Board_A_IMU_Read_Data(&Board_A_IMU);
 		Board_A_IMU_Func.Board_A_IMU_Calc_Angle(&Board_A_IMU);
 		IMU_Temp_Control_Func.Board_A_IMU_Temp_Control();

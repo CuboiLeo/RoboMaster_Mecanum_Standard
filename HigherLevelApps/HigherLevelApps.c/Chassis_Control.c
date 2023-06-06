@@ -82,8 +82,6 @@ void Chassis_Processing(Chassis_t *Chassis)
 			//And because chassis and gimbal coordinates are alligned, they are the same
 			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx;
 			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vy;
-//			if(fabs(Gimbal.Angle_Difference) < 0.05f)
-//				Chassis_Angle_PID.Kp = 10.0f;
 			Chassis->Chassis_Coord.Wz = PID_Func.Positional_PID(&Chassis_Angle_PID,0,Gimbal.Angle_Difference);
 			break;
 		}	

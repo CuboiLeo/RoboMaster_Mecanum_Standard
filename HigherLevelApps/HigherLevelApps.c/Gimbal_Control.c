@@ -19,7 +19,6 @@ Gimbal_Func_t Gimbal_Func = Gimbal_Func_GroundInit;
 #undef Gimbal_Func_GroundInit
 
 Gimbal_t Gimbal;
-
 void Gimbal_Init(void)
 {
 	//Set the origin for yaw and pitch
@@ -58,10 +57,11 @@ void Gimbal_Processing(Gimbal_t *Gimbal)
 			}
 			Gimbal->Current_Yaw = YAW_DIRECTION * Board_A_IMU.Export_Data.Total_Yaw;
 			Gimbal->Yaw_Error = Gimbal->Target_Yaw - Gimbal->Current_Yaw;
-			if(fabs(Gimbal->Yaw_Error) < 1.5f)
-				Yaw_Angle_PID.Kp = 200.0f;
-			GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&Yaw_Angle_PID,Gimbal->Target_Yaw,Gimbal->Current_Yaw);
+//			if(fabs(Gimbal->Yaw_Error) < 1.5f)
+//				Yaw_Angle_PID.Kp = 200.0f;
 			
+			GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&Yaw_Angle_PID,Gimbal->Target_Yaw,Gimbal->Current_Yaw);
+							
 			Gimbal->Current_Pitch = PITCH_DIRECTION * GM6020_Pitch.Actual_Angle;
 			GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&Pitch_Angle_PID,Gimbal->Target_Pitch,Gimbal->Current_Pitch);
 
@@ -77,24 +77,28 @@ void Gimbal_Processing(Gimbal_t *Gimbal)
 				Gimbal->Target_Yaw = YAW_DIRECTION * Board_A_IMU.Export_Data.Total_Yaw;
 			if(Shooting.Type.Auto_Aiming)
 			{
-				Gimbal->Target_Yaw = Tx2_Data.Receiving.Auto_Aiming.Yaw;
-				GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&AutoAim_Yaw_PID,Gimbal->Target_Yaw,0);
-				//GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&Yaw_Speed_PID,GM6020_Yaw.Output_Current,-GM6020_Yaw.Actual_Speed);
+				Gimbal->b += 0.002f;
+				Gimbal->a += 0.012f;
 				
-				Gimbal->Target_Pitch = Tx2_Data.Receiving.Auto_Aiming.Pitch;
-				GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&AutoAim_Pitch_PID,Gimbal->Target_Pitch,0);
-				//GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&Pitch_Speed_PID,GM6020_Pitch.Output_Current,GM6020_Pitch.Actual_Speed);
+				Gimbal->Target_Yaw = Tx2_Data.Receiving.Auto_Aiming.Yaw; //8*cos(Gimbal->b);
+				GM6020_Yaw.Output_Current = -PID_Func.Positional_PID(&AutoAim_Yaw_PID,Gimbal->Target_Yaw,0);
+				
+				Gimbal->Target_Pitch = Tx2_Data.Receiving.Auto_Aiming.Pitch; //4*cos(Gimbal->a);
+				if((GM6020_Pitch.Actual_Angle > PITCH_LOWER_LIMIT && GM6020_Pitch.Actual_Angle < PITCH_UPPER_LIMIT) || \
+					 (GM6020_Pitch.Actual_Angle < PITCH_LOWER_LIMIT && Gimbal->Target_Pitch > 0) || \
+					 (GM6020_Pitch.Actual_Angle > PITCH_UPPER_LIMIT && Gimbal->Target_Pitch < 0))
+					GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&AutoAim_Pitch_PID,Gimbal->Target_Pitch,0);
+				else
+					GM6020_Pitch.Output_Current = 0;
 			}
 			//Nothing special, just positional pid angle control
 			else
 			{
 				Gimbal->Current_Yaw = YAW_DIRECTION * Board_A_IMU.Export_Data.Total_Yaw;
 				GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&Yaw_Angle_PID,Gimbal->Target_Yaw,Gimbal->Current_Yaw);
-				//GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&Yaw_Speed_PID,GM6020_Yaw.Output_Current,-GM6020_Yaw.Actual_Speed);
 				
 				Gimbal->Current_Pitch = PITCH_DIRECTION * GM6020_Pitch.Actual_Angle;
 				GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&Pitch_Angle_PID,Gimbal->Target_Pitch,Gimbal->Current_Pitch);
-				//GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&Pitch_Speed_PID,GM6020_Pitch.Output_Current,GM6020_Pitch.Actual_Speed);
 			}
 			
 			Gimbal->Prev_Mode = Not_Follow_Gimbal;
@@ -111,12 +115,10 @@ void Gimbal_Processing(Gimbal_t *Gimbal)
 			//Gimbal is held in position through IMU data instead of yaw encoder
 			Gimbal->Current_Yaw = YAW_DIRECTION * Board_A_IMU.Export_Data.Total_Yaw;
 			GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&Yaw_Angle_PID,Gimbal->Target_Yaw,Gimbal->Current_Yaw);
-			//GM6020_Yaw.Output_Current = PID_Func.Positional_PID(&Yaw_Speed_PID,GM6020_Yaw.Output_Current,-GM6020_Yaw.Actual_Speed);
 			
 			Gimbal->Current_Pitch = PITCH_DIRECTION * (GM6020_Pitch.Actual_Angle);
 			GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&Pitch_Angle_PID,Gimbal->Target_Pitch,Gimbal->Current_Pitch);
-			//GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&Pitch_Speed_PID,GM6020_Pitch.Output_Current,GM6020_Pitch.Actual_Speed);
-			
+
 			Gimbal->Prev_Mode = Spin_Top;
 			
 			break;

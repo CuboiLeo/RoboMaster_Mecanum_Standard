@@ -125,7 +125,7 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					30000.0f,				  	\
+					28000.0f,				  	\
 					0,									\
 		}
 		
@@ -143,7 +143,7 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					30000.0f,						\
+					28000.0f,						\
 					0,									\
 		}
 
@@ -190,15 +190,15 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
-					5.0f,								\
+					500.0f,							\
+					0,									\
+					50000.0f,						\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
+					28000.0f,						\
 					0,									\
-					0,									\
-					13000.0f,						\
-					1000.0f,						\
 		}
 		
 #define	AutoAim_Yaw_PIDInit		\
@@ -210,13 +210,13 @@ typedef struct
 					0,									\
 					500.0f,							\
 					0,									\
+					50000.0f,						\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
+					28000.0f,						\
 					0,									\
-					13000.0f,						\
-					1000.0f,						\
 		}
 extern PID_Func_t PID_Func;
 extern PID_t Chassis_Angle_PID;

@@ -97,15 +97,15 @@ void Remote_Control_Update(void)
 			case(SWITCH_MID):
 			{
 				State_Machine.Control_Source = Remote_Control;
-				
-				Shooting.Fric_Wheel.Turned_On = 1;
+				Shooting.Type.Auto_Aiming = 0;
+				//Shooting.Fric_Wheel.Turned_On = 1;
 				
 				break;
 			}
 			case(SWITCH_UP):
 			{
-				State_Machine.Control_Source = Computer;
-				//Shooting.Type.Auto_Aiming = 1;
+				//State_Machine.Control_Source = Computer;
+				Shooting.Type.Auto_Aiming = 1;
 				
 				break;
 			}

@@ -45,6 +45,8 @@ typedef struct
 	float Current_Pitch;
 	float Angle_Difference;
 	
+	float a;
+	float b;
 	uint8_t Gimbal_Back_Mid_Flag;
 	uint8_t Gimbal_Offline_Flag;
 }Gimbal_t;
