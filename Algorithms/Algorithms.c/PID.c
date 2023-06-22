@@ -37,8 +37,11 @@ PID_t Trigger_Angle_PID = Trigger_Angle_PIDInit;
 PID_t Trigger_Speed_PID = Trigger_Speed_PIDInit;
 #undef Trigger_Speed_PIDInit
 
-PID_t AutoAim_Pitch_PID = AutoAim_Pitch_PIDInit;
-#undef AutoAim_Pitch_PIDInit
+PID_t AutoAim_Pitch_Angle_PID = AutoAim_Pitch_Angle_PIDInit;
+#undef AutoAim_Pitch_Angle_PIDInit
+
+PID_t AutoAim_Pitch_Speed_PID = AutoAim_Pitch_Speed_PIDInit;
+#undef AutoAim_Pitch_Speed_PIDInit
 
 PID_t AutoAim_Yaw_PID = AutoAim_Yaw_PIDInit;
 #undef AutoAim_Yaw_PIDInit

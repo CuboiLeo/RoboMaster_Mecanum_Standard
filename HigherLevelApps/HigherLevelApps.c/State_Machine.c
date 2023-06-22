@@ -98,7 +98,7 @@ void Remote_Control_Update(void)
 			{
 				State_Machine.Control_Source = Remote_Control;
 				Shooting.Type.Auto_Aiming = 0;
-				//Shooting.Fric_Wheel.Turned_On = 1;
+				Shooting.Fric_Wheel.Turned_On = 1;
 				
 				break;
 			}

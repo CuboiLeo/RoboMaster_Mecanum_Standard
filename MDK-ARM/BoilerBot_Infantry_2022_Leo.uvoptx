@@ -220,6 +220,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>M3508_Chassis,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>M2006_Trigger,0x0A</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>

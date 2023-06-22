@@ -19,9 +19,9 @@
 
 #define FRIC_SPEED_16	5300 //Tested value for 16m/s 
 #define FRIC_SPEED_28	7400 //Tested value for 28m/s
-#define TRIGGER_DIRECTION -1 //Trigger motor direction
-#define FRIC_LEFT_DIRECTION -1 //Left friction wheel motor direction
-#define FRIC_RIGHT_DIRECTION 1 //Right friction wheel motor direction
+#define TRIGGER_DIRECTION 1 //Trigger motor direction
+#define FRIC_LEFT_DIRECTION 1 //Left friction wheel motor direction
+#define FRIC_RIGHT_DIRECTION -1 //Right friction wheel motor direction
 
 #define Shooting_Func_GroundInit	\
 {																	\
