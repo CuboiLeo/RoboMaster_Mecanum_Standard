@@ -136,15 +136,33 @@ typedef struct
 					0,									\
 					0,									\
 					0,									\
+					2.0f,								\
+					0,									\
 					20.0f,							\
 					0,									\
-					400.0f,							\
+					0,									\
+					0,									\
+					0,									\
+					3000.0f,						\
+					0,									\
+		}
+
+#define Pitch_Speed_PIDInit		\
+		{													\
+				0,										\
+					0,									\
+					0,									\
+					0,									\
+					0,									\
+					350.0f,							\
+					0.15f,							\
+					0,									\
 					0,									\
 					0,									\
 					0,									\
 					0,									\
 					28000.0f,						\
-					0,									\
+					4000.0f,						\
 		}
 
 #define Trigger_Angle_PIDInit	\
@@ -190,9 +208,9 @@ typedef struct
 					0,												\
 					0,												\
 					0,												\
-					0.6f,											\
+					2.0f,											\
 					0,												\
-					0,												\
+					20.0f,										\
 					0,												\
 					0,												\
 					0,												\
@@ -209,7 +227,7 @@ typedef struct
 					0,												\
 					0,												\
 					350.0f,										\
-					0,												\
+					0.15f,										\
 					0,												\
 					0,												\
 					0,												\
@@ -228,7 +246,7 @@ typedef struct
 					0,									\
 					400.0f,							\
 					0,									\
-					60000.0f,						\
+					20000.0f,						\
 					0,									\
 					0,									\
 					0,									\
@@ -242,6 +260,7 @@ extern PID_t Chassis_Speed_PID;
 extern PID_t Fric_Wheel_PID;
 extern PID_t Yaw_Angle_PID;
 extern PID_t Pitch_Angle_PID;
+extern PID_t Pitch_Speed_PID;
 extern PID_t Trigger_Angle_PID; 
 extern PID_t Trigger_Speed_PID;
 extern PID_t AutoAim_Pitch_Angle_PID;

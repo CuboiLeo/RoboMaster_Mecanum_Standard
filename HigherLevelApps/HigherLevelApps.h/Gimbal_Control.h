@@ -22,9 +22,9 @@
 #define YAW_DIRECTION 1 //Yaw motor direction
 #define YAW_MID_MECH_ANGLE 2840 //This is measured for yaw origin
 #define PITCH_DIRECTION 1 //Pitch motor direction
-#define PITCH_MID_MECH_ANGLE 5150 // This is measured for pitch origin
-#define PITCH_LOWER_LIMIT 4660 //Pitch cannot rotate 360 degree, so these are the limits in mechanical angle
-#define PITCH_UPPER_LIMIT 5780
+#define PITCH_MID_MECH_ANGLE 10.0f // This is measured for pitch origin
+#define PITCH_LOWER_LIMIT -10.0f //Pitch cannot rotate 360 degree, so these are the limits in mechanical angle
+#define PITCH_UPPER_LIMIT 30.0f
 
 #define Gimbal_Func_GroundInit				\
 		{																	\
@@ -40,14 +40,11 @@ typedef struct
 
 	float Target_Yaw;
 	float Current_Yaw;
-	float Yaw_Error;
 	float Target_Pitch;
 	float Current_Pitch;
 	float Angle_Difference;
   float Pitch_Angle_Output;
-	
-	int a;
-	int b;
+
 	uint8_t Gimbal_Back_Mid_Flag;
 	uint8_t Gimbal_Offline_Flag;
 }Gimbal_t;
