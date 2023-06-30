@@ -81,7 +81,6 @@ boilerbot_infantry_2022_leo\mpu6050_imu.o: ../HigherLevelApps/HigherLevelApps.h/
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Devices/Devices.h/Jetson_Tx2.h
-boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Devices/Devices.h/Buzzer.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Core/Inc/spi.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../HigherLevelApps/HigherLevelApps.h/IMU_Temp_Control.h
@@ -95,6 +94,7 @@ boilerbot_infantry_2022_leo\mpu6050_imu.o: ../BSP/BSP.h/FusionCompass.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../BSP/BSP.h/FusionOffset.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Devices/Devices.h/MPU6500_Reg.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Devices/Devices.h/IST8310_Reg.h
+boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Devices/Devices.h/Buzzer.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\mpu6050_imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

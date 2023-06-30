@@ -73,9 +73,12 @@ void Jetson_Tx2_Get_Data(void)
 
 void Jetson_Tx2_Send_Data(void)
 {
-	Tx2_Data.Sending.Super_Capacitor_Charge = Tx2_Data.Sending.Super_Capacitor_Charge + 1;
+	Tx2_Data.Sending.Pitch_Angle = VAL_LIMIT(128 + Board_A_IMU.Export_Data.Pitch,255,0);
+	Tx2_Data.Sending.Pitch_Angular_Rate = VAL_LIMIT(128 + Board_A_IMU.Export_Data.Gyro_Pitch,255,0);
+	Tx2_Data.Sending.Yaw_Angular_Rate = VAL_LIMIT(128 + Board_A_IMU.Export_Data.Gyro_Yaw,255,0);
 	Tx2_Data.Sending.Team_Color = Red;
-	Tx2_Data.Sending.Is_In_AutoAim = 1;
-	Tx2_Data.Tx_Buffer[0] = Tx2_Data.Sending.Super_Capacitor_Charge;
-	Tx2_Data.Tx_Buffer[1] = (Tx2_Data.Sending.Team_Color << 1) | Tx2_Data.Sending.Is_In_AutoAim;
+	Tx2_Data.Tx_Buffer[0] = 0xAA;//(uint8_t)Tx2_Data.Sending.Pitch_Angle;
+	Tx2_Data.Tx_Buffer[1] = 0;//(uint8_t)Tx2_Data.Sending.Pitch_Angular_Rate;
+	Tx2_Data.Tx_Buffer[2] = 0;//(uint8_t)Tx2_Data.Sending.Yaw_Angular_Rate;
+	Tx2_Data.Tx_Buffer[3] = Tx2_Data.Sending.Team_Color;
 }

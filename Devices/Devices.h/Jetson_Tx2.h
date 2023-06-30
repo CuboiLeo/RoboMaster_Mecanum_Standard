@@ -14,6 +14,8 @@
 
 #include "dma.h"
 #include "usart.h"
+#include "Board_A_IMU.h"
+#include "User_Defined_Math.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -29,14 +31,14 @@
 typedef struct
 {
 	uint8_t Rx_Buffer[7];
-	uint8_t Tx_Buffer[2];
+	uint8_t Tx_Buffer[4];
 	
 	struct
 	{
-		uint8_t Super_Capacitor_Charge;
 		uint8_t Team_Color; //0 for red, 1 for blue
-		uint8_t Is_In_AutoAim; // 0 for not Auto Aiming, 1 for Auto Aiming
-		float Current_Pitch;
+		float Pitch_Angle;
+		float Pitch_Angular_Rate;
+		float Yaw_Angular_Rate;
 	}Sending;
 	
 	struct

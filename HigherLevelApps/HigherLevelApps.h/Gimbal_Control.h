@@ -22,7 +22,7 @@
 #define YAW_DIRECTION 1 //Yaw motor direction
 #define YAW_MID_MECH_ANGLE 2840 //This is measured for yaw origin
 #define PITCH_DIRECTION 1 //Pitch motor direction
-#define PITCH_MID_MECH_ANGLE 10.0f // This is measured for pitch origin
+#define PITCH_MID_MECH_ANGLE 10.0f //This is measured for pitch origin
 #define PITCH_LOWER_LIMIT -10.0f //Pitch cannot rotate 360 degree, so these are the limits in mechanical angle
 #define PITCH_UPPER_LIMIT 30.0f
 

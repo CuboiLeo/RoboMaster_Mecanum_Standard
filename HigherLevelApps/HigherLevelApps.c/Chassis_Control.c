@@ -66,6 +66,8 @@ void Inverse_Kinematic_Calc(Chassis_t *Chassis)
 		M3508_Chassis[i].Target_Speed = Chassis->Wheel_Speed[i];
 		M3508_Chassis[i].Output_Current = PID_Func.Positional_PID(&Chassis_Speed_PID,M3508_Chassis[i].Target_Speed,M3508_Chassis[i].Actual_Speed);
 		M3508_Chassis[i].Output_Current = VAL_LIMIT(M3508_Chassis[i].Output_Current, M3508_OUTPUT_MAX, (-M3508_OUTPUT_MAX));
+		if(abs(M3508_Chassis[i].Output_Current) < 3000)
+			M3508_Chassis[i].Output_Current = 0;
 	}
 }
 
@@ -119,8 +121,8 @@ void Chassis_Processing(Chassis_t *Chassis)
 		}
 	}
 	
-	if(fabs(Chassis->Chassis_Coord.Wz) < 1.5f)
-			Chassis->Chassis_Coord.Wz = 0;
+//	if(fabs(Chassis->Chassis_Coord.Wz) < 1.5f)
+//			Chassis->Chassis_Coord.Wz = 0;
 	
 	Chassis_Func.Inverse_Kinematic_Calc(Chassis);
 }
