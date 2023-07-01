@@ -43,6 +43,7 @@ typedef struct
 	float Target_Pitch;
 	float Current_Pitch;
 	float Angle_Difference;
+	float Yaw_Angle_Output;
   float Pitch_Angle_Output;
 
 	uint8_t Gimbal_Back_Mid_Flag;

@@ -130,7 +130,7 @@ void Shooting_Processing(Shooting_t *Shooting)
 			}
 			
 			//Then fire this
-			else if((Shooting->Type.Single_Fire_Flag == 0) && (Shooting->Type.Single_Fired_Flag == 0))
+			else if(!Shooting->Type.Single_Fire_Flag && !Shooting->Type.Single_Fired_Flag && !Shooting->Type.Burst_Flag)
 			{
 				Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
 				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
@@ -141,6 +141,8 @@ void Shooting_Processing(Shooting_t *Shooting)
 				Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000; //The multiplying constant determines the frequency of bursting
 				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
 			}
+			else
+				M2006_Trigger.Output_Current = 0;
 		}
 	}
 	else

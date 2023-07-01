@@ -46,8 +46,11 @@ PID_t AutoAim_Pitch_Angle_PID = AutoAim_Pitch_Angle_PIDInit;
 PID_t AutoAim_Pitch_Speed_PID = AutoAim_Pitch_Speed_PIDInit;
 #undef AutoAim_Pitch_Speed_PIDInit
 
-PID_t AutoAim_Yaw_PID = AutoAim_Yaw_PIDInit;
-#undef AutoAim_Yaw_PIDInit
+PID_t AutoAim_Yaw_Angle_PID = AutoAim_Yaw_Angle_PIDInit;
+#undef AutoAim_Yaw_Angle_PIDInit
+
+PID_t AutoAim_Yaw_Speed_PID = AutoAim_Yaw_Speed_PIDInit;
+#undef AutoAim_Yaw_Speed_PIDInit
 
 PID_Func_t PID_Func = PID_Func_GroundInit;
 #undef PID_Func_GroundInit

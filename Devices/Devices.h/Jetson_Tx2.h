@@ -30,8 +30,8 @@
 
 typedef struct
 {
-	uint8_t Rx_Buffer[7];
-	uint8_t Tx_Buffer[4];
+	uint8_t Rx_Buffer[12];
+	uint8_t Tx_Buffer[40];
 	
 	struct
 	{
@@ -44,7 +44,7 @@ typedef struct
 	struct
 	{
 		uint8_t Frame_ID;
-		uint8_t Frame_Type; //0 for heart beat, 1 for auto aiming, 2 for navigation
+		uint8_t Frame_Type; //0 for autoaiming, 1 for navigation, 2 for heart beat
 		
 		struct
 		{
@@ -56,10 +56,8 @@ typedef struct
 			
 		struct
 		{
-			int8_t Yaw;
-			int8_t Pitch;
-			uint8_t State;
-			uint8_t _;
+			float Yaw;
+			float Pitch;
 		}Auto_Aiming;
 			
 		struct
@@ -70,14 +68,12 @@ typedef struct
 			uint8_t d;
 		}Heart_Beat;
 		
-		uint8_t CRC8;
+		union
+		{
+			uint32_t data[2];
+			uint8_t Data[8];
+		}Raw_Data;
 	}Receiving;
-	
-	enum
-	{
-		Red = 1,
-		Blue = 2,
-	}Team_Color;
 	
 }Tx2_Data_t;
 

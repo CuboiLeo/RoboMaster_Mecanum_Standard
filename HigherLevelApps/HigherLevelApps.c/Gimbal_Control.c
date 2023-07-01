@@ -74,12 +74,12 @@ void Gimbal_Processing(Gimbal_t *Gimbal)
 				Gimbal->Target_Yaw = YAW_DIRECTION * Board_A_IMU.Export_Data.Total_Yaw;
 			if(Shooting.Type.Auto_Aiming)
 			{
-				Gimbal->Target_Yaw = Tx2_Data.Receiving.Auto_Aiming.Yaw; 
-				GM6020_Yaw.Output_Current = -PID_Func.Positional_PID(&AutoAim_Yaw_PID,Gimbal->Target_Yaw,0);
+				Gimbal->Target_Yaw = Tx2_Data.Receiving.Auto_Aiming.Yaw + Board_A_IMU.Export_Data.Yaw; 
+				Gimbal->Yaw_Angle_Output = PID_Func.Positional_PID(&AutoAim_Yaw_Angle_PID,Gimbal->Target_Yaw,Board_A_IMU.Export_Data.Yaw);
+				GM6020_Yaw.Output_Current = -PID_Func.Positional_PID(&AutoAim_Yaw_Speed_PID,Gimbal->Yaw_Angle_Output,Board_A_IMU.Export_Data.Gyro_Yaw);
 				
-				Gimbal->Target_Pitch = Tx2_Data.Receiving.Auto_Aiming.Pitch; 
-				Gimbal->Pitch_Angle_Output = PID_Func.Positional_PID(&AutoAim_Pitch_Angle_PID,Gimbal->Target_Pitch,0);
-				
+				Gimbal->Target_Pitch = Tx2_Data.Receiving.Auto_Aiming.Pitch + Board_A_IMU.Export_Data.Pitch; 
+				Gimbal->Pitch_Angle_Output = PID_Func.Positional_PID(&AutoAim_Pitch_Angle_PID,Gimbal->Target_Pitch,Board_A_IMU.Export_Data.Pitch);	
 				if((GM6020_Pitch.Actual_Angle > PITCH_LOWER_LIMIT && GM6020_Pitch.Actual_Angle < PITCH_UPPER_LIMIT) || \
 					 (GM6020_Pitch.Actual_Angle < PITCH_LOWER_LIMIT && Gimbal->Target_Pitch > 0) || \
 					 (GM6020_Pitch.Actual_Angle > PITCH_UPPER_LIMIT && Gimbal->Target_Pitch < 0))
@@ -95,7 +95,7 @@ void Gimbal_Processing(Gimbal_t *Gimbal)
 				
 				Gimbal->Current_Pitch = PITCH_DIRECTION * Board_A_IMU.Export_Data.Pitch;
 				Gimbal->Pitch_Angle_Output = PID_Func.Positional_PID(&Pitch_Angle_PID,Gimbal->Target_Pitch,-Gimbal->Current_Pitch);
-				GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&AutoAim_Pitch_Speed_PID,Gimbal->Pitch_Angle_Output,-Board_A_IMU.Export_Data.Gyro_Pitch);
+				GM6020_Pitch.Output_Current = PID_Func.Positional_PID(&Pitch_Speed_PID,Gimbal->Pitch_Angle_Output,-Board_A_IMU.Export_Data.Gyro_Pitch);
 			}
 			
 			Gimbal->Prev_Mode = Not_Follow_Gimbal;
