@@ -23,7 +23,13 @@
 #define CHASSIS_WIDTH_HALF 0.15f //Measured value of the chassis's half width
 #define CHASSIS_LENGTH_HALF 0.18f //Measured value of the chassis's half length
 #define CHASSIS_NORMAL_SPEED_COEFF 200 //Normal speed coeff
-#define CHASSIS_SPINTOP_RATE 3 //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_45 1.5f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_50 2.0f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_55 2.5f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_60 3.0f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_80 3.5f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_100 4.0f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_120 4.5f //Chassis spintop rate
 
 #define Chassis_Func_GroundInit		\
 {																	\
@@ -41,6 +47,7 @@ typedef struct
 		float Vx;
 		float Vy;
 		float Wz;
+		float Spin_Rate;
 	}Chassis_Coord; //Chassis coordinate
 	
 	struct

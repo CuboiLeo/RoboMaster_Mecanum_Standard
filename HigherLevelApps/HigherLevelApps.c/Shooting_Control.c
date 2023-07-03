@@ -95,54 +95,58 @@ void Shooting_Processing(Shooting_t *Shooting)
 	//Friction wheel has to reach maximum speed before it's allowed to fire
 	if(Shooting->Fric_Wheel_Ready_Flag)
 	{
-		if(State_Machine.Control_Source == Remote_Control)
+		if(abs(Referee_Robot_State.Heat_Max - Referee_Robot_State.Shooter_Heat) > 40)
 		{
-			//First calculate target angle for single fire
-			if(Shooting->Type.Single_Fire_Flag && (Shooting->Type.Single_Fired_Flag == 0))
+			if(State_Machine.Control_Source == Remote_Control)
 			{
-				Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
-				Shooting->Type.Single_Fired_Flag = 1;
+				//First calculate target angle for single fire
+				if(Shooting->Type.Single_Fire_Flag && (Shooting->Type.Single_Fired_Flag == 0))
+				{
+					Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
+					Shooting->Type.Single_Fired_Flag = 1;
+				}
+				
+				//Then fire this
+				else if(Shooting->Type.Single_Fire_Flag && Shooting->Type.Single_Fired_Flag)
+				{
+					Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
+					M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+				}
+				
+				else if(Shooting->Type.Burst_Flag)
+				{
+					Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000; //The multiplying constant determines the frequency of bursting
+					M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+				}
+			
+				else
+					M2006_Trigger.Output_Current = 0;
 			}
 			
-			//Then fire this
-			else if(Shooting->Type.Single_Fire_Flag && Shooting->Type.Single_Fired_Flag)
+			else if(State_Machine.Control_Source == Computer)
 			{
-				Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
-				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+				//First calculate target angle for single fire
+				if(Shooting->Type.Single_Fire_Flag)
+				{
+					Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
+				}
+				
+				//Then fire this
+				else if(!Shooting->Type.Single_Fire_Flag && !Shooting->Type.Single_Fired_Flag && !Shooting->Type.Burst_Flag)
+				{
+					Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
+					M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+				}
+				
+				else if(Shooting->Type.Burst_Flag)
+				{
+					Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000; //The multiplying constant determines the frequency of bursting
+					M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+					Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle;
+				}
+				else
+					M2006_Trigger.Output_Current = 0;
 			}
-			
-			else if(Shooting->Type.Burst_Flag)
-			{
-				Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000; //The multiplying constant determines the frequency of bursting
-				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
-			}
-		
-			else
-				M2006_Trigger.Output_Current = 0;
-		}
-		
-		else if(State_Machine.Control_Source == Computer)
-		{
-			//First calculate target angle for single fire
-			if(Shooting->Type.Single_Fire_Flag)
-			{
-				Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
-			}
-			
-			//Then fire this
-			else if(!Shooting->Type.Single_Fire_Flag && !Shooting->Type.Single_Fired_Flag && !Shooting->Type.Burst_Flag)
-			{
-				Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
-				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
-			}
-			
-			else if(Shooting->Type.Burst_Flag)
-			{
-				Shooting->Trigger.Target_Speed = TRIGGER_DIRECTION * 5000; //The multiplying constant determines the frequency of bursting
-				M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
-			}
-			else
-				M2006_Trigger.Output_Current = 0;
 		}
 	}
 	else
@@ -152,8 +156,8 @@ void Shooting_Processing(Shooting_t *Shooting)
 void Turn_Friction_Wheel_On(void)
 {
 	//Slowly ramp up the target speed to protect the motor and allows reaction time for accidental triggering
-	M3508_Fric_Wheel[0].Target_Speed = FRIC_LEFT_DIRECTION * Ramp_Calc_Func.Ramp_Up(&Fric_Wheel_Ramp, FRIC_SPEED_16);
-	M3508_Fric_Wheel[1].Target_Speed = FRIC_RIGHT_DIRECTION * Ramp_Calc_Func.Ramp_Up(&Fric_Wheel_Ramp, FRIC_SPEED_16);
+	M3508_Fric_Wheel[0].Target_Speed = FRIC_LEFT_DIRECTION * Ramp_Calc_Func.Ramp_Up(&Fric_Wheel_Ramp, Shooting.Fric_Wheel.Target_Speed);
+	M3508_Fric_Wheel[1].Target_Speed = FRIC_RIGHT_DIRECTION * Ramp_Calc_Func.Ramp_Up(&Fric_Wheel_Ramp, Shooting.Fric_Wheel.Target_Speed);
 	
 	M3508_Fric_Wheel[0].Output_Current = PID_Func.Positional_PID(&Fric_Wheel_PID, M3508_Fric_Wheel[0].Target_Speed, M3508_Fric_Wheel[0].Actual_Speed);
 	M3508_Fric_Wheel[1].Output_Current = PID_Func.Positional_PID(&Fric_Wheel_PID, M3508_Fric_Wheel[1].Target_Speed, M3508_Fric_Wheel[1].Actual_Speed);

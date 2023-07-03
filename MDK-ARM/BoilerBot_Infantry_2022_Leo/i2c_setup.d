@@ -82,6 +82,9 @@ boilerbot_infantry_2022_leo\i2c_setup.o: ../HigherLevelApps/HigherLevelApps.h/Ro
 boilerbot_infantry_2022_leo\i2c_setup.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\i2c_setup.o: ../BSP/BSP.h/CRC_Verification.h
+boilerbot_infantry_2022_leo\i2c_setup.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/Jetson_Tx2.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\i2c_setup.o: ../Core/Inc/spi.h

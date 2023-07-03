@@ -11,14 +11,78 @@
 #include "Referee_System.h"
 
 Referee_System_t Referee_System;
+Referee_Robot_State_t Referee_Robot_State;
 
 HAL_StatusTypeDef Referee_UART_Receive_DMA_No_Interrupt(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 HAL_StatusTypeDef Referee_UART_Receive_Interrupt(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 void Referee_System_Handler(UART_HandleTypeDef *huart);
 void Referee_Get_Data(uint16_t Data_Length);
+void Referee_Set_Robot_State(void);
 
 Referee_System_Func_t Referee_System_Func = Referee_System_Func_GroundInit;
 #undef Referee_System_Func_GroundInit
+
+void Referee_Set_Robot_State(void)
+{
+	Referee_Robot_State.Game_Type = Referee_System.Game_Status.Type; 
+	Referee_Robot_State.ID = Referee_System.Robot_State.ID; 
+	Referee_Robot_State.Level = Referee_System.Robot_State.Level;
+	
+	Referee_Robot_State.Cooling_Rate = Referee_System.Robot_State.Shooter_1_Cooling_Rate_17mm;
+	Referee_Robot_State.Heat_Max = Referee_System.Robot_State.Shooter_1_Heat_Max_17mm; 	
+	Referee_Robot_State.Bullet_Speed_Max = Referee_System.Robot_State.Shooter_1_Speed_Limit_17mm;
+	Referee_Robot_State.Chassis_Power_Max = Referee_System.Robot_State.Chassis_Power_Max;
+	
+	Referee_Robot_State.Chassis_Power = Referee_System.Power_n_Heat.Chassis_Power; 
+	Referee_Robot_State.Power_Buffer = Referee_System.Power_n_Heat.Chassis_Power_Buffer; 
+	Referee_Robot_State.Shooter_Heat = Referee_System.Power_n_Heat.Shooter_1_Heat; 
+	Referee_Robot_State.Shooting_Frequency = Referee_System.Shooter.Frequency; 
+	Referee_Robot_State.Shooting_Speed = Referee_System.Shooter.Speed; 
+	
+	switch(Referee_Robot_State.Bullet_Speed_Max)
+	{
+		case 15:
+			Shooting.Fric_Wheel.Target_Speed = FRIC_SPEED_15;
+			break;
+		case 18:
+			Shooting.Fric_Wheel.Target_Speed = FRIC_SPEED_18;
+			break;
+		case 30:
+			Shooting.Fric_Wheel.Target_Speed = FRIC_SPEED_30;
+			break;
+		default:
+			Shooting.Fric_Wheel.Target_Speed = FRIC_SPEED_15;
+			break;
+	}
+	
+	switch(Referee_Robot_State.Chassis_Power_Max)
+	{
+		case 45:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_45;
+			break;
+		case 50:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_50;
+			break;
+		case 55:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_55;
+			break;
+		case 60:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_60;
+			break;
+		case 80:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_80;
+			break;
+		case 100:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_100;
+			break;
+		case 120:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_120;
+			break;
+		default:
+			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_45;
+			break;
+	}
+}
 
 HAL_StatusTypeDef Referee_UART_Receive_DMA_No_Interrupt(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
 {

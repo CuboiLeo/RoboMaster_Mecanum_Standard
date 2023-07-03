@@ -95,4 +95,7 @@ boilerbot_infantry_2022_leo\state_machine.o: ../Devices/Devices.h/Jetson_Tx2.h
 boilerbot_infantry_2022_leo\state_machine.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\state_machine.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\state_machine.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\state_machine.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\state_machine.o: ../BSP/BSP.h/CRC_Verification.h
+boilerbot_infantry_2022_leo\state_machine.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\state_machine.o: ../Devices/Devices.h/Buzzer.h

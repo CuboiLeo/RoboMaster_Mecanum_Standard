@@ -103,7 +103,7 @@ void Chassis_Processing(Chassis_t *Chassis)
 			//The gimbal coordinate is converted to chassis coordinate through trigonometry
 			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx * cos(Gimbal.Angle_Difference) - Chassis->Gimbal_Coord.Vy * sin(Gimbal.Angle_Difference);
 			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vx * sin(Gimbal.Angle_Difference) + Chassis->Gimbal_Coord.Vy * cos(Gimbal.Angle_Difference);
-			Chassis->Chassis_Coord.Wz = CHASSIS_SPINTOP_RATE; //This is where you control how fast the spintop spins
+			Chassis->Chassis_Coord.Wz = Chassis->Chassis_Coord.Spin_Rate; //This is where you control how fast the spintop spins
 			
 			break;
 		}

@@ -92,6 +92,9 @@ boilerbot_infantry_2022_leo\jetson_tx2.o: ../HigherLevelApps/HigherLevelApps.h/R
 boilerbot_infantry_2022_leo\jetson_tx2.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\jetson_tx2.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\jetson_tx2.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\jetson_tx2.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\jetson_tx2.o: ../BSP/BSP.h/CRC_Verification.h
+boilerbot_infantry_2022_leo\jetson_tx2.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\jetson_tx2.o: ../Devices/Devices.h/Jetson_Tx2.h
 boilerbot_infantry_2022_leo\jetson_tx2.o: ../Devices/Devices.h/Buzzer.h
 boilerbot_infantry_2022_leo\jetson_tx2.o: ../Devices/Devices.h/MPU6050_IMU.h

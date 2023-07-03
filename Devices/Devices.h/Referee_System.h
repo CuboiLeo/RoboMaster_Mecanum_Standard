@@ -14,6 +14,7 @@
 
 #include "CRC_Verification.h"
 #include "dma.h"
+#include "Shooting_Control.h"
 #include "usart.h"
 #include <stdint.h>
 #include <stdbool.h>
@@ -24,6 +25,71 @@
 				&Referee_System_Handler,				\
 				&Referee_Get_Data,							\
 }
+
+//Standard Confrontation
+#define V1_STANDARD_POWER_MAX 120
+#define V1_STANDARD_HP_MAX 200
+#define V1_STANDARD_BULLET_SPEED_MAX 18
+#define V1_STANDARD_HEAT_MAX 280
+#define V1_STANDARD_COOLING_RATE 25
+
+#define V1_SBR_POWER_MAX 150
+#define V1_SBR_HP_MAX 200
+#define V1_SBR_BULLET_SPEED_MAX 18
+#define V1_SBR_HEAT_MAX 280
+#define V1_SBR_COOLING_RATE 50
+
+//3V3 Confrontation
+#define V3_POWER_FOCUSED_LV1_HP_MAX 150
+#define V3_POWER_FOCUSED_LV1_POWER_MAX 60
+#define V3_POWER_FOCUSED_LV2_HP_MAX 200
+#define V3_POWER_FOCUSED_LV2_POWER_MAX 80
+#define V3_POWER_FOCUSED_LV3_HP_MAX 250
+#define V3_POWER_FOCUSED_LV3_POWER_MAX 100
+
+#define V3_HP_FOCUSED_LV1_HP_MAX 200
+#define V3_HP_FOCUSED_LV1_POWER_MAX 45
+#define V3_HP_FOCUSED_LV2_HP_MAX 300
+#define V3_HP_FOCUSED_LV2_POWER_MAX 50
+#define V3_HP_FOCUSED_LV3_HP_MAX 400
+#define V3_HP_FOCUSED_LV3_POWER_MAX 55
+
+#define V3_SBR_LV1_HP_MAX 300
+#define V3_SBR_LV1_POWER_MAX 60
+#define V3_SBR_LV2_HP_MAX 400
+#define V3_SBR_LV2_POWER_MAX 80
+#define V3_SBR_LV3_HP_MAX 500
+#define V3_SBR_LV3_POWER_MAX 100
+
+#define V3_BURST_FOCUSED_V1_HEAT_MAX 150
+#define V3_BURST_FOCUSED_V1_COOLING_RATE 15
+#define V3_BURST_FOCUSED_V1_BULLET_SPEED_MAX 15
+#define V3_BURST_FOCUSED_V2_HEAT_MAX 280
+#define V3_BURST_FOCUSED_V2_COOLING_RATE 25
+#define V3_BURST_FOCUSED_V2_BULLET_SPEED_MAX 15
+#define V3_BURST_FOCUSED_V3_HEAT_MAX 400
+#define V3_BURST_FOCUSED_V3_COOLING_RATE 35
+#define V3_BURST_FOCUSED_V3_BULLET_SPEED_MAX 15
+
+#define V3_COOLING_FOCUSED_V1_HEAT_MAX 50
+#define V3_COOLING_FOCUSED_V1_COOLING_RATE 40
+#define V3_COOLING_FOCUSED_V1_BULLET_SPEED_MAX 15
+#define V3_COOLING_FOCUSED_V2_HEAT_MAX 100
+#define V3_COOLING_FOCUSED_V2_COOLING_RATE 60
+#define V3_COOLING_FOCUSED_V2_BULLET_SPEED_MAX 18
+#define V3_COOLING_FOCUSED_V3_HEAT_MAX 150
+#define V3_COOLING_FOCUSED_V3_COOLING_RATE 80
+#define V3_COOLING_FOCUSED_V3_BULLET_SPEED_MAX 18
+
+#define V3_BULLET_SPEED_FOCUSED_V1_HEAT_MAX 75
+#define V3_BULLET_SPEED_FOCUSED_V1_COOLING_RATE 15
+#define V3_BULLET_SPEED_FOCUSED_V1_BULLET_SPEED_MAX 30
+#define V3_BULLET_SPEED_FOCUSED_V2_HEAT_MAX 150
+#define V3_BULLET_SPEED_FOCUSED_V2_COOLING_RATE 25
+#define V3_BULLET_SPEED_FOCUSED_V2_BULLET_SPEED_MAX 30
+#define V3_BULLET_SPEED_FOCUSED_V3_HEAT_MAX 200
+#define V3_BULLET_SPEED_FOCUSED_V3_COOLING_RATE 35
+#define V3_BULLET_SPEED_FOCUSED_V3_BULLET_SPEED_MAX 30
 
 #define REFEREE_BUFFER_LEN 												 389u					//Buffer length to receive all data
 #define REFEREE_FRAME_HEADER_START 								 0xA5 				//Frame header
@@ -84,6 +150,23 @@
 #define       REFEREE_ROBOT_COMMUNICATE_LEN        35
 #define       REFEREE_USER_DEFINED_LEN             26
 
+typedef struct
+{
+	uint8_t Game_Type; //1 for 7v7, 4 for 3v3, 5 for 1v1
+	uint8_t ID; //3,4,5 Red Standard - 103,104,105 Blue Standard
+	uint8_t Level;
+	
+	uint16_t Cooling_Rate;
+	uint16_t Heat_Max;
+	uint16_t Bullet_Speed_Max;
+	uint16_t Chassis_Power_Max;
+	
+	float Chassis_Power;
+	float Power_Buffer;
+	uint16_t Shooter_Heat;
+	uint8_t Shooting_Frequency;
+	float Shooting_Speed;
+}Referee_Robot_State_t;
 
 typedef __packed struct
 {
@@ -157,6 +240,9 @@ typedef __packed struct
 		uint16_t Shooter_Speed_Limit_42mm;
 		
 		uint16_t Chassis_Power_Max;	
+		uint8_t Gimbal_Power_Output:1;
+		uint8_t Chassis_Power_Output:1;
+		uint8_t Shooter_Power_Output:1;
 	}Robot_State;
 	
 	struct __attribute__ ((__packed__))
@@ -220,6 +306,7 @@ typedef struct
 	void (*Referee_Get_Data)(uint16_t Data_Length);
 }Referee_System_Func_t;
 
+extern Referee_Robot_State_t Referee_Robot_State;
 extern Referee_System_t Referee_System;
 extern Referee_System_Func_t Referee_System_Func;
 

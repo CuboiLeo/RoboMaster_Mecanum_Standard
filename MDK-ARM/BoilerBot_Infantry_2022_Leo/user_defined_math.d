@@ -78,6 +78,9 @@ boilerbot_infantry_2022_leo\user_defined_math.o: ../HigherLevelApps/HigherLevelA
 boilerbot_infantry_2022_leo\user_defined_math.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\user_defined_math.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\user_defined_math.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\user_defined_math.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\user_defined_math.o: ../BSP/BSP.h/CRC_Verification.h
+boilerbot_infantry_2022_leo\user_defined_math.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\user_defined_math.o: ../Devices/Devices.h/Jetson_Tx2.h
 boilerbot_infantry_2022_leo\user_defined_math.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\user_defined_math.o: ../Core/Inc/spi.h

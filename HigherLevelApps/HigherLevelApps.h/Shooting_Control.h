@@ -16,9 +16,11 @@
 #include "State_Machine.h"
 #include "DR16_Remote.h"
 #include "Ramp_Calc.h"
+#include "Referee_System.h"
 
-#define FRIC_SPEED_16	5300 //Tested value for 16m/s 
-#define FRIC_SPEED_28	7400 //Tested value for 28m/s
+#define FRIC_SPEED_15 4700 //Tested value for 15m/s
+#define FRIC_SPEED_18	5400 //Tested value for 18m/s 
+#define FRIC_SPEED_30	7600 //Tested value for 30m/s
 #define TRIGGER_DIRECTION 1 //Trigger motor direction
 #define FRIC_LEFT_DIRECTION 1 //Left friction wheel motor direction
 #define FRIC_RIGHT_DIRECTION -1 //Right friction wheel motor direction
@@ -49,6 +51,7 @@ typedef struct
 	
 	struct
 	{
+		uint16_t Target_Speed;
 		uint8_t Turned_On;
 	}Fric_Wheel;
 	

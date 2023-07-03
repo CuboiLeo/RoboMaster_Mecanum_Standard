@@ -97,3 +97,5 @@ boilerbot_infantry_2022_leo\shooting_control.o: ../HigherLevelApps/HigherLevelAp
 boilerbot_infantry_2022_leo\shooting_control.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\shooting_control.o: ../Devices/Devices.h/Buzzer.h
 boilerbot_infantry_2022_leo\shooting_control.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\shooting_control.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\shooting_control.o: ../BSP/BSP.h/CRC_Verification.h

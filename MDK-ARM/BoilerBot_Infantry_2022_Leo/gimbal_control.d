@@ -78,6 +78,9 @@ boilerbot_infantry_2022_leo\gimbal_control.o: ../HigherLevelApps/HigherLevelApps
 boilerbot_infantry_2022_leo\gimbal_control.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\gimbal_control.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\gimbal_control.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
+boilerbot_infantry_2022_leo\gimbal_control.o: ../Devices/Devices.h/Referee_System.h
+boilerbot_infantry_2022_leo\gimbal_control.o: ../BSP/BSP.h/CRC_Verification.h
+boilerbot_infantry_2022_leo\gimbal_control.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\gimbal_control.o: ../Devices/Devices.h/Jetson_Tx2.h
 boilerbot_infantry_2022_leo\gimbal_control.o: ../Devices/Devices.h/Board_A_IMU.h
 boilerbot_infantry_2022_leo\gimbal_control.o: ../Core/Inc/spi.h
