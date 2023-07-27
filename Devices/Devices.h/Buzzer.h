@@ -27,7 +27,7 @@
 }
 
 #define MAX_VOLUME 270 //Maximum volume
-#define NORMAL_VOLUME 50
+#define NORMAL_VOLUME 270
 
 typedef struct
 {

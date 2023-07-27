@@ -58,27 +58,35 @@ void Referee_Set_Robot_State(void)
 	switch(Referee_Robot_State.Chassis_Power_Max)
 	{
 		case 45:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_45;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_45;
 			break;
 		case 50:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_50;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_50;
 			break;
 		case 55:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_55;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_55;
 			break;
 		case 60:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_60;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_60;
 			break;
 		case 80:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_80;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_80;
 			break;
 		case 100:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_100;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_100;
 			break;
 		case 120:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_120;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_120;
 			break;
 		default:
+			Chassis.Chassis_Coord.Speed_Coefficient = CHASSIS_NORMAL_SPEED_COEFF_45;
 			Chassis.Chassis_Coord.Spin_Rate = CHASSIS_SPINTOP_RATE_POWER_45;
 			break;
 	}

@@ -40,6 +40,7 @@
 #include "Referee_System.h"
 #include "Buzzer.h"
 #include "Jetson_Tx2.h"
+#include "User_Interface.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,6 +68,7 @@ osThreadId Task_CAN_SendHandle;
 osThreadId Task_CAN1_RecHandle;
 osThreadId Task_CAN2_RecHandle;
 osThreadId Task_Robot_CtrlHandle;
+osThreadId Task_UIHandle;
 osMessageQId CAN1_ReceiveHandle;
 osMessageQId CAN2_ReceiveHandle;
 osMessageQId CAN_SendHandle;
@@ -82,6 +84,7 @@ void CAN_Send_ALL(void const * argument);
 void CAN1_Rec(void const * argument);
 void CAN2_Rec(void const * argument);
 void Robot_Control(void const * argument);
+void UI_Draw(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -165,6 +168,10 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(Task_Robot_Ctrl, Robot_Control, osPriorityRealtime, 0, 640);
   Task_Robot_CtrlHandle = osThreadCreate(osThread(Task_Robot_Ctrl), NULL);
 
+  /* definition and creation of Task_UI */
+  osThreadDef(Task_UI, UI_Draw, osPriorityNormal, 0, 256);
+  Task_UIHandle = osThreadCreate(osThread(Task_UI), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
 
   /* add threads, ... */
@@ -228,6 +235,7 @@ void General_Init(void const * argument)
 	DR16_Func.DR16_USART_Receive_DMA(&huart1);
 	Tx2_Func.Jetson_Tx2_Initialization();
 	Referee_System_Func.Referee_UART_Receive_Interrupt(&huart6, Referee_System.Buffer, REFEREE_BUFFER_LEN);
+	UI_Initialization();
 	CAN_Func.CAN_IT_Init(&hcan1, CAN1_Type);
   CAN_Func.CAN_IT_Init(&hcan2, CAN2_Type);
 	Gimbal_Func.Gimbal_Init();
@@ -333,6 +341,90 @@ void Robot_Control(void const * argument)
 		vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
   }
   /* USER CODE END Robot_Control */
+}
+
+/* USER CODE BEGIN Header_UI_Draw */
+/**
+* @brief Function implementing the Task_UI thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_UI_Draw */
+void UI_Draw(void const * argument)
+{
+  /* USER CODE BEGIN UI_Draw */
+	osDelay (5000);
+  portTickType xLastWakeTime;
+  xLastWakeTime = xTaskGetTickCount();
+  const TickType_t TimeIncrement = pdMS_TO_TICKS(100);
+  /* Infinite loop */
+  for(;;)
+  {
+				if(UI.Initialized_Flag == 0)
+				{
+							if(Referee_Robot_State.ID == 5)
+				{
+					UI.Pilot_ID = UI_Data_CilentID_RStandard3;
+					UI.Robot_ID = UI_Data_RobotID_RStandard3;
+				}
+				else if(Referee_Robot_State.ID == 105)
+				{
+					UI.Pilot_ID = UI_Data_CilentID_BStandard3;
+					UI.Robot_ID = UI_Data_RobotID_BStandard3;
+				}
+			UI_AimingSystem();
+			UI_GuidingSystem();
+			UI_TextSystem_Init();
+			UI.Initialized_Flag = 1;
+		}
+		osDelay (1000);
+//		memcpy (TextSystem.Text, "A_Test", 6);
+//		TextSystem.TextNumber = 6;
+//		UI_AutoText_Update();
+		switch(Chassis.Current_Mode)
+		{
+			case(Follow_Gimbal):
+				memcpy (TextSystem.Text, "FLGB", 4);
+				break;
+			case(Spin_Top):
+				memcpy (TextSystem.Text, "SPIN", 4);
+				break;
+			default:
+				memcpy (TextSystem.Text, "FLGB", 4);
+				break;
+		}
+		TextSystem.TextNumber = 4;
+		UI_StateText_Update();
+		
+		
+		if(Shooting.Fric_Wheel.Turned_On)
+		{
+			memcpy (TextSystem.Text, "FRIC ON", 7);
+			TextSystem.TextNumber = 7;
+			UI_AutoText_Update();
+		}
+		else if(Shooting.Fric_Wheel.Turned_On == 0)
+		{
+			memcpy (TextSystem.Text, "FRIC OFF", 8);
+			TextSystem.TextNumber = 8;
+			UI_AutoText_Update();
+		}
+		
+//		memcpy (TextSystem.Text, "A_Test2", 7);
+//		TextSystem.TextNumber = 7;
+//		UI_AutoText_Update();
+//		
+//		memcpy (TextSystem.Text, "C_Test2", 7);
+//		TextSystem.TextNumber = 7;
+//		UI_SuperCapText_Update();
+//		
+//		memcpy (TextSystem.Text, "S_Test2", 7);
+//		TextSystem.TextNumber = 7;
+//		UI_StateText_Update();
+		
+		vTaskDelayUntil(&xLastWakeTime, TimeIncrement);
+  /* USER CODE END UI_Draw */
+	}
 }
 
 /* Private application code --------------------------------------------------*/

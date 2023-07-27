@@ -103,3 +103,6 @@ boilerbot_infantry_2022_leo\freertos.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\freertos.o: ../Devices/Devices.h/WT901_IMU.h
+boilerbot_infantry_2022_leo\freertos.o: ../HigherLevelApps/HigherLevelApps.h/User_Interface.h
+boilerbot_infantry_2022_leo\freertos.o: ../Core/Inc/gpio.h
+boilerbot_infantry_2022_leo\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h

@@ -12,32 +12,28 @@
 
 Ramp_Calc_t Ramp_Calc;
 
-float Ramp_Up(Ramp_Calc_t *Ramp_Calc, float Max_Value);
-float Ramp_Down(Ramp_Calc_t *Ramp_Calc, float Min_Value);
+float Ramp(Ramp_Calc_t *Ramp_Calc, float Ramp_Rate, float Target_Value);
 void Clear_Ramp(Ramp_Calc_t *Ramp_Calc);
 
 Ramp_Calc_Func_t Ramp_Calc_Func = Ramp_Calc_Func_GroundInit;
 #undef Ramp_Calc_Func_GroundInit
 
-//Slowly ramp up the given value to the maximum
-float Ramp_Up(Ramp_Calc_t *Ramp_Calc, float Max_Value)
+//Slowly ramp the given value to the target value
+float Ramp(Ramp_Calc_t *Ramp_Calc, float Ramp_Rate, float Target_Value)
 {
-	Ramp_Calc->Current_Value += RAMP_RATE;
-	Ramp_Calc->Current_Value = VAL_MAX(Ramp_Calc->Current_Value, Max_Value);
+	if(Ramp_Calc->Current_Value < Target_Value)
+	{
+		Ramp_Calc->Current_Value += Ramp_Rate;
+		Ramp_Calc->Current_Value = VAL_MAX(Ramp_Calc->Current_Value, Target_Value);
+	}
+	else if(Ramp_Calc->Current_Value > Target_Value)
+	{
+		Ramp_Calc->Current_Value -= Ramp_Rate;
+		Ramp_Calc->Current_Value = VAL_MIN(Ramp_Calc->Current_Value, Target_Value);
+	}
 	
-	if(Ramp_Calc->Current_Value == Max_Value)
+	if(Ramp_Calc->Current_Value == Target_Value)
 		Ramp_Calc->Ramp_Finished_Flag = 1;
-	
-	return Ramp_Calc->Current_Value;
-}
-
-//Slowly ramp down the given value to the minimum
-float Ramp_Down(Ramp_Calc_t *Ramp_Calc, float Min_Value)
-{
-	Ramp_Calc->Current_Value -= RAMP_RATE;
-	Ramp_Calc->Current_Value = VAL_MIN(Ramp_Calc->Current_Value, Min_Value);
-	
-	Ramp_Calc->Ramp_Finished_Flag = 0;
 	
 	return Ramp_Calc->Current_Value;
 }

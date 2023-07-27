@@ -10,6 +10,7 @@
  */
 #include "Chassis_Control.h"
 Chassis_t Chassis;
+Ramp_Calc_t Chassis_Ramp[4];
  
 void Chassis_Speed_Get_Data(Chassis_t *Chassis);
 void Inverse_Kinematic_Calc(Chassis_t *Chassis);
@@ -50,7 +51,7 @@ void Inverse_Kinematic_Calc(Chassis_t *Chassis)
 	//First calculate the speed ratio for all the wheels
 	for(int i = 0; i < 4; i++)
 	{
-		Chassis->Wheel_Speed[i] *= CHASSIS_NORMAL_SPEED_COEFF;
+		Chassis->Wheel_Speed[i] *= Chassis->Chassis_Coord.Speed_Coefficient;
 		if(Super_Capacitor.Super_Cap_On)
 			Chassis->Wheel_Speed[i] *= (1 + Super_Capacitor.Super_Cap_Accel_Rate);
 		if(fabs(Chassis->Wheel_Speed[i]) > temp_speed_max)
@@ -63,11 +64,9 @@ void Inverse_Kinematic_Calc(Chassis_t *Chassis)
 	for(int i = 0; i < 4; i++)
 	{
 		Chassis->Wheel_Speed[i] *= speed_ratio;
-		M3508_Chassis[i].Target_Speed = Chassis->Wheel_Speed[i];
+		M3508_Chassis[i].Target_Speed = Ramp_Calc_Func.Ramp(&Chassis_Ramp[i], CHASSIS_RAMP_RATE, Chassis->Wheel_Speed[i]);
 		M3508_Chassis[i].Output_Current = PID_Func.Positional_PID(&Chassis_Speed_PID,M3508_Chassis[i].Target_Speed,M3508_Chassis[i].Actual_Speed);
 		M3508_Chassis[i].Output_Current = VAL_LIMIT(M3508_Chassis[i].Output_Current, M3508_OUTPUT_MAX, (-M3508_OUTPUT_MAX));
-		if(abs(M3508_Chassis[i].Output_Current) < 4000)
-			M3508_Chassis[i].Output_Current = 0;
 	}
 }
 
@@ -85,6 +84,9 @@ void Chassis_Processing(Chassis_t *Chassis)
 			Chassis->Chassis_Coord.Vx = Chassis->Gimbal_Coord.Vx;
 			Chassis->Chassis_Coord.Vy = Chassis->Gimbal_Coord.Vy;
 			Chassis->Chassis_Coord.Wz = PID_Func.Positional_PID(&Chassis_Angle_PID,0,Gimbal.Angle_Difference);
+			if(fabs(Chassis->Chassis_Coord.Wz) < 1.5f)
+				Chassis->Chassis_Coord.Wz = 0;
+			
 			break;
 		}	
 		
@@ -115,14 +117,14 @@ void Chassis_Processing(Chassis_t *Chassis)
 			Chassis->Chassis_Coord.Vy = 0;
 			Chassis->Chassis_Coord.Wz = 0;
 			
+			for(int i = 0; i < 4; i++)
+				Ramp_Calc_Func.Clear_Ramp(&Chassis_Ramp[i]);
+			
 			PID_Func.Clear_PID_Data(&Chassis_Angle_PID);
 			PID_Func.Clear_PID_Data(&Chassis_Speed_PID);
 			break;
 		}
 	}
-	
-	if(fabs(Chassis->Chassis_Coord.Wz) < 1.5f)
-			Chassis->Chassis_Coord.Wz = 0;
 	
 	Chassis_Func.Inverse_Kinematic_Calc(Chassis);
 }

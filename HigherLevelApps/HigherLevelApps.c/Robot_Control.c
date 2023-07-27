@@ -22,10 +22,9 @@ Robot_Mode_t Robot_Mode;
 //The function name tells you what it does
 void Robot_Control_Start(void)
 {
-//	Buzzer_Func.Buzzer_State();
-//	Buzzer_Func.Buzzer_Play_Song();
-	
 	State_Machine_Func.Remote_Control_Update(); 
+	Referee_System_Func.Referee_Set_Robot_State();
+	
 	Tx2_Func.Jetson_Tx2_Get_Data();
 	Tx2_Func.Jetson_Tx2_Send_Data();
 	

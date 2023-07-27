@@ -21,11 +21,14 @@
 #include <string.h>
 #include <math.h>
 
-#define PID_Func_GroundInit		\
-		{													\
-			&Positional_PID,				\
-					&Incremental_PID,		\
-					&Clear_PID_Data,		\
+#define BUFFER_LENGTH 20
+
+#define PID_Func_GroundInit					\
+		{																\
+			&Positional_PID,							\
+					&Positional_PID_Min_Error,\
+					&Incremental_PID,					\
+					&Clear_PID_Data,					\
 		}
 
 typedef struct
@@ -53,6 +56,7 @@ typedef struct
 typedef struct
 {
 	float (*Positional_PID)(PID_t *PID, float Target_Value, float Measured_Value);
+	float (*Positional_PID_Min_Error)(PID_t *PID, float Target_Value, float Measured_Value, float Min_Error);
 	float (*Incremental_PID)(PID_t *PID, float Target_Value, float Measured_Value);
 	void (*Clear_PID_Data)(PID_t *PID);
 }PID_Func_t;
@@ -208,14 +212,14 @@ typedef struct
 					0,												\
 					0,												\
 					0,												\
-					200.0f,										\
+					50.0f,										\
 					0,												\
-					60.0f,										\
-					0,												\
-					0,												\
+					500.0f,										\
 					0,												\
 					0,												\
-					28000.0f,									\
+					0,												\
+					0,												\
+					10000.0f,									\
 					0,												\
 		}
 		
@@ -226,15 +230,15 @@ typedef struct
 					0,												\
 					0,												\
 					0,												\
-					150.0f,										\
+					9.1f,											\
+					0.09f,										\
 					0,												\
-					500.0f,										\
 					0,												\
 					0,												\
 					0,												\
 					0,												\
 					28000.0f,									\
-					4000.0f,									\
+					9000.0f,									\
 		}
 		
 #define	AutoAim_Yaw_Angle_PIDInit		\
@@ -244,14 +248,14 @@ typedef struct
 					0,												\
 					0,												\
 					0,												\
-					200.0f,										\
+					50.0f,										\
 					0,												\
-					60.0f,										\
-					0,												\
-					0,												\
+					500.0f,										\
 					0,												\
 					0,												\
-					28000.0f,									\
+					0,												\
+					0,												\
+					10000.0f,									\
 					0,												\
 		}
 
@@ -262,15 +266,15 @@ typedef struct
 					0,												\
 					0,												\
 					0,												\
-					150.0f,										\
+					12.0f,										\
 					0,												\
-					500.0f,										\
+					0.05f,										\
 					0,												\
 					0,												\
 					0,												\
 					0,												\
 					28000.0f,									\
-					5000.0f,									\
+					9000.0f,									\
 		}
 extern PID_Func_t PID_Func;
 extern PID_t Chassis_Angle_PID;

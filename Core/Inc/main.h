@@ -61,6 +61,7 @@ void Error_Handler(void);
 #define SPI5_NSS_GPIO_Port GPIOF
 #define Button_Pin GPIO_PIN_2
 #define Button_GPIO_Port GPIOB
+#define Button_EXTI_IRQn EXTI2_IRQn
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

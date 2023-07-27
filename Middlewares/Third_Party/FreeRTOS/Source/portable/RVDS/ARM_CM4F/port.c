@@ -462,7 +462,7 @@ __asm void xPortPendSVHandler( void )
 	str r0, [r2]
 
 	stmdb sp!, {r0, r3}
-	mov r0, #1
+	mov r0, #0
 	msr basepri, r0
 	dsb
 	isb

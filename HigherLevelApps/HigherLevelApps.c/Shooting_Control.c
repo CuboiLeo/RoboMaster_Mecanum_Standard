@@ -126,16 +126,19 @@ void Shooting_Processing(Shooting_t *Shooting)
 			else if(State_Machine.Control_Source == Computer)
 			{
 				//First calculate target angle for single fire
-				if(Shooting->Type.Single_Fire_Flag)
+				if(Shooting->Type.Single_Fire_Flag && (Shooting->Type.Single_Fired_Flag == 0))
 				{
 					Shooting->Trigger.Target_Angle = M2006_Trigger.Total_Angle + TRIGGER_DIRECTION * M2006_ANGLE_1_BULLET;
+					Shooting->Type.Single_Fired_Flag = 1;
 				}
 				
 				//Then fire this
-				else if(!Shooting->Type.Single_Fire_Flag && !Shooting->Type.Single_Fired_Flag && !Shooting->Type.Burst_Flag)
+				else if(Shooting->Type.Single_Fired_Flag && !Shooting->Type.Burst_Flag)
 				{
 					Shooting->Trigger.Target_Speed = PID_Func.Positional_PID(&Trigger_Angle_PID, Shooting->Trigger.Target_Angle, M2006_Trigger.Total_Angle);
 					M2006_Trigger.Output_Current = PID_Func.Positional_PID(&Trigger_Speed_PID, Shooting->Trigger.Target_Speed, M2006_Trigger.Actual_Speed);
+					if(fabs(Shooting->Trigger.Target_Angle - M2006_Trigger.Total_Angle) < 100)
+						Shooting->Type.Single_Fired_Flag = 0;
 				}
 				
 				else if(Shooting->Type.Burst_Flag)
@@ -148,16 +151,16 @@ void Shooting_Processing(Shooting_t *Shooting)
 					M2006_Trigger.Output_Current = 0;
 			}
 		}
+		else
+			M2006_Trigger.Output_Current = 0;
 	}
-	else
-		M2006_Trigger.Output_Current = 0;
 }
 
 void Turn_Friction_Wheel_On(void)
 {
 	//Slowly ramp up the target speed to protect the motor and allows reaction time for accidental triggering
-	M3508_Fric_Wheel[0].Target_Speed = FRIC_LEFT_DIRECTION * Ramp_Calc_Func.Ramp_Up(&Fric_Wheel_Ramp, Shooting.Fric_Wheel.Target_Speed);
-	M3508_Fric_Wheel[1].Target_Speed = FRIC_RIGHT_DIRECTION * Ramp_Calc_Func.Ramp_Up(&Fric_Wheel_Ramp, Shooting.Fric_Wheel.Target_Speed);
+	M3508_Fric_Wheel[0].Target_Speed = FRIC_LEFT_DIRECTION * Ramp_Calc_Func.Ramp(&Fric_Wheel_Ramp, FRIC_RAMP_RATE, Shooting.Fric_Wheel.Target_Speed);
+	M3508_Fric_Wheel[1].Target_Speed = FRIC_RIGHT_DIRECTION * Ramp_Calc_Func.Ramp(&Fric_Wheel_Ramp, FRIC_RAMP_RATE, Shooting.Fric_Wheel.Target_Speed);
 	
 	M3508_Fric_Wheel[0].Output_Current = PID_Func.Positional_PID(&Fric_Wheel_PID, M3508_Fric_Wheel[0].Target_Speed, M3508_Fric_Wheel[0].Actual_Speed);
 	M3508_Fric_Wheel[1].Output_Current = PID_Func.Positional_PID(&Fric_Wheel_PID, M3508_Fric_Wheel[1].Target_Speed, M3508_Fric_Wheel[1].Actual_Speed);
@@ -170,8 +173,8 @@ void Turn_Friction_Wheel_Off(void)
 {
 	Shooting.Fric_Wheel_Ready_Flag = 0;
 	
-	M3508_Fric_Wheel[0].Target_Speed = FRIC_LEFT_DIRECTION * Ramp_Calc_Func.Ramp_Down(&Fric_Wheel_Ramp, 0);
-	M3508_Fric_Wheel[1].Target_Speed = FRIC_RIGHT_DIRECTION * Ramp_Calc_Func.Ramp_Down(&Fric_Wheel_Ramp, 0);
+	M3508_Fric_Wheel[0].Target_Speed = FRIC_LEFT_DIRECTION * Ramp_Calc_Func.Ramp(&Fric_Wheel_Ramp, FRIC_RAMP_RATE, 0);
+	M3508_Fric_Wheel[1].Target_Speed = FRIC_RIGHT_DIRECTION * Ramp_Calc_Func.Ramp(&Fric_Wheel_Ramp, FRIC_RAMP_RATE, 0);
 	
 	M3508_Fric_Wheel[0].Output_Current = PID_Func.Positional_PID(&Fric_Wheel_PID, M3508_Fric_Wheel[0].Target_Speed, M3508_Fric_Wheel[0].Actual_Speed);
 	M3508_Fric_Wheel[1].Output_Current = PID_Func.Positional_PID(&Fric_Wheel_PID, M3508_Fric_Wheel[1].Target_Speed, M3508_Fric_Wheel[1].Actual_Speed);
@@ -181,9 +184,6 @@ void Shooting_Disabled(void)
 {
 	Shooting.Fric_Wheel.Turned_On = 0;
 	Ramp_Calc_Func.Clear_Ramp(&Fric_Wheel_Ramp);
-	PID_Func.Clear_PID_Data(&Fric_Wheel_PID);
-	PID_Func.Clear_PID_Data(&Trigger_Angle_PID);
-	PID_Func.Clear_PID_Data(&Trigger_Speed_PID);
 	DR16_Export_Data.Mouse.Click_Counter = 0;
 	Shooting.Type.Single_Fire_Flag = 0;
 	Shooting.Type.Burst_Flag = 0;

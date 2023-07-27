@@ -12,6 +12,7 @@
 #include "PID.h"
 
 float Positional_PID(PID_t *PID, float Target_Value, float Measured_Value);
+float Positional_PID_Min_Error(PID_t *PID, float Target_Value, float Measured_Value, float Min_Error);
 float Incremental_PID(PID_t *PID, float Target_Value, float Measured_Value);
 void Clear_PID_Data(PID_t *PID);
 
@@ -54,6 +55,52 @@ PID_t AutoAim_Yaw_Speed_PID = AutoAim_Yaw_Speed_PIDInit;
 
 PID_Func_t PID_Func = PID_Func_GroundInit;
 #undef PID_Func_GroundInit
+
+float Positional_PID_Min_Error(PID_t *PID, float Target_Value, float Measured_Value, float Min_Error)
+{
+		static float Error_Buffer[BUFFER_LENGTH + 1];
+		float Error_Buffer_Mean = 0;
+		float Error_Sum_1 = 0;
+		float Error_Sum_2 = 0;
+	
+    PID->Target_Value = Target_Value;
+    PID->Measured_Value = Measured_Value;
+    PID->Prev_Error = PID->Error;
+    PID->Error = PID->Target_Value - PID->Measured_Value;
+		for (int i = 1; i < BUFFER_LENGTH + 1; i ++) 
+		{
+				Error_Buffer[i - 1] = Error_Buffer[i];
+				Error_Buffer_Mean += Error_Buffer[i];
+		}
+		Error_Buffer[BUFFER_LENGTH] = PID->Error;
+		Error_Buffer_Mean += Error_Buffer[BUFFER_LENGTH];
+    
+		for (int i = 0; i < BUFFER_LENGTH; i ++) 
+		{
+				Error_Sum_1 += (Error_Buffer[i] - Error_Buffer_Mean) * (i - (BUFFER_LENGTH/2.0f - 0.5f));
+		}
+		
+		for (int i = 0; i < BUFFER_LENGTH; i ++)
+		{
+				Error_Sum_2 += (i - (BUFFER_LENGTH/2.0f - 0.5f)) * (i - (BUFFER_LENGTH/2.0f - 0.5f));
+		}
+		
+		if (fabs(PID->Error) < Min_Error)
+    {
+        PID->Error = 0;
+    }
+
+    PID->P_Out = PID->Kp * PID->Error;
+    PID->I_Out += PID->Ki * PID->Error;
+    //PID->D_Out = PID->Kd * (PID->Error - PID->Prev_Error);
+		PID->D_Out = PID->Kd * (Error_Sum_1 / Error_Sum_2);
+
+    PID->I_Out = VAL_LIMIT(PID->I_Out, PID->I_Out_Max, -PID->I_Out_Max);
+    PID->Output = (PID->P_Out + PID->I_Out + PID->D_Out);
+    PID->Output = VAL_LIMIT(PID->Output, PID->Output_Max, -PID->Output_Max);
+
+    return PID->Output;
+}
 
 float Positional_PID(PID_t *PID, float Target_Value, float Measured_Value)
 {

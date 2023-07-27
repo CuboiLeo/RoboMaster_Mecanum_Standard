@@ -17,19 +17,29 @@
 #include "Gimbal_Control.h"
 #include "Robot_Control.h"
 #include "Super_Capacitor.h"
+#include "Ramp_Calc.h"
 
 #define MOTOR_SPEED_MAX 3000 //6880(theoretical max speed) //This is where to change the maximum speed
 #define MOTOR_GEAR_RATIO 19 //Gear ratio of m3508 planetary gear
 #define CHASSIS_WIDTH_HALF 0.15f //Measured value of the chassis's half width
 #define CHASSIS_LENGTH_HALF 0.18f //Measured value of the chassis's half length
-#define CHASSIS_NORMAL_SPEED_COEFF 200 //Normal speed coeff
-#define CHASSIS_SPINTOP_RATE_POWER_45 1.5f //Chassis spintop rate
-#define CHASSIS_SPINTOP_RATE_POWER_50 2.0f //Chassis spintop rate
-#define CHASSIS_SPINTOP_RATE_POWER_55 2.5f //Chassis spintop rate
-#define CHASSIS_SPINTOP_RATE_POWER_60 3.0f //Chassis spintop rate
-#define CHASSIS_SPINTOP_RATE_POWER_80 3.5f //Chassis spintop rate
-#define CHASSIS_SPINTOP_RATE_POWER_100 4.0f //Chassis spintop rate
-#define CHASSIS_SPINTOP_RATE_POWER_120 4.5f //Chassis spintop rate
+#define CHASSIS_RAMP_RATE 200.0f
+
+#define CHASSIS_NORMAL_SPEED_COEFF_45 60 //Normal speed coeff
+#define CHASSIS_NORMAL_SPEED_COEFF_50 130 //Normal speed coeff
+#define CHASSIS_NORMAL_SPEED_COEFF_55 140 //Normal speed coeff
+#define CHASSIS_NORMAL_SPEED_COEFF_60 150 //Normal speed coeff
+#define CHASSIS_NORMAL_SPEED_COEFF_80 180 //Normal speed coeff
+#define CHASSIS_NORMAL_SPEED_COEFF_100 210 //Normal speed coeff
+#define CHASSIS_NORMAL_SPEED_COEFF_120 240 //Normal speed coeff
+
+#define CHASSIS_SPINTOP_RATE_POWER_45 3.0f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_50 1.7f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_55 1.9f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_60 2.1f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_80 2.6f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_100 3.1f //Chassis spintop rate
+#define CHASSIS_SPINTOP_RATE_POWER_120 3.6f //Chassis spintop rate
 
 #define Chassis_Func_GroundInit		\
 {																	\
@@ -48,6 +58,7 @@ typedef struct
 		float Vy;
 		float Wz;
 		float Spin_Rate;
+		float Speed_Coefficient;
 	}Chassis_Coord; //Chassis coordinate
 	
 	struct

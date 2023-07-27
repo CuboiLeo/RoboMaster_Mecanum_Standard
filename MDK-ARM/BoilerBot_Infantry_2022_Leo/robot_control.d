@@ -91,10 +91,10 @@ boilerbot_infantry_2022_leo\robot_control.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\robot_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 boilerbot_infantry_2022_leo\robot_control.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\robot_control.o: ../Devices/Devices.h/Jetson_Tx2.h
+boilerbot_infantry_2022_leo\robot_control.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\robot_control.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\robot_control.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\robot_control.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
-boilerbot_infantry_2022_leo\robot_control.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\robot_control.o: ../Devices/Devices.h/Referee_System.h
 boilerbot_infantry_2022_leo\robot_control.o: ../BSP/BSP.h/CRC_Verification.h
 boilerbot_infantry_2022_leo\robot_control.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h

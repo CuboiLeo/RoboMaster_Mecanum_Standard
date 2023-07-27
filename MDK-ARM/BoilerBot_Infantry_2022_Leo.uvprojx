@@ -1952,6 +1952,11 @@
               <FileType>1</FileType>
               <FilePath>..\HigherLevelApps\HigherLevelApps.c\IMU_Temp_Control.c</FilePath>
             </File>
+            <File>
+              <FileName>User_Interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HigherLevelApps\HigherLevelApps.c\User_Interface.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -47,8 +47,10 @@ void Jetson_Tx2_Get_Data(void)
 		{
 			case 0:
 				memcpy(&Tx2_Data.Receiving.Raw_Data.Data[0],&Tx2_Data.Rx_Buffer[4],8*sizeof(uint8_t));
-				Tx2_Data.Receiving.Auto_Aiming.Yaw = *(float*)&Tx2_Data.Receiving.Raw_Data.data[0];
-				Tx2_Data.Receiving.Auto_Aiming.Pitch = *(float*)&Tx2_Data.Receiving.Raw_Data.data[1];
+				if(fabs(*(float*)&Tx2_Data.Receiving.Raw_Data.data[0]) > 0.01f)
+					Tx2_Data.Receiving.Auto_Aiming.Yaw = *(float*)&Tx2_Data.Receiving.Raw_Data.data[0];
+				if(fabs(*(float*)&Tx2_Data.Receiving.Raw_Data.data[1]) > 0.01f)
+					Tx2_Data.Receiving.Auto_Aiming.Pitch = *(float*)&Tx2_Data.Receiving.Raw_Data.data[1];
 				break;
 			
 			case 1:

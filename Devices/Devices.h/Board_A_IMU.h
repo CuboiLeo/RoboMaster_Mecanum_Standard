@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define BOARD_A_IMU_USE_MAGN 1 //Uncomment this to use magnetometer
+//#define BOARD_A_IMU_USE_MAGN 1 //Uncomment this to use magnetometer
 
 #define Board_A_IMU_Func_GroundInit       \
     {                                 		\

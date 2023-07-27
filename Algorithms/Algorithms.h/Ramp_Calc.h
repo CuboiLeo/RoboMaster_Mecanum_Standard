@@ -13,26 +13,21 @@
 
 #include "User_Defined_Math.h"
 
-#define RAMP_RATE 0.5f //This determines how fast the ramping is
-
 #define Ramp_Calc_Func_GroundInit	\
 		{															\
-				&Ramp_Up,									\
-						&Ramp_Down,						\
+				&Ramp,										\
 						&Clear_Ramp,					\
 		}
 
 typedef struct
 {
 	float Current_Value;
-	
 	uint8_t Ramp_Finished_Flag;
 }Ramp_Calc_t;
 
 typedef struct
 {
-	float (*Ramp_Up)(Ramp_Calc_t *Ramp_Calc, float Max_Value);
-	float (*Ramp_Down)(Ramp_Calc_t *Ramp_Calc, float Min_Value);
+	float (*Ramp)(Ramp_Calc_t *Ramp_Calc, float Ramp_Rate, float Target_Value);
 	void (*Clear_Ramp)(Ramp_Calc_t *Ramp_Calc);
 }Ramp_Calc_Func_t;
 

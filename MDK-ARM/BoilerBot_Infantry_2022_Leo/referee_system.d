@@ -95,8 +95,8 @@ boilerbot_infantry_2022_leo\referee_system.o: ../BSP/BSP.h/I2C_Setup.h
 boilerbot_infantry_2022_leo\referee_system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 boilerbot_infantry_2022_leo\referee_system.o: ../Devices/Devices.h/MPU6050_IMU.h
 boilerbot_infantry_2022_leo\referee_system.o: ../Devices/Devices.h/Jetson_Tx2.h
+boilerbot_infantry_2022_leo\referee_system.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\referee_system.o: ../HigherLevelApps/HigherLevelApps.h/State_Machine.h
 boilerbot_infantry_2022_leo\referee_system.o: ../HigherLevelApps/HigherLevelApps.h/Shooting_Control.h
 boilerbot_infantry_2022_leo\referee_system.o: ../Devices/Devices.h/Buzzer.h
-boilerbot_infantry_2022_leo\referee_system.o: ../Algorithms/Algorithms.h/Ramp_Calc.h
 boilerbot_infantry_2022_leo\referee_system.o: ../Devices/Devices.h/Referee_System.h

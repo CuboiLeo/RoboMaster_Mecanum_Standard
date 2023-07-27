@@ -24,6 +24,7 @@
 		&Referee_UART_Receive_Interrupt,		\
 				&Referee_System_Handler,				\
 				&Referee_Get_Data,							\
+				&Referee_Set_Robot_State,				\
 }
 
 //Standard Confrontation
@@ -304,6 +305,7 @@ typedef struct
 	HAL_StatusTypeDef (*Referee_UART_Receive_Interrupt)(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 	void (*Referee_System_Handler)(UART_HandleTypeDef *huart);
 	void (*Referee_Get_Data)(uint16_t Data_Length);
+	void (*Referee_Set_Robot_State)(void);
 }Referee_System_Func_t;
 
 extern Referee_Robot_State_t Referee_Robot_State;
