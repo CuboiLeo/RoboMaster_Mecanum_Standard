@@ -2,7 +2,7 @@
 [![Maintainer](https://img.shields.io/badge/Maintainer-Leo-blue)](https://github.com/CuboiLeo)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-# Purdue Robomaster Infantry 2022
+# Purdue Robomaster Mecanum Standard 2022-2023
 - Written using STM32 HAL Library and CubeMX.
 - Main Control Board: DJI Robomaster Board A(STM32F427IIH6)
 
