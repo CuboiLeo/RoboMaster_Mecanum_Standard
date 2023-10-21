@@ -1,0 +1,3 @@
+MDK-ARM/*
+!MDK-ARM/BoilerBot_Infantry_2022_Leo.uvprojx
+!MDK-ARM/startup_stm32f427xx.s

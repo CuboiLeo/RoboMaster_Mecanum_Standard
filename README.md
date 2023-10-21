@@ -2,7 +2,7 @@
 [![Maintainer](https://img.shields.io/badge/Maintainer-Leo-blue)](https://github.com/CuboiLeo)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-# Purdue Robomaster Mecanum Standard 2022-2023
+# Purdue Robomaster Infantry 2022
 - Written using STM32 HAL Library and CubeMX.
 - Main Control Board: DJI Robomaster Board A(STM32F427IIH6)
 
@@ -20,7 +20,7 @@
   - [x] MPU6050 IMU
   - [x] Motors
   - [x] Super Capacitor
-  - [x] Referee System
+  - [ ] Referee System
 
 - Basic Controls
   - [x] Chassis (Forward/Backward, Leftward/Rightward, Rotate)
@@ -31,9 +31,9 @@
   - [x] Follow Gimbal Mode (Chassis Follow Gimbal)
   - [x] Not Follow Gimbal Mode (Chassis Not Follow Gimbal)
   - [x] SpinTop Mode (Gimbal Holds in Position while Chassis Spins)
-  - [x] Power Limiting (Requires Referee System Communication)
-  - [x] Shooter Heat Regulation (Requires Referee System Communication)
-  - [x] Level Up Adjustments (Requires Referee System Communication)
+  - [ ] Power Limiting (Requires Referee System Communication)
+  - [ ] Shooter Heat Regulation (Requires Referee System Communication)
+  - [ ] Level Up Adjustments (Requires Referee System Communication)
 
 ## System Flow Chart
 ```mermaid
