@@ -31,9 +31,9 @@
   - [x] Follow Gimbal Mode (Chassis Follow Gimbal)
   - [x] Not Follow Gimbal Mode (Chassis Not Follow Gimbal)
   - [x] SpinTop Mode (Gimbal Holds in Position while Chassis Spins)
-  - [ ] Power Limiting (Requires Referee System Communication)
-  - [ ] Shooter Heat Regulation (Requires Referee System Communication)
-  - [ ] Level Up Adjustments (Requires Referee System Communication)
+  - [x] Power Limiting (Requires Referee System Communication)
+  - [x] Shooter Heat Regulation (Requires Referee System Communication)
+  - [x] Level Up Adjustments (Requires Referee System Communication)
 
 ## System Flow Chart
 ```mermaid
